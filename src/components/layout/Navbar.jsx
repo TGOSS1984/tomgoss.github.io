@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 const navItems = [
   { label: "Home", path: "/" },
@@ -8,11 +8,33 @@ const navItems = [
   { label: "Contact", path: "/contact" },
 ];
 
-function Navbar() {
+function Navbar({ onNavigateStart }) {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleNavigate = (event, path) => {
+    event.preventDefault();
+
+    if (location.pathname === path) {
+      return;
+    }
+
+    if (onNavigateStart) {
+      onNavigateStart(path);
+      return;
+    }
+
+    navigate(path);
+  };
+
   return (
     <header className="site-header">
       <div className="shell nav-shell">
-        <NavLink to="/" className="brand">
+        <NavLink
+          to="/"
+          className="brand"
+          onClick={(event) => handleNavigate(event, "/")}
+        >
           <span className="brand-mark">TG</span>
           <span className="brand-text">tomgoss.github.io / portfolio</span>
         </NavLink>
@@ -22,6 +44,7 @@ function Navbar() {
             <NavLink
               key={item.path}
               to={item.path}
+              onClick={(event) => handleNavigate(event, item.path)}
               className={({ isActive }) =>
                 isActive ? "nav-link nav-link-active" : "nav-link"
               }

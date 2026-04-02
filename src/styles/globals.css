@@ -1042,3 +1042,162 @@ textarea {
   pointer-events: none;
   animation: pulseGlow 5s ease-in-out infinite;
 }
+
+/*Route Loader*/
+
+.route-loader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: grid;
+  place-items: center;
+  background:
+    linear-gradient(rgba(3, 7, 18, 0.72), rgba(3, 7, 18, 0.82)),
+    radial-gradient(circle at top left, rgba(79, 209, 255, 0.08), transparent 22%),
+    radial-gradient(circle at top right, rgba(139, 92, 246, 0.08), transparent 18%);
+  backdrop-filter: blur(14px);
+}
+
+.route-loader-panel {
+  width: min(560px, calc(100% - 2rem));
+  padding: 2rem 1.5rem 1.5rem;
+  border: 1px solid rgba(110, 168, 255, 0.16);
+  border-radius: 28px;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 18, 34, 0.94),
+    rgba(7, 13, 26, 0.96)
+  );
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  position: relative;
+  overflow: hidden;
+}
+
+.route-loader-panel::before {
+  content: "";
+  position: absolute;
+  inset: auto auto -20% -10%;
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(circle, rgba(79, 209, 255, 0.08), transparent 68%);
+  pointer-events: none;
+}
+
+.route-loader-panel::after {
+  content: "";
+  position: absolute;
+  top: -30%;
+  right: -10%;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.08), transparent 68%);
+  pointer-events: none;
+}
+
+.route-loader-kicker {
+  margin: 0 0 1rem;
+  text-align: center;
+  color: var(--text-soft);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.route-loader-gauge-wrap {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 220px;
+}
+
+.route-loader-gauge {
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  overflow: visible;
+}
+
+.route-loader-arc-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 18;
+  stroke-linecap: round;
+}
+
+.route-loader-arc-glow {
+  fill: none;
+  stroke: rgba(79, 209, 255, 0.08);
+  stroke-width: 20;
+  stroke-linecap: round;
+}
+
+.route-loader-arc-progress {
+  fill: none;
+  stroke: url(#gaugeGradient);
+  stroke-width: 12;
+  stroke-linecap: round;
+}
+
+.route-loader-tick {
+  stroke: rgba(255, 255, 255, 0.22);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.route-loader-center {
+  position: absolute;
+  top: 54%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.route-loader-value {
+  margin: 0;
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--text);
+  font-family: "JetBrains Mono", monospace;
+}
+
+.route-loader-label {
+  margin: 0.45rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-family: "JetBrains Mono", monospace;
+}
+
+.route-loader-meta {
+  margin-top: -0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 360px;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--text-soft);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.82rem;
+}
+
+@media (max-width: 640px) {
+  .route-loader-panel {
+    padding: 1.5rem 1rem 1.25rem;
+    border-radius: 22px;
+  }
+
+  .route-loader-gauge-wrap {
+    min-height: 190px;
+  }
+
+  .route-loader-meta {
+    max-width: 300px;
+  }
+}
