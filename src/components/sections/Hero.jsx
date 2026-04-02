@@ -1,11 +1,17 @@
 import { ArrowRight, BarChart3, BriefcaseBusiness, Code2 } from "lucide-react";
+import { motion } from "framer-motion";
 import Button from "../ui/Button";
 
 function Hero() {
   return (
     <section className="hero-section">
       <div className="shell hero-grid">
-        <div className="hero-copy">
+        <motion.div
+          className="hero-copy"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        >
           <p className="kicker">Tom Goss // Developer & Data Portfolio</p>
 
           <h1 className="hero-title">
@@ -44,9 +50,14 @@ function Hero() {
               Commercial Context
             </span>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="hero-panel card">
+        <motion.div
+          className="hero-panel card"
+          initial={{ opacity: 0, x: 24 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.55, ease: "easeOut", delay: 0.1 }}
+        >
           <div className="hero-panel-inner">
             <div className="hero-terminal">
               <div className="hero-terminal-top">
@@ -103,7 +114,7 @@ function Hero() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
