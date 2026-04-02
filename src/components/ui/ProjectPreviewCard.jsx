@@ -1,4 +1,4 @@
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Code2 } from "lucide-react";
 import Reveal from "./Reveal";
 
 function ProjectPreviewCard({ project }) {
@@ -36,6 +36,7 @@ function ProjectPreviewCard({ project }) {
                 target="_blank"
                 rel="noreferrer"
               >
+                <Code2 size={16} />
                 Code
               </a>
             )}
