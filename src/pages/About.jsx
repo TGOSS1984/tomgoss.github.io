@@ -1,9 +1,15 @@
+import profile from "../data/profile";
 import PageSection from "../components/ui/PageSection";
+import AboutProfile from "../components/sections/AboutProfile";
 
 function About() {
   return (
-    <PageSection eyebrow="Profile" title="About">
-      <p>Background, strengths, and the transition into development and data.</p>
+    <PageSection
+      eyebrow={profile.intro.eyebrow}
+      title={profile.intro.title}
+    >
+      <p>{profile.intro.summary}</p>
+      <AboutProfile />
     </PageSection>
   );
 }
