@@ -1,10 +1,10 @@
-import Card from "../ui/Card";
+import KpiCard from "../ui/KpiCard";
 
 const stats = [
-  { value: "8", label: "Portfolio Projects" },
-  { value: "15+", label: "Years Commercial Experience" },
-  { value: "6+", label: "Core Technologies" },
-  { value: "3", label: "Mountain Tours Suite Projects" },
+  { value: 8, label: "Portfolio Projects", duration: 2200 },
+  { value: 15, suffix: "+", label: "Years Commercial Experience", duration: 2600 },
+  { value: 6, suffix: "+", label: "Core Technologies", duration: 2000 },
+  { value: 3, label: "Mountain Tours Suite Projects", duration: 1800 },
 ];
 
 function StatsStrip() {
@@ -13,10 +13,14 @@ function StatsStrip() {
       <div className="shell">
         <div className="grid-four">
           {stats.map((stat) => (
-            <Card key={stat.label} hover>
-              <p className="stat-value">{stat.value}</p>
-              <p className="stat-label">{stat.label}</p>
-            </Card>
+            <KpiCard
+              key={stat.label}
+              value={stat.value}
+              suffix={stat.suffix}
+              prefix={stat.prefix}
+              label={stat.label}
+              duration={stat.duration}
+            />
           ))}
         </div>
       </div>
