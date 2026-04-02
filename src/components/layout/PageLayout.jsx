@@ -6,9 +6,9 @@ import RouteLoader from "./RouteLoader";
 
 function PageLayout({ children }) {
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(true); // 👈 start as true
+  const [isLoading, setIsLoading] = useState(true); // start as true
 
-  // 🔥 Initial page load trigger
+  // Initial page load trigger
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
