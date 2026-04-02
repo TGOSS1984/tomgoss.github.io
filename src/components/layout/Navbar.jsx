@@ -14,7 +14,7 @@ function Navbar() {
       <div className="shell nav-shell">
         <NavLink to="/" className="brand">
           <span className="brand-mark">TG</span>
-          <span className="brand-text">tomgoss.github.io</span>
+          <span className="brand-text">tomgoss.github.io / portfolio</span>
         </NavLink>
 
         <nav className="nav">
