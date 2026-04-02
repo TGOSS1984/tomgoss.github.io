@@ -1298,3 +1298,33 @@ textarea {
 .project-link-primary:hover {
   background: rgba(79, 209, 255, 0.12);
 }
+
+/*Project Images/cards*/
+
+.project-visual-image {
+  padding: 0;
+  align-items: stretch;
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  min-height: 170px;
+  object-fit: cover;
+  display: block;
+}
+
+.project-image-scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, rgba(5, 8, 22, 0.82), rgba(5, 8, 22, 0.08) 45%),
+    linear-gradient(to right, rgba(5, 8, 22, 0.28), transparent 35%);
+  pointer-events: none;
+}
+
+.project-visual-image .project-visual-label {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+}

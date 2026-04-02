@@ -1,14 +1,31 @@
+import { useState } from "react";
 import { ExternalLink, Code2 } from "lucide-react";
 import Reveal from "./Reveal";
 
 function ProjectPreviewCard({ project }) {
+  const [imageFailed, setImageFailed] = useState(false);
+  const showImage = project.image && !imageFailed;
+
   return (
     <Reveal>
       <article className="project-preview-card card card-hover">
-        <div className="project-visual">
-          <div className="project-visual-overlay" />
-          <p className="project-visual-label">{project.imageLabel || "Project"}</p>
-        </div>
+        {showImage ? (
+          <div className="project-visual project-visual-image">
+            <img
+              src={project.image}
+              alt={`${project.title} preview`}
+              className="project-image"
+              onError={() => setImageFailed(true)}
+            />
+            <div className="project-image-scrim" />
+            <p className="project-visual-label">{project.imageLabel || "Project"}</p>
+          </div>
+        ) : (
+          <div className="project-visual">
+            <div className="project-visual-overlay" />
+            <p className="project-visual-label">{project.imageLabel || "Project"}</p>
+          </div>
+        )}
 
         <div className="project-preview-top">
           {project.suite && <p className="project-suite">{project.suite}</p>}

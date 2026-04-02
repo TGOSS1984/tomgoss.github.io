@@ -11,6 +11,7 @@ const projects = [
     githubUrl: "https://github.com/yourusername/uk-mountain-tours-booking",
     liveUrl: "https://your-live-demo-url.com",
     imageLabel: "Booking Platform",
+    image: "/assets/images/projects/mountain-tours-booking.jpg",
   },
   {
     id: "winter-mountain-tours-demand-predictor",
@@ -24,6 +25,7 @@ const projects = [
     githubUrl: "https://github.com/yourusername/winter-mountain-tours-demand-predictor",
     liveUrl: "https://your-live-demo-url.com",
     imageLabel: "Forecasting App",
+    image: "/assets/images/projects/mountain-tours-predictor.jpg",
   },
   {
     id: "power-bi-mountain-tours-analytics",
@@ -37,6 +39,7 @@ const projects = [
     githubUrl: "https://github.com/yourusername/power-bi-mountain-tours-analytics",
     liveUrl: "",
     imageLabel: "BI Dashboard",
+    image: "/assets/images/projects/mountain-tours-powerbi.jpg",
   },
   {
     id: "ashen-emporium",
@@ -49,6 +52,7 @@ const projects = [
     githubUrl: "https://github.com/yourusername/ashen-emporium",
     liveUrl: "https://your-live-demo-url.com",
     imageLabel: "E-commerce Build",
+    image: "/assets/images/projects/ashen-emporium.jpg",
   },
   {
     id: "souls-text-adventure",
@@ -61,6 +65,7 @@ const projects = [
     githubUrl: "https://github.com/yourusername/souls-text-adventure",
     liveUrl: "https://your-live-demo-url.com",
     imageLabel: "Interactive Game",
+    image: "/assets/images/projects/souls-text-adventure.jpg",
   },
   {
     id: "javascript-anagram-game",
@@ -73,6 +78,7 @@ const projects = [
     githubUrl: "https://github.com/yourusername/javascript-anagram-game",
     liveUrl: "https://your-live-demo-url.com",
     imageLabel: "Browser Game",
+    image: "/assets/images/projects/javascript-anagram-game.jpg",
   },
   {
     id: "retail-analytics-portfolio",
@@ -85,6 +91,7 @@ const projects = [
     githubUrl: "https://github.com/yourusername/retail-analytics-portfolio",
     liveUrl: "",
     imageLabel: "Analytics Project",
+    image: "/assets/images/projects/retail-analytics.jpg",
   },
   {
     id: "magic-eye-project",
@@ -97,6 +104,7 @@ const projects = [
     githubUrl: "https://github.com/yourusername/magic-eye-project",
     liveUrl: "",
     imageLabel: "Experimental Build",
+    image: "/assets/images/projects/magic-eye.jpg",
   },
 ];
 
