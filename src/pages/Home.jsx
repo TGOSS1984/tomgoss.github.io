@@ -1,5 +1,6 @@
 import Hero from "../components/sections/Hero";
 import StatsStrip from "../components/sections/StatsStrip";
+import FeaturedProjects from "../components/sections/FeaturedProjects";
 import Card from "../components/ui/Card";
 import PageSection from "../components/ui/PageSection";
 import Button from "../components/ui/Button";
@@ -9,8 +10,12 @@ function Home() {
     <>
       <Hero />
       <StatsStrip />
+      <FeaturedProjects />
 
-      <PageSection eyebrow="Featured Direction" title="A portfolio built around real-world themes">
+      <PageSection
+        eyebrow="Featured Direction"
+        title="A portfolio built around real-world themes"
+      >
         <div className="grid-three">
           <Card hover>
             <p className="kicker">Flagship Collection</p>
