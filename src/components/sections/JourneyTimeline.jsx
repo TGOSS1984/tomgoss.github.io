@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
 import journey from "../../data/journey";
+import { useRouteLoading } from "../../context/RouteLoadingContext";
 
 const containerVariants = {
   hidden: {},
   show: {
     transition: {
-      delayChildren: 0.65,
+      delayChildren: 0.4,
       staggerChildren: 0.28,
     },
   },
@@ -50,12 +51,14 @@ const markerVariants = {
 };
 
 function JourneyTimeline() {
+  const { isLoading } = useRouteLoading();
+
   return (
     <div className="journey-timeline-alt-wrap">
       <motion.div
         className="journey-spine"
         initial={{ scaleY: 0, opacity: 0.35 }}
-        animate={{ scaleY: 1, opacity: 1 }}
+        animate={isLoading ? { scaleY: 0, opacity: 0.35 } : { scaleY: 1, opacity: 1 }}
         transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
         style={{ transformOrigin: "top center" }}
       />
@@ -64,7 +67,7 @@ function JourneyTimeline() {
         className="journey-timeline-alt"
         variants={containerVariants}
         initial="hidden"
-        animate="show"
+        animate={isLoading ? "hidden" : "show"}
       >
         {journey.map((item, index) => {
           const isLeft = index % 2 === 0;

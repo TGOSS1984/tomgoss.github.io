@@ -3,16 +3,16 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import RouteLoader from "./RouteLoader";
+import { RouteLoadingProvider } from "../../context/RouteLoadingContext";
 
 function PageLayout({ children }) {
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(true); // start as true
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Initial page load trigger
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1100); // match loader duration
+    }, 1100);
 
     return () => clearTimeout(timer);
   }, []);
@@ -30,12 +30,14 @@ function PageLayout({ children }) {
   };
 
   return (
-    <div className="site-frame">
-      <Navbar onNavigateStart={handleNavigateStart} />
-      <RouteLoader isLoading={isLoading} />
-      <main className="site-main">{children}</main>
-      <Footer />
-    </div>
+    <RouteLoadingProvider value={{ isLoading }}>
+      <div className="site-frame">
+        <Navbar onNavigateStart={handleNavigateStart} />
+        <RouteLoader isLoading={isLoading} />
+        <main className="site-main">{children}</main>
+        <Footer />
+      </div>
+    </RouteLoadingProvider>
   );
 }
 
