@@ -1,5 +1,6 @@
 import Reveal from "./Reveal";
 import TopographicPanel from "../sections/TopographicPanel";
+import MediaFanStack from "./MediaFanStack";
 
 function PersonalCard({ item, reverse = false }) {
   return (
@@ -8,6 +9,8 @@ function PersonalCard({ item, reverse = false }) {
         <div className="personal-card-media">
           {item.type === "topo" ? (
             <TopographicPanel />
+          ) : item.type === "media-fan" ? (
+            <MediaFanStack images={item.mediaStack} />
           ) : (
             <div className="personal-image-wrap">
               <img

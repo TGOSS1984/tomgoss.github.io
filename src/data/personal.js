@@ -17,8 +17,15 @@ const personal = {
       id: "games-books-films",
       title: "Games, films, and books",
       text: "I am drawn to strong worlds, atmosphere, storytelling, and visual identity — whether that is in games, cinema, or novels.",
-      image: "/assets/images/personal/media-collage.jpg",
-      imageLabel: "Stories & worlds",
+      type: "media-fan",
+      mediaStack: [
+        "/assets/images/personal/media-stack/dark-souls-3.jpg",
+        "/assets/images/personal/media-stack/interstellar.jpg",
+        "/assets/images/personal/media-stack/horus-heresy.jpg",
+        "/assets/images/personal/media-stack/elden-ring.jpg",
+        "/assets/images/personal/media-stack/lord-of-the-rings.jpg",
+        "/assets/images/personal/media-stack/final-fantasy-7.jpg",
+      ],
     },
     {
       id: "miniatures",
