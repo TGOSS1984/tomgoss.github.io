@@ -11,6 +11,7 @@ const filterOptions = [
   "Interactive",
   "JavaScript",
   "Experimental",
+  "Python / CLI",
 ];
 
 function ProjectsExplorer() {
