@@ -1,6 +1,7 @@
 import KpiCard from "../ui/KpiCard";
 
 const stats = [
+  { value: 41, label: "Age", duration: 2200 },  
   { value: 8, label: "Portfolio Projects", duration: 2200 },
   { value: 15, suffix: "+", label: "Years Commercial Experience", duration: 2600 },
   { value: 6, suffix: "+", label: "Core Technologies", duration: 2000 },
