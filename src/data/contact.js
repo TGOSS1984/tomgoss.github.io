@@ -30,16 +30,34 @@ const contact = {
 
   resources: [
     {
-      title: "CV",
-      text: "Download a current copy of my CV.",
-      href: "/documents/Tom_Goss_CV.pdf",
-      cta: "Download CV",
+      id: "cv",
+      title: "Curriculum Vitae",
+      status: "Available",
+      text: "A current CV covering commercial experience, portfolio work, and transition into development and analytics.",
+      viewHref: "/assets/documents/Tom_Goss_CV.pdf",
+      downloadHref: "/assets/documents/Tom_Goss_CV.pdf",
+      downloadName: "Tom_Goss_CV.pdf",
     },
     {
-      title: "Full Stack Diploma",
-      text: "View qualification and supporting credentials.",
-      href: "/documents/full-stack-diploma.pdf",
-      cta: "View Qualification",
+      id: "full-stack-diploma",
+      title: "Code Institute Full Stack Diploma",
+      status: "Completed",
+      text: "Formal full stack software development qualification demonstrating structured training and portfolio-based technical work.",
+      viewHref: "/assets/documents/Code_Institute_Full_Stack_Diploma.pdf",
+      downloadHref: "/assets/documents/Code_Institute_Full_Stack_Diploma.pdf",
+      downloadName: "Code_Institute_Full_Stack_Diploma.pdf",
+    },
+    {
+      id: "dp900",
+      title: "Microsoft DP-900",
+      status: "In Progress",
+      text: "Currently working toward Azure Data Fundamentals to strengthen data platform and cloud understanding.",
+    },
+    {
+      id: "pl300",
+      title: "Microsoft PL-300",
+      status: "In Progress",
+      text: "Currently working toward Power BI Data Analyst certification to deepen reporting, modelling, and dashboard capability.",
     },
   ],
 };
