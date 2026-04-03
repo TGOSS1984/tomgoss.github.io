@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import About from "./pages/About";
 import Journey from "./pages/Journey";
+import Personal from "./pages/Personal";
 import Contact from "./pages/Contact";
 
 function AnimatedRoutes() {
@@ -44,6 +45,14 @@ function AnimatedRoutes() {
             element={
               <PageTransition>
                 <Journey />
+              </PageTransition>
+            }
+          />
+          <Route
+            path="/personal"
+            element={
+              <PageTransition>
+                <Personal />
               </PageTransition>
             }
           />
