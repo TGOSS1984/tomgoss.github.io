@@ -2438,3 +2438,59 @@ textarea {
     transform-origin: center;
   }
 }
+
+/*Terrian Hover*/
+
+.topo-panel {
+  position: relative;
+  min-height: 360px;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+  background:
+    radial-gradient(circle at top left, rgba(79, 209, 255, 0.07), transparent 24%),
+    radial-gradient(circle at bottom right, rgba(139, 92, 246, 0.08), transparent 24%),
+    linear-gradient(180deg, #07101d 0%, #050816 100%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 1.5rem;
+  transition: box-shadow 260ms ease, border-color 260ms ease;
+}
+
+.topo-panel:hover {
+  border-color: rgba(79, 209, 255, 0.24);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.32),
+    0 0 22px rgba(79, 209, 255, 0.08);
+}
+
+.terrain-canvas-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  filter: drop-shadow(0 0 18px rgba(79, 209, 255, 0.08));
+}
+
+.terrain-canvas-wrap canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.topo-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 30rem;
+  padding: 0.5rem 0;
+}
+
+.topo-copy h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.7rem;
+}
+
+.topo-copy p:last-child {
+  margin-bottom: 0;
+}

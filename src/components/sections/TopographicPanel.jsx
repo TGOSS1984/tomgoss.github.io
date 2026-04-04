@@ -1,23 +1,21 @@
-import { Canvas } from "@react-three/fiber";
+import { useState } from "react";
 import TerrainScene from "./TerrainScene";
 
 function TopographicPanel() {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <div className="topo-panel topo-panel-3d">
+    <div
+      className="topo-panel topo-panel-3d"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div className="topo-bg-grid topo-grid-1" />
       <div className="topo-bg-grid topo-grid-2" />
       <div className="topo-ambient-glow" />
 
       <div className="terrain-canvas-wrap">
-        <Canvas
-          camera={{ position: [0, -5.8, 3.8], fov: 42 }}
-          dpr={[1, 1.8]}
-        >
-          <color attach="background" args={["#050816"]} />
-          <fog attach="fog" args={["#050816", 7, 14]} />
-          <ambientLight intensity={0.7} />
-          <TerrainScene />
-        </Canvas>
+        <TerrainScene snow={isHovered} />
       </div>
 
       <div className="topo-copy">
