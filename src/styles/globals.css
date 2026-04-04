@@ -2494,3 +2494,350 @@ textarea {
 .topo-copy p:last-child {
   margin-bottom: 0;
 }
+
+/* Paint Reveal*/
+
+.paint-canvas-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  isolation: isolate;
+  background: #090612;
+}
+
+.paint-canvas-wrap .personal-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+  filter: saturate(1.02) contrast(1.02);
+}
+
+.paint-reveal-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.paint-canvas-wrap .personal-image-scrim {
+  z-index: 3;
+}
+
+.paint-canvas-wrap .personal-image-label {
+  z-index: 4;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: paintLabelFade 0.8s ease forwards;
+  animation-delay: 2.45s;
+}
+
+.paint-canvas-wrap.paint-complete .paint-reveal-canvas {
+  transition: opacity 0.5s ease;
+  opacity: 0;
+}
+
+@keyframes paintLabelFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/*Family Sketch CSS*/
+
+.family-sketch-card {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.family-sketch-frame {
+  position: relative;
+  width: min(100%, 760px);
+  border-radius: 28px;
+  padding: 1.2rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
+    rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.family-sketch-stage {
+  --draw-progress: 0%;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 14 / 10;
+  border-radius: 22px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.04), transparent 60%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01)),
+    #0d1117;
+  isolation: isolate;
+}
+
+/* base image settings */
+.family-sketch-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* outline layer: appears first in rougher, more "drawn" way */
+.family-sketch-outline {
+  opacity: 0;
+  filter: grayscale(1) contrast(1.28) brightness(1.08);
+  mix-blend-mode: screen;
+
+  clip-path: polygon(
+    0 0,
+    0 0,
+    0 14%,
+    0 7%,
+    0 25%,
+    0 18%,
+    0 35%,
+    0 28%,
+    0 48%,
+    0 42%,
+    0 60%,
+    0 54%,
+    0 74%,
+    0 67%,
+    0 86%,
+    0 79%,
+    0 100%,
+    0 100%
+  );
+}
+
+/* fill/shading fades in slightly later */
+.family-sketch-fill {
+  opacity: 0;
+  filter: grayscale(1) contrast(1.04) brightness(1.04);
+  transform: scale(1.015);
+  transition:
+    opacity 1.2s ease,
+    transform 1.4s ease;
+}
+
+/* moving pencil light / sweep */
+.family-sketch-pencil-pass {
+  position: absolute;
+  inset: -12%;
+  opacity: 0;
+  transform: translateX(-120%) rotate(-14deg);
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      transparent 42%,
+      rgba(255, 255, 255, 0.03) 47%,
+      rgba(255, 255, 255, 0.12) 50%,
+      rgba(255, 255, 255, 0.03) 53%,
+      transparent 58%,
+      transparent 100%
+    );
+  mix-blend-mode: screen;
+  filter: blur(8px);
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* subtle paper/grain overlay */
+.family-sketch-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.14;
+  z-index: 5;
+  pointer-events: none;
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.11) 0.55px, transparent 0.55px),
+    radial-gradient(rgba(255, 255, 255, 0.07) 0.55px, transparent 0.55px);
+  background-position: 0 0, 12px 12px;
+  background-size: 24px 24px;
+  mix-blend-mode: soft-light;
+}
+
+/* soft vignette */
+.family-sketch-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at center, transparent 56%, rgba(0, 0, 0, 0.24) 100%);
+}
+
+/* animation trigger */
+.family-sketch-card.is-started .family-sketch-outline {
+  opacity: 1;
+  animation: familySketchDraw 2.8s steps(12, end) forwards;
+}
+
+.family-sketch-card.is-started .family-sketch-fill {
+  opacity: 0.96;
+  transform: scale(1);
+  transition-delay: 1.55s;
+}
+
+.family-sketch-card.is-started .family-sketch-pencil-pass {
+  opacity: 1;
+  animation: familyPencilSweep 1.75s ease-in-out 0.2s 2;
+}
+
+@keyframes familySketchDraw {
+  0% {
+    clip-path: polygon(
+      0 0,
+      0 0,
+      0 14%,
+      0 7%,
+      0 25%,
+      0 18%,
+      0 35%,
+      0 28%,
+      0 48%,
+      0 42%,
+      0 60%,
+      0 54%,
+      0 74%,
+      0 67%,
+      0 86%,
+      0 79%,
+      0 100%,
+      0 100%
+    );
+  }
+
+  20% {
+    clip-path: polygon(
+      0 0,
+      18% 0,
+      22% 14%,
+      14% 7%,
+      20% 25%,
+      12% 18%,
+      21% 35%,
+      13% 28%,
+      19% 48%,
+      11% 42%,
+      20% 60%,
+      12% 54%,
+      18% 74%,
+      10% 67%,
+      20% 86%,
+      12% 79%,
+      17% 100%,
+      0 100%
+    );
+  }
+
+  45% {
+    clip-path: polygon(
+      0 0,
+      46% 0,
+      54% 14%,
+      38% 7%,
+      47% 25%,
+      34% 18%,
+      48% 35%,
+      36% 28%,
+      46% 48%,
+      33% 42%,
+      47% 60%,
+      35% 54%,
+      45% 74%,
+      32% 67%,
+      48% 86%,
+      35% 79%,
+      44% 100%,
+      0 100%
+    );
+  }
+
+  75% {
+    clip-path: polygon(
+      0 0,
+      78% 0,
+      87% 14%,
+      69% 7%,
+      79% 25%,
+      66% 18%,
+      82% 35%,
+      68% 28%,
+      79% 48%,
+      65% 42%,
+      81% 60%,
+      67% 54%,
+      78% 74%,
+      64% 67%,
+      82% 86%,
+      67% 79%,
+      79% 100%,
+      0 100%
+    );
+  }
+
+  100% {
+    clip-path: inset(0 0 0 0 round 0);
+  }
+}
+
+@keyframes familyPencilSweep {
+  0% {
+    opacity: 0;
+    transform: translateX(-120%) rotate(-14deg);
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(120%) rotate(-14deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .family-sketch-frame {
+    padding: 0.8rem;
+    border-radius: 22px;
+  }
+
+  .family-sketch-stage {
+    border-radius: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .family-sketch-outline,
+  .family-sketch-fill,
+  .family-sketch-pencil-pass {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .family-sketch-outline,
+  .family-sketch-fill {
+    opacity: 1 !important;
+    clip-path: inset(0 0 0 0 round 0) !important;
+    transform: none !important;
+  }
+}

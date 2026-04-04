@@ -1,6 +1,8 @@
 import Reveal from "./Reveal";
 import TopographicPanel from "../sections/TopographicPanel";
 import MediaFanStack from "./MediaFanStack";
+import PaintRevealImage from "./PaintRevealImage";
+import FamilySketchCard from "./FamilySketchCard";
 
 function PersonalCard({ item, reverse = false }) {
   return (
@@ -11,6 +13,20 @@ function PersonalCard({ item, reverse = false }) {
             <TopographicPanel />
           ) : item.type === "media-fan" ? (
             <MediaFanStack images={item.mediaStack} />
+          ) : item.type === "family-sketch" ? (
+            <FamilySketchCard
+              title={item.title}
+              delay={700}
+              loaderDelay={800}
+            />
+          ) : item.paintReveal ? (
+            <PaintRevealImage
+              src={item.image}
+              alt={item.title}
+              label={item.imageLabel}
+              startDelay={1700}
+              brushRadius={44}
+            />
           ) : (
             <div className="personal-image-wrap">
               <img

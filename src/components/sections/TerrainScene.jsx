@@ -49,7 +49,7 @@ function SnowParticles({ enabled, count = 500 }) {
       </bufferGeometry>
       <pointsMaterial
         color="#ffffff"
-        size={0.06}
+        size={0.09}
         transparent
         opacity={0.9}
         sizeAttenuation
@@ -84,9 +84,10 @@ function MountainModel({ snow = false }) {
       if (child.isMesh) {
         child.material = new THREE.MeshBasicMaterial({
           color: "#4fd1ff",
-          wireframe: true,
+          wireframe: false,
           transparent: true,
-          opacity: 0.72,
+          opacity: 0.96,
+          side: THREE.DoubleSide,
         });
       }
     });
@@ -94,10 +95,11 @@ function MountainModel({ snow = false }) {
     glowClone.traverse((child) => {
       if (child.isMesh) {
         child.material = new THREE.MeshBasicMaterial({
-          color: "#8b5cf6",
-          wireframe: true,
+          color: "#67e8f9",
+          wireframe: false,
           transparent: true,
-          opacity: 0.14,
+          opacity: .5,
+          side: THREE.DoubleSide,
         });
       }
     });
@@ -153,20 +155,6 @@ function MountainModel({ snow = false }) {
 
   return (
     <group ref={groupRef} position={[0, 1.5, 0]}>
-      <mesh position={[0, 0, -0.35]}>
-        <planeGeometry args={[10.6, 10.6]} />
-        <meshBasicMaterial color="#091225" transparent opacity={0.2} />
-      </mesh>
-
-      <mesh position={[0, 0, -0.34]}>
-        <planeGeometry args={[10.6, 10.6]} />
-        <meshBasicMaterial
-          color="#2dd4ff"
-          wireframe
-          transparent
-          opacity={0.08}
-        />
-      </mesh>
 
       <primitive
         object={baseModel}
