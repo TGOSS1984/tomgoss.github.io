@@ -78,10 +78,10 @@ body.intro-active {
   background: rgba(139, 92, 246, 0.14);
 }
 
+.intro-experience__loading,
 .intro-experience__panel {
   position: relative;
   width: min(92vw, 760px);
-  padding: clamp(1.5rem, 3vw, 2.5rem);
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-lg);
   background:
@@ -94,6 +94,15 @@ body.intro-active {
   backdrop-filter: blur(16px);
 }
 
+.intro-experience__loading {
+  padding: clamp(1.35rem, 2.8vw, 2rem);
+}
+
+.intro-experience__panel {
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.intro-experience__loading::before,
 .intro-experience__panel::before {
   content: "";
   position: absolute;
@@ -112,6 +121,63 @@ body.intro-active {
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
+}
+
+.intro-experience__loading-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.intro-experience__loading-label {
+  margin: 0;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+.intro-experience__loading-value {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.intro-experience__loading-track {
+  position: relative;
+  width: 100%;
+  height: 10px;
+  margin-top: 1rem;
+  overflow: hidden;
+  border: 1px solid rgba(79, 209, 255, 0.15);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.35);
+}
+
+.intro-experience__loading-fill {
+  height: 100%;
+  border-radius: inherit;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(79, 209, 255, 0.9) 0%,
+      rgba(125, 223, 255, 0.96) 45%,
+      rgba(139, 92, 246, 0.88) 100%
+    );
+  box-shadow:
+    0 0 22px rgba(79, 209, 255, 0.26),
+    0 0 40px rgba(139, 92, 246, 0.12);
+  transition: width 70ms linear;
+}
+
+.intro-experience__loading-subtext {
+  margin: 0.95rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-muted);
 }
 
 .intro-experience__eyebrow {
@@ -186,6 +252,7 @@ body.intro-active {
 }
 
 @media (max-width: 640px) {
+  .intro-experience__loading,
   .intro-experience__panel {
     width: min(92vw, 760px);
     padding: 1.35rem;
@@ -196,8 +263,14 @@ body.intro-active {
     max-width: 10ch;
   }
 
+  .intro-experience__loading-label-row,
   .intro-experience__actions {
     align-items: stretch;
+  }
+
+  .intro-experience__loading-label-row {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .intro-experience__button {
