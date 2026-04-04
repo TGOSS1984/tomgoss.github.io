@@ -64,139 +64,152 @@ function PaintRevealImage({
       const x = lerp(from.x, to.x, t);
       const y = lerp(from.y, to.y, t);
 
-      // slight radius variation makes it feel more organic
       const wobble = Math.sin(t * Math.PI) * 6;
       drawCircle(x, y, radius + wobble);
     }
   };
 
   const runAutoReveal = () => {
-  if (!autoReveal || hasStartedRef.current) return;
-  hasStartedRef.current = true;
+    if (!autoReveal || hasStartedRef.current) return;
+    hasStartedRef.current = true;
 
-  const canvas = canvasRef.current;
-  const wrap = wrapRef.current;
-  if (!canvas || !wrap) return;
+    const canvas = canvasRef.current;
+    const wrap = wrapRef.current;
+    if (!canvas || !wrap) return;
 
-  const rect = wrap.getBoundingClientRect();
-  const width = rect.width;
-  const height = rect.height;
+    const rect = wrap.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
 
-  const strokes = [
-    [
-      { x: -60, y: height * 0.24 },
-      { x: width * 0.14, y: height * 0.18 },
-      { x: width * 0.28, y: height * 0.34 },
-      { x: width * 0.46, y: height * 0.26 },
-      { x: width * 0.68, y: height * 0.32 },
-      { x: width + 60, y: height * 0.22 },
-    ],
-    [
-      { x: -70, y: height * 0.48 },
-      { x: width * 0.16, y: height * 0.56 },
-      { x: width * 0.32, y: height * 0.42 },
-      { x: width * 0.52, y: height * 0.58 },
-      { x: width * 0.72, y: height * 0.46 },
-      { x: width + 70, y: height * 0.54 },
-    ],
-    [
-      { x: -60, y: height * 0.74 },
-      { x: width * 0.18, y: height * 0.66 },
-      { x: width * 0.38, y: height * 0.82 },
-      { x: width * 0.58, y: height * 0.68 },
-      { x: width * 0.78, y: height * 0.80 },
-      { x: width + 60, y: height * 0.72 },
-    ],
-    [
-      { x: width * 0.18, y: -40 },
-      { x: width * 0.24, y: height * 0.16 },
-      { x: width * 0.18, y: height * 0.38 },
-      { x: width * 0.24, y: height * 0.62 },
-      { x: width * 0.16, y: height + 40 },
-    ],
-    [
-      { x: width * 0.74, y: -40 },
-      { x: width * 0.68, y: height * 0.18 },
-      { x: width * 0.78, y: height * 0.40 },
-      { x: width * 0.70, y: height * 0.66 },
-      { x: width * 0.76, y: height + 40 },
-    ],
-  ];
+    const strokes = [
+      [
+        { x: -60, y: height * 0.24 },
+        { x: width * 0.14, y: height * 0.18 },
+        { x: width * 0.28, y: height * 0.34 },
+        { x: width * 0.46, y: height * 0.26 },
+        { x: width * 0.68, y: height * 0.32 },
+        { x: width + 60, y: height * 0.22 },
+      ],
+      [
+        { x: -70, y: height * 0.48 },
+        { x: width * 0.16, y: height * 0.56 },
+        { x: width * 0.32, y: height * 0.42 },
+        { x: width * 0.52, y: height * 0.58 },
+        { x: width * 0.72, y: height * 0.46 },
+        { x: width + 70, y: height * 0.54 },
+      ],
+      [
+        { x: -60, y: height * 0.74 },
+        { x: width * 0.18, y: height * 0.66 },
+        { x: width * 0.38, y: height * 0.82 },
+        { x: width * 0.58, y: height * 0.68 },
+        { x: width * 0.78, y: height * 0.80 },
+        { x: width + 60, y: height * 0.72 },
+      ],
+      [
+        { x: width * 0.18, y: -40 },
+        { x: width * 0.24, y: height * 0.16 },
+        { x: width * 0.18, y: height * 0.38 },
+        { x: width * 0.24, y: height * 0.62 },
+        { x: width * 0.16, y: height + 40 },
+      ],
+      [
+        { x: width * 0.74, y: -40 },
+        { x: width * 0.68, y: height * 0.18 },
+        { x: width * 0.78, y: height * 0.40 },
+        { x: width * 0.70, y: height * 0.66 },
+        { x: width * 0.76, y: height + 40 },
+      ],
+    ];
 
-  let strokeIndex = 0;
-  let segmentIndex = 0;
-  let segmentProgress = 0;
-  let previousPoint = strokes[0][0];
+    let strokeIndex = 0;
+    let segmentIndex = 0;
+    let segmentProgress = 0;
+    let previousPoint = strokes[0][0];
 
-  const animate = () => {
-    if (strokeIndex >= strokes.length) {
-      const ctx = canvas.getContext("2d");
-      if (ctx) {
-        ctx.save();
-        ctx.globalCompositeOperation = "destination-out";
-        ctx.globalAlpha = 0.08; // lower than before so it doesn't suddenly reveal all
-        ctx.fillRect(0, 0, width, height);
-        ctx.restore();
+    const animate = () => {
+      if (strokeIndex >= strokes.length) {
+        const ctx = canvas.getContext("2d");
+        if (ctx) {
+          ctx.save();
+          ctx.globalCompositeOperation = "destination-out";
+          ctx.globalAlpha = 0.08;
+          ctx.fillRect(0, 0, width, height);
+          ctx.restore();
+        }
+
+        setTimeout(() => setIsDone(true), 180);
+        return;
       }
 
-      setTimeout(() => setIsDone(true), 180);
-      return;
-    }
+      const currentStroke = strokes[strokeIndex];
 
-    const currentStroke = strokes[strokeIndex];
+      if (segmentIndex >= currentStroke.length - 1) {
+        strokeIndex += 1;
+        segmentIndex = 0;
+        segmentProgress = 0;
 
-    if (segmentIndex >= currentStroke.length - 1) {
-      strokeIndex += 1;
-      segmentIndex = 0;
-      segmentProgress = 0;
+        if (strokeIndex < strokes.length) {
+          previousPoint = strokes[strokeIndex][0];
+        }
 
-      if (strokeIndex < strokes.length) {
-        previousPoint = strokes[strokeIndex][0];
+        animationFrameRef.current = window.requestAnimationFrame(animate);
+        return;
+      }
+
+      const from = currentStroke[segmentIndex];
+      const to = currentStroke[segmentIndex + 1];
+
+      segmentProgress += 0.05;
+
+      const currentPoint = {
+        x: lerp(from.x, to.x, segmentProgress),
+        y: lerp(from.y, to.y, segmentProgress),
+      };
+
+      const radiusJitter = Math.sin(segmentProgress * Math.PI) * 5;
+
+      drawInterpolatedStroke(previousPoint, currentPoint, brushRadius + radiusJitter);
+
+      drawInterpolatedStroke(
+        { x: previousPoint.x - 12, y: previousPoint.y + 8 },
+        { x: currentPoint.x - 12, y: currentPoint.y + 8 },
+        brushRadius * 0.52
+      );
+
+      drawInterpolatedStroke(
+        { x: previousPoint.x + 10, y: previousPoint.y - 6 },
+        { x: currentPoint.x + 10, y: currentPoint.y - 6 },
+        brushRadius * 0.34
+      );
+
+      previousPoint = currentPoint;
+
+      if (segmentProgress >= 1) {
+        segmentIndex += 1;
+        segmentProgress = 0;
+        previousPoint = currentStroke[segmentIndex];
       }
 
       animationFrameRef.current = window.requestAnimationFrame(animate);
-      return;
-    }
-
-    const from = currentStroke[segmentIndex];
-    const to = currentStroke[segmentIndex + 1];
-
-    segmentProgress += 0.05;
-
-    const currentPoint = {
-      x: lerp(from.x, to.x, segmentProgress),
-      y: lerp(from.y, to.y, segmentProgress),
     };
-
-    const radiusJitter = Math.sin(segmentProgress * Math.PI) * 5;
-
-    drawInterpolatedStroke(previousPoint, currentPoint, brushRadius + radiusJitter);
-
-    drawInterpolatedStroke(
-      { x: previousPoint.x - 12, y: previousPoint.y + 8 },
-      { x: currentPoint.x - 12, y: currentPoint.y + 8 },
-      brushRadius * 0.52
-    );
-
-    drawInterpolatedStroke(
-      { x: previousPoint.x + 10, y: previousPoint.y - 6 },
-      { x: currentPoint.x + 10, y: currentPoint.y - 6 },
-      brushRadius * 0.34
-    );
-
-    previousPoint = currentPoint;
-
-    if (segmentProgress >= 1) {
-      segmentIndex += 1;
-      segmentProgress = 0;
-      previousPoint = currentStroke[segmentIndex];
-    }
 
     animationFrameRef.current = window.requestAnimationFrame(animate);
   };
 
-  animationFrameRef.current = window.requestAnimationFrame(animate);
-};
+  // ✅ NEW: Restart on click
+  const handleRestart = () => {
+    if (animationFrameRef.current) {
+      window.cancelAnimationFrame(animationFrameRef.current);
+    }
+
+    hasStartedRef.current = false;
+    setIsDone(false);
+    prevPointRef.current = null;
+
+    setupCanvas();
+    runAutoReveal();
+  };
 
   const handleMouseMove = (e) => {
     if (!canvasRef.current || !wrapRef.current || !isReady) return;
@@ -253,6 +266,7 @@ function PaintRevealImage({
       className={`personal-image-wrap paint-canvas-wrap ${isDone ? "paint-complete" : ""}`}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      onClick={handleRestart} // ✅ added
     >
       <img
         ref={imageRef}
