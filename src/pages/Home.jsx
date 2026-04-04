@@ -1,3 +1,4 @@
+import IntroExperience from "../components/intro/IntroExperience";
 import Hero from "../components/sections/Hero";
 import StatsStrip from "../components/sections/StatsStrip";
 import FeaturedProjects from "../components/sections/FeaturedProjects";
@@ -8,6 +9,8 @@ import Button from "../components/ui/Button";
 function Home() {
   return (
     <>
+      <IntroExperience />
+
       <Hero />
       <StatsStrip />
       <FeaturedProjects />
