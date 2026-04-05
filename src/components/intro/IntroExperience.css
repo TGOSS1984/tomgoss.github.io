@@ -900,8 +900,8 @@ body.intro-active {
       rgba(5, 8, 22, 0.42) 100%
     ),
     url("/assets/images/personal/final-intro-placeholder.jpg") center center / cover no-repeat;
-  opacity: 0.18;
-  filter: saturate(0.9) brightness(0.84);
+  opacity: 0.9;
+  filter: saturate(1) brightness(1);
   will-change: transform;
 }
 
