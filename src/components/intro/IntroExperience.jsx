@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { introConfig } from "../../config/introConfig";
 import IntroChartScene from "./IntroChartScene";
+import IntroJourneyScene from "./IntroJourneyScene";
 import "./IntroExperience.css";
 
 function IntroExperience() {
@@ -77,8 +78,20 @@ function IntroExperience() {
     if (!isVisible || activeScene !== "chart") return;
 
     const timeoutId = window.setTimeout(() => {
+      setActiveScene("journey");
+    }, 3600);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [isVisible, activeScene]);
+
+  useEffect(() => {
+    if (!isVisible || activeScene !== "journey") return;
+
+    const timeoutId = window.setTimeout(() => {
       setActiveScene("panel");
-    }, 4000);
+    }, 5200);
 
     return () => {
       window.clearTimeout(timeoutId);
@@ -167,8 +180,10 @@ function IntroExperience() {
               </motion.div>
             ) : null}
 
-            {activeScene === "chart" ? (
-              <IntroChartScene key="chart" />
+            {activeScene === "chart" ? <IntroChartScene key="chart" /> : null}
+
+            {activeScene === "journey" ? (
+              <IntroJourneyScene key="journey" />
             ) : null}
 
             {activeScene === "panel" ? (
@@ -187,13 +202,13 @@ function IntroExperience() {
                 <p className="intro-experience__eyebrow">Portfolio introduction</p>
 
                 <h1 className="intro-experience__title">
-                  A cinematic entry experience is taking shape.
+                  The journey is now in motion.
                 </h1>
 
                 <p className="intro-experience__text">
-                  The opening analytics sequence is now in place. Next we will
-                  build the technology ascent journey, then resolve into the
-                  final introduction screen before entering the homepage.
+                  The intro now moves from analytics into a mountain-style
+                  technology ascent. Next we will replace this temporary panel
+                  with the final full-screen introduction and entry moment.
                 </p>
 
                 <div className="intro-experience__actions">
@@ -206,7 +221,7 @@ function IntroExperience() {
                   </button>
 
                   <span className="intro-experience__hint">
-                    Commit 3 chart scene active
+                    Commit 4 journey scene active
                   </span>
                 </div>
               </motion.div>
