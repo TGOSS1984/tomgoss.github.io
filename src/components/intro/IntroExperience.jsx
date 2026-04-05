@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { introConfig } from "../../config/introConfig";
+import IntroChartScene from "./IntroChartScene";
 import "./IntroExperience.css";
 
 function IntroExperience() {
   const [isVisible, setIsVisible] = useState(false);
   const [isLeaving, setIsLeaving] = useState(false);
-  const [hasLoaded, setHasLoaded] = useState(false);
+  const [activeScene, setActiveScene] = useState("loading");
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -42,7 +43,7 @@ function IntroExperience() {
   }, [isVisible]);
 
   useEffect(() => {
-    if (!isVisible) return;
+    if (!isVisible || activeScene !== "loading") return;
 
     let animationFrameId;
     let timeoutId;
@@ -59,7 +60,7 @@ function IntroExperience() {
         animationFrameId = window.requestAnimationFrame(animateProgress);
       } else {
         timeoutId = window.setTimeout(() => {
-          setHasLoaded(true);
+          setActiveScene("chart");
         }, 220);
       }
     };
@@ -70,7 +71,19 @@ function IntroExperience() {
       window.cancelAnimationFrame(animationFrameId);
       window.clearTimeout(timeoutId);
     };
-  }, [isVisible]);
+  }, [isVisible, activeScene]);
+
+  useEffect(() => {
+    if (!isVisible || activeScene !== "chart") return;
+
+    const timeoutId = window.setTimeout(() => {
+      setActiveScene("panel");
+    }, 4000);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [isVisible, activeScene]);
 
   const handleEnter = () => {
     if (introConfig.showOncePerSession) {
@@ -123,7 +136,7 @@ function IntroExperience() {
           />
 
           <AnimatePresence mode="wait">
-            {!hasLoaded ? (
+            {activeScene === "loading" ? (
               <motion.div
                 key="loading"
                 className="intro-experience__loading"
@@ -152,7 +165,13 @@ function IntroExperience() {
                   Loading interface, motion layers, and homepage entry sequence
                 </p>
               </motion.div>
-            ) : (
+            ) : null}
+
+            {activeScene === "chart" ? (
+              <IntroChartScene key="chart" />
+            ) : null}
+
+            {activeScene === "panel" ? (
               <motion.div
                 key="panel"
                 className="intro-experience__panel"
@@ -172,9 +191,9 @@ function IntroExperience() {
                 </h1>
 
                 <p className="intro-experience__text">
-                  The opening load sequence is now in place. Next we will build
-                  the animated chart scene, then the technology ascent journey,
-                  before resolving into your final intro message.
+                  The opening analytics sequence is now in place. Next we will
+                  build the technology ascent journey, then resolve into the
+                  final introduction screen before entering the homepage.
                 </p>
 
                 <div className="intro-experience__actions">
@@ -187,11 +206,11 @@ function IntroExperience() {
                   </button>
 
                   <span className="intro-experience__hint">
-                    Commit 2 loading scene active
+                    Commit 3 chart scene active
                   </span>
                 </div>
               </motion.div>
-            )}
+            ) : null}
           </AnimatePresence>
         </motion.div>
       ) : null}
