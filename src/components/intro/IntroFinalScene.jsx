@@ -68,28 +68,9 @@ function IntroFinalScene({ onEnter, reducedMotion = false }) {
             <div className="intro-final__image-layer" aria-hidden="true" />
             <div className="intro-final__image-overlay" aria-hidden="true" />
 
-            <motion.div
-              className="intro-final__ring-track"
-              animate={
-                reducedMotion
-                  ? undefined
-                  : {
-                      rotate: 360,
-                    }
-              }
-              transition={
-                reducedMotion
-                  ? undefined
-                  : {
-                      duration: 18,
-                      repeat: Infinity,
-                      ease: "linear",
-                    }
-              }
-              aria-hidden="true"
-            >
+            <div className="intro-final__ring-system" aria-hidden="true">
               <svg
-                className="intro-final__ring-svg"
+                className="intro-final__ring-base-svg"
                 viewBox="0 0 100 100"
                 preserveAspectRatio="xMidYMid meet"
               >
@@ -99,44 +80,117 @@ function IntroFinalScene({ onEnter, reducedMotion = false }) {
                   cy="50"
                   r="47.4"
                 />
-
                 <circle
-                  className="intro-final__ring-dashes intro-final__ring-dashes--one"
-                  cx="50"
-                  cy="50"
-                  r="47.2"
-                />
-
-                <circle
-                  className="intro-final__ring-dashes intro-final__ring-dashes--two"
+                  className="intro-final__ring-base intro-final__ring-base--inner"
                   cx="50"
                   cy="50"
                   r="43.7"
                 />
               </svg>
-            </motion.div>
+
+              <motion.div
+                className="intro-final__ring-track intro-final__ring-track--outer"
+                animate={
+                  reducedMotion
+                    ? undefined
+                    : {
+                        rotate: 360,
+                        scale: [1, 1.018, 0.992, 1.024, 1],
+                      }
+                }
+                transition={
+                  reducedMotion
+                    ? undefined
+                    : {
+                        rotate: {
+                          duration: 17,
+                          repeat: Infinity,
+                          ease: "linear",
+                        },
+                        scale: {
+                          duration: 5.2,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        },
+                      }
+                }
+              >
+                <svg
+                  className="intro-final__ring-svg"
+                  viewBox="0 0 100 100"
+                  preserveAspectRatio="xMidYMid meet"
+                >
+                  <circle
+                    className="intro-final__ring-dashes intro-final__ring-dashes--one"
+                    cx="50"
+                    cy="50"
+                    r="47.2"
+                  />
+                </svg>
+              </motion.div>
+
+              <motion.div
+                className="intro-final__ring-track intro-final__ring-track--inner"
+                animate={
+                  reducedMotion
+                    ? undefined
+                    : {
+                        rotate: -360,
+                        scale: [1, 0.986, 1.02, 0.994, 1],
+                      }
+                }
+                transition={
+                  reducedMotion
+                    ? undefined
+                    : {
+                        rotate: {
+                          duration: 13.5,
+                          repeat: Infinity,
+                          ease: "linear",
+                        },
+                        scale: {
+                          duration: 4.4,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        },
+                      }
+                }
+              >
+                <svg
+                  className="intro-final__ring-svg"
+                  viewBox="0 0 100 100"
+                  preserveAspectRatio="xMidYMid meet"
+                >
+                  <circle
+                    className="intro-final__ring-dashes intro-final__ring-dashes--two"
+                    cx="50"
+                    cy="50"
+                    r="43.7"
+                  />
+                </svg>
+              </motion.div>
+            </div>
 
             {!reducedMotion ? (
               <>
                 <motion.div
                   className="intro-final__pulse intro-final__pulse--outer"
                   animate={{
-                    scale: [1, 1.038, 1],
-                    opacity: [0.32, 0.62, 0.32],
+                    scale: [1, 1.042, 1],
+                    opacity: [0.36, 0.72, 0.36],
                   }}
                   transition={{
                     duration: 3.2,
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
-                  aria-hidden="true"
                 />
 
                 <motion.div
                   className="intro-final__pulse intro-final__pulse--inner"
                   animate={{
-                    scale: [1, 1.024, 1],
-                    opacity: [0.18, 0.4, 0.18],
+                    scale: [1, 1.03, 1],
+                    opacity: [0.2, 0.48, 0.2],
                   }}
                   transition={{
                     duration: 2.6,
@@ -144,7 +198,6 @@ function IntroFinalScene({ onEnter, reducedMotion = false }) {
                     ease: "easeInOut",
                     delay: 0.24,
                   }}
-                  aria-hidden="true"
                 />
               </>
             ) : null}
