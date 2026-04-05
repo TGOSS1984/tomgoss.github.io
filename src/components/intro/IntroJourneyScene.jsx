@@ -8,7 +8,12 @@ import {
   FaReact,
   FaPython,
 } from "react-icons/fa";
-import { SiDjango, SiFlask } from "react-icons/si";
+import {
+  SiDjango,
+  SiFlask,
+  SiStreamlit,
+  SiJupyter,
+} from "react-icons/si";
 import { TbSql, TbChartBarPopular } from "react-icons/tb";
 import { IoLogoJavascript } from "react-icons/io5";
 
@@ -16,115 +21,161 @@ const milestones = [
   {
     id: "excel",
     label: "Excel",
-    x: 86,
-    y: 352,
-    delay: 0.12,
+    x: 118,
+    y: 342,
+    badgeX: 74,
+    badgeY: 306,
+    delay: 0.1,
     variant: "office",
     Icon: FaFileExcel,
   },
   {
     id: "powerpoint",
     label: "PowerPoint",
-    x: 154,
-    y: 326,
-    delay: 0.28,
+    x: 188,
+    y: 314,
+    badgeX: 144,
+    badgeY: 276,
+    delay: 0.24,
     variant: "office",
     Icon: FaFilePowerpoint,
   },
   {
     id: "word",
     label: "Word",
-    x: 228,
-    y: 298,
-    delay: 0.44,
+    x: 260,
+    y: 292,
+    badgeX: 224,
+    badgeY: 252,
+    delay: 0.38,
     variant: "office",
     Icon: FaFileWord,
   },
   {
     id: "powerbi",
     label: "Power BI",
-    x: 300,
+    x: 332,
     y: 266,
-    delay: 0.62,
+    badgeX: 292,
+    badgeY: 226,
+    delay: 0.54,
     variant: "data",
     Icon: TbChartBarPopular,
   },
   {
     id: "sql",
     label: "SQL",
-    x: 374,
-    y: 232,
-    delay: 0.82,
+    x: 402,
+    y: 242,
+    badgeX: 368,
+    badgeY: 200,
+    delay: 0.7,
     variant: "data",
     Icon: TbSql,
   },
   {
     id: "python",
     label: "Python",
-    x: 452,
-    y: 196,
-    delay: 1.02,
+    x: 478,
+    y: 208,
+    badgeX: 440,
+    badgeY: 166,
+    delay: 0.86,
     variant: "dev",
     Icon: FaPython,
   },
   {
     id: "django",
     label: "Django",
-    x: 532,
-    y: 154,
-    delay: 1.22,
+    x: 554,
+    y: 176,
+    badgeX: 516,
+    badgeY: 134,
+    delay: 1.04,
     variant: "dev",
     Icon: SiDjango,
   },
   {
     id: "flask",
     label: "Flask",
-    x: 606,
-    y: 118,
-    delay: 1.42,
+    x: 628,
+    y: 152,
+    badgeX: 592,
+    badgeY: 110,
+    delay: 1.2,
     variant: "dev",
     Icon: SiFlask,
   },
   {
+    id: "jupyter",
+    label: "Jupyter",
+    x: 704,
+    y: 126,
+    badgeX: 664,
+    badgeY: 84,
+    delay: 1.36,
+    variant: "data",
+    Icon: SiJupyter,
+  },
+  {
+    id: "streamlit",
+    label: "Streamlit",
+    x: 774,
+    y: 102,
+    badgeX: 726,
+    badgeY: 60,
+    delay: 1.52,
+    variant: "dev",
+    Icon: SiStreamlit,
+  },
+  {
     id: "html",
     label: "HTML",
-    x: 680,
-    y: 96,
-    delay: 1.6,
+    x: 836,
+    y: 82,
+    badgeX: 794,
+    badgeY: 40,
+    delay: 1.68,
     variant: "frontend",
     Icon: FaHtml5,
   },
   {
     id: "css",
     label: "CSS",
-    x: 748,
-    y: 78,
-    delay: 1.78,
+    x: 888,
+    y: 64,
+    badgeX: 852,
+    badgeY: 18,
+    delay: 1.84,
     variant: "frontend",
     Icon: FaCss3Alt,
   },
   {
     id: "javascript",
     label: "JavaScript",
-    x: 818,
-    y: 64,
-    delay: 1.98,
+    x: 926,
+    y: 50,
+    badgeX: 840,
+    badgeY: 96,
+    delay: 2.0,
     variant: "frontend",
     Icon: IoLogoJavascript,
   },
   {
     id: "react",
     label: "React",
-    x: 892,
-    y: 48,
-    delay: 2.18,
+    x: 950,
+    y: 38,
+    badgeX: 874,
+    badgeY: 124,
+    delay: 2.16,
     variant: "frontend",
     Icon: FaReact,
   },
 ];
 
 const routePath =
-  "M 78 352 C 118 340, 132 336, 154 326 S 212 308, 228 298 S 278 276, 300 266 S 352 242, 374 232 S 426 206, 452 196 S 510 166, 532 154 S 584 126, 606 118 S 660 102, 680 96 S 726 84, 748 78 S 796 68, 818 64 S 872 52, 892 48";
+  "M 118 342 L 150 330 L 188 314 L 224 302 L 260 292 L 292 280 L 332 266 L 366 254 L 402 242 L 438 226 L 478 208 L 518 190 L 554 176 L 592 164 L 628 152 L 666 138 L 704 126 L 740 114 L 774 102 L 808 92 L 836 82 L 864 72 L 888 64 L 908 56 L 926 50 L 950 38";
 
 function getBadgeClass(variant) {
   switch (variant) {
@@ -157,8 +208,8 @@ function IntroJourneyScene({ reducedMotion = false }) {
           From commercial tools to modern development.
         </h2>
         <p className="intro-journey__text">
-          The route climbs from reporting foundations into engineering, UI,
-          Python frameworks, and interactive front-end work.
+          A climb from reporting and analytics through Python frameworks,
+          notebooks, app builds, and modern front-end development.
         </p>
       </div>
 
@@ -172,7 +223,7 @@ function IntroJourneyScene({ reducedMotion = false }) {
 
         <svg
           className="intro-journey__svg"
-          viewBox="0 0 960 420"
+          viewBox="0 0 980 420"
           preserveAspectRatio="xMidYMid meet"
           role="img"
           aria-label="Technology journey climbing a mountain route"
@@ -186,7 +237,7 @@ function IntroJourneyScene({ reducedMotion = false }) {
 
             <linearGradient id="journeyMountainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="rgba(79, 209, 255, 0.04)" />
-              <stop offset="100%" stopColor="rgba(139, 92, 246, 0.08)" />
+              <stop offset="100%" stopColor="rgba(139, 92, 246, 0.1)" />
             </linearGradient>
 
             <filter id="journeyRouteGlow">
@@ -200,13 +251,14 @@ function IntroJourneyScene({ reducedMotion = false }) {
 
           <path
             className="intro-journey__mountain"
-            d="M 40 378 L 180 286 L 286 310 L 404 214 L 520 242 L 642 124 L 746 150 L 920 38 L 920 398 L 40 398 Z"
+            d="M 40 388 L 130 330 L 210 344 L 300 266 L 390 286 L 488 204 L 566 222 L 648 146 L 724 162 L 810 88 L 858 108 L 920 44 L 964 20 L 964 402 L 40 402 Z"
             fill="url(#journeyMountainGradient)"
           />
 
           <g className="intro-journey__contours">
-            <path d="M 88 360 C 176 306, 262 318, 332 266 S 494 216, 598 148 S 782 116, 890 54" />
-            <path d="M 122 388 C 222 334, 310 334, 394 284 S 556 230, 662 168 S 826 120, 910 84" />
+            <path d="M 92 370 C 170 336, 236 334, 302 282 S 448 222, 544 190 S 730 128, 920 36" />
+            <path d="M 126 390 C 222 350, 290 338, 372 286 S 512 226, 620 176 S 786 116, 944 28" />
+            <path d="M 178 400 C 286 360, 360 338, 450 286 S 604 214, 712 158 S 842 96, 958 22" />
           </g>
 
           <motion.path
@@ -220,7 +272,7 @@ function IntroJourneyScene({ reducedMotion = false }) {
             filter={reducedMotion ? undefined : "url(#journeyRouteGlow)"}
             initial={reducedMotion ? false : { pathLength: 0, opacity: 0.55 }}
             animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: reducedMotion ? 0.2 : 2.4, ease: "easeInOut" }}
+            transition={{ duration: reducedMotion ? 0.2 : 2.5, ease: "easeInOut" }}
           />
 
           {milestones.map((point) => (
@@ -250,19 +302,23 @@ function IntroJourneyScene({ reducedMotion = false }) {
           ))}
         </svg>
 
-        <div className="intro-journey__badges">
+        <div className="intro-journey__badge-layer">
           {milestones.map((item) => {
             const Icon = item.Icon;
 
             return (
               <motion.div
                 key={item.id}
-                className={getBadgeClass(item.variant)}
-                initial={reducedMotion ? false : { opacity: 0, y: 16, scale: 0.96 }}
+                className={`${getBadgeClass(item.variant)} intro-journey__badge--floating`}
+                style={{
+                  left: `${(item.badgeX / 980) * 100}%`,
+                  top: `${(item.badgeY / 420) * 100}%`,
+                }}
+                initial={reducedMotion ? false : { opacity: 0, y: 12, scale: 0.96 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{
-                  duration: reducedMotion ? 0.2 : 0.45,
-                  delay: reducedMotion ? 0 : item.delay + 0.08,
+                  duration: reducedMotion ? 0.2 : 0.42,
+                  delay: reducedMotion ? 0 : item.delay + 0.06,
                   ease: [0.22, 1, 0.36, 1],
                 }}
               >
@@ -281,7 +337,7 @@ function IntroJourneyScene({ reducedMotion = false }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{
             duration: reducedMotion ? 0.2 : 0.5,
-            delay: reducedMotion ? 0 : 2.45,
+            delay: reducedMotion ? 0 : 2.55,
           }}
         >
           <div className="intro-journey__summary-item">
@@ -291,12 +347,12 @@ function IntroJourneyScene({ reducedMotion = false }) {
 
           <div className="intro-journey__summary-item">
             <span className="intro-journey__summary-label">Climb</span>
-            <strong>Python, web, and application builds</strong>
+            <strong>Python, notebooks, apps, and web builds</strong>
           </div>
 
           <div className="intro-journey__summary-item">
             <span className="intro-journey__summary-label">Current</span>
-            <strong>React + portfolio engineering</strong>
+            <strong>Frontend engineering + portfolio craft</strong>
           </div>
         </motion.div>
       </div>
