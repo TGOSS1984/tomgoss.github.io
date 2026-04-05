@@ -1606,6 +1606,117 @@ textarea {
   z-index: 1;
 }
 
+/*Journey-Timeline Responsive*/
+
+/* Journey Timeline Mobile Fix */
+@media (max-width: 900px) {
+  .journey-timeline-alt-wrap {
+    padding-left: 0.25rem;
+  }
+
+  .journey-spine {
+    left: 18px;
+    transform: none;
+    width: 3px;
+  }
+
+  .journey-timeline-alt {
+    gap: 1.25rem;
+  }
+
+  .timeline-alt-item {
+    grid-template-columns: 36px minmax(0, 1fr);
+    align-items: start;
+    min-height: auto;
+    column-gap: 0.85rem;
+  }
+
+  .timeline-alt-marker-wrap {
+    grid-column: 1;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 1.1rem;
+  }
+
+  .timeline-alt-content,
+  .timeline-alt-left .timeline-alt-content,
+  .timeline-alt-right .timeline-alt-content {
+    grid-column: 2;
+    justify-content: flex-start;
+    padding: 0;
+  }
+
+  .timeline-alt-empty {
+    display: none;
+  }
+
+  .timeline-alt-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 1.2rem 1rem;
+  }
+
+  .timeline-title {
+    font-size: 1.05rem;
+  }
+
+  .timeline-description {
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+}
+
+@media (max-width: 640px) {
+  .journey-timeline-alt-wrap {
+    margin-top: 2rem;
+  }
+
+  .journey-spine {
+    left: 16px;
+  }
+
+  .timeline-alt-item {
+    grid-template-columns: 32px minmax(0, 1fr);
+    column-gap: 0.75rem;
+  }
+
+  .timeline-alt-marker {
+    width: 18px;
+    height: 18px;
+    border-width: 2px;
+    box-shadow:
+      0 0 0 6px rgba(79, 209, 255, 0.08),
+      0 0 18px rgba(79, 209, 255, 0.2);
+  }
+
+  .timeline-alt-marker-wrap {
+    padding-top: 1rem;
+  }
+
+  .timeline-alt-card {
+    border-radius: 18px;
+    padding: 1rem 0.9rem;
+  }
+
+  .timeline-year {
+    font-size: 0.8rem;
+  }
+
+  .timeline-phase {
+    font-size: 0.72rem;
+  }
+
+  .timeline-title {
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+
+  .timeline-description {
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+}
+
 /* Personal */
 
 .personal-hero {
