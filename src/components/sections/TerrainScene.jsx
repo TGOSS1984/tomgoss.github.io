@@ -3,6 +3,8 @@ import { useGLTF } from "@react-three/drei";
 import { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 
+const MODEL_PATH = `${import.meta.env.BASE_URL}assets/models/mountain.glb`;
+
 function SnowParticles({ enabled, count = 500 }) {
   const pointsRef = useRef();
 
@@ -62,7 +64,7 @@ function MountainModel({ snow = false }) {
   const groupRef = useRef();
   const materialRef = useRef();
   const glowMaterialRef = useRef();
-  const { scene } = useGLTF("/assets/models/mountain.glb");
+  const { scene } = useGLTF(MODEL_PATH);
 
   const { baseModel, glowModel, autoScale } = useMemo(() => {
     const baseClone = scene.clone(true);
@@ -185,6 +187,6 @@ function TerrainScene({ snow = false }) {
   );
 }
 
-useGLTF.preload("/assets/models/mountain.glb");
+useGLTF.preload(MODEL_PATH);
 
 export default TerrainScene;

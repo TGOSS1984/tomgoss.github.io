@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
-const SVG_SRC = "/assets/images/personal/family-lineart.svg";
+const SVG_SRC = `${import.meta.env.BASE_URL}assets/images/personal/family-lineart.svg`;
 
 function FamilySketchCard({
   title = "Family",
