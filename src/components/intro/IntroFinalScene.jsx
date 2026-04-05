@@ -10,17 +10,16 @@ function IntroFinalScene({ onEnter, reducedMotion = false }) {
     }
   };
 
-  const stopInnerClick = (event) => {
-    event.stopPropagation();
-  };
-
   return (
     <motion.div
       className="intro-final"
       initial={reducedMotion ? false : { opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={reducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.995 }}
-      transition={{ duration: reducedMotion ? 0.2 : 0.65, ease: [0.22, 1, 0.36, 1] }}
+      transition={{
+        duration: reducedMotion ? 0.2 : 0.65,
+        ease: [0.22, 1, 0.36, 1],
+      }}
       onClick={handleBackgroundClick}
       role="button"
       tabIndex={0}
@@ -39,74 +38,170 @@ function IntroFinalScene({ onEnter, reducedMotion = false }) {
         <>
           <div className="intro-final__ambient intro-final__ambient--one" />
           <div className="intro-final__ambient intro-final__ambient--two" />
-
-          <motion.div
-            className="intro-final__ring intro-final__ring--outer"
-            initial={{ opacity: 0, scale: 0.86 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          />
-
-          <motion.div
-            className="intro-final__ring intro-final__ring--inner"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-          />
         </>
       ) : null}
 
-      <div
-        className="intro-final__content"
-        onClick={introConfig.finalSceneClickToEnter ? stopInnerClick : undefined}
-        >
+      <div className="intro-final__content">
         <motion.p
           className="intro-final__eyebrow"
           initial={reducedMotion ? false : { opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: reducedMotion ? 0.2 : 0.55, delay: reducedMotion ? 0 : 0.08 }}
+          transition={{
+            duration: reducedMotion ? 0.2 : 0.55,
+            delay: reducedMotion ? 0 : 0.08,
+          }}
         >
           Portfolio introduction
         </motion.p>
 
-        <h1 className="intro-final__title" aria-label="Hi, I’m Tom.">
-          {titleWords.map((word, index) => (
-            <motion.span
-              key={word}
-              className="intro-final__title-word"
-              initial={reducedMotion ? false : { opacity: 0, y: 34, rotateX: -18 }}
-              animate={{ opacity: 1, y: 0, rotateX: 0 }}
-              transition={{
-                duration: reducedMotion ? 0.2 : 0.75,
-                delay: reducedMotion ? 0 : 0.2 + index * 0.14,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-            >
-              {word}
-            </motion.span>
-          ))}
-        </h1>
-
-        <motion.p
-          className="intro-final__subtitle"
-          initial={reducedMotion ? false : { opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: reducedMotion ? 0.2 : 0.65, delay: reducedMotion ? 0 : 0.78 }}
+        <motion.div
+          className="intro-final__circle-wrap"
+          initial={reducedMotion ? false : { opacity: 0, scale: 0.94, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{
+            duration: reducedMotion ? 0.25 : 0.9,
+            delay: reducedMotion ? 0 : 0.16,
+            ease: [0.22, 1, 0.36, 1],
+          }}
         >
-          Building practical digital products with a commercial, analytical,
-          and mountain-shaped perspective.
-        </motion.p>
+          <div className="intro-final__circle">
+            <div className="intro-final__image-layer" aria-hidden="true" />
+            <div className="intro-final__image-overlay" aria-hidden="true" />
+
+            <motion.div
+              className="intro-final__ring-track"
+              animate={
+                reducedMotion
+                  ? undefined
+                  : {
+                      rotate: 360,
+                    }
+              }
+              transition={
+                reducedMotion
+                  ? undefined
+                  : {
+                      duration: 18,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }
+              }
+              aria-hidden="true"
+            >
+              <svg
+                className="intro-final__ring-svg"
+                viewBox="0 0 100 100"
+                preserveAspectRatio="xMidYMid meet"
+              >
+                <circle
+                  className="intro-final__ring-base"
+                  cx="50"
+                  cy="50"
+                  r="47.4"
+                />
+
+                <circle
+                  className="intro-final__ring-dashes intro-final__ring-dashes--one"
+                  cx="50"
+                  cy="50"
+                  r="47.2"
+                />
+
+                <circle
+                  className="intro-final__ring-dashes intro-final__ring-dashes--two"
+                  cx="50"
+                  cy="50"
+                  r="43.7"
+                />
+              </svg>
+            </motion.div>
+
+            {!reducedMotion ? (
+              <>
+                <motion.div
+                  className="intro-final__pulse intro-final__pulse--outer"
+                  animate={{
+                    scale: [1, 1.038, 1],
+                    opacity: [0.32, 0.62, 0.32],
+                  }}
+                  transition={{
+                    duration: 3.2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  aria-hidden="true"
+                />
+
+                <motion.div
+                  className="intro-final__pulse intro-final__pulse--inner"
+                  animate={{
+                    scale: [1, 1.024, 1],
+                    opacity: [0.18, 0.4, 0.18],
+                  }}
+                  transition={{
+                    duration: 2.6,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 0.24,
+                  }}
+                  aria-hidden="true"
+                />
+              </>
+            ) : null}
+
+            <div className="intro-final__text-layer">
+              <h1 className="intro-final__title" aria-label="Hi, I’m Tom.">
+                {titleWords.map((word, index) => (
+                  <motion.span
+                    key={word}
+                    className="intro-final__title-word"
+                    initial={
+                      reducedMotion ? false : { opacity: 0, y: 26, rotateX: -18 }
+                    }
+                    animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                    transition={{
+                      duration: reducedMotion ? 0.2 : 0.75,
+                      delay: reducedMotion ? 0 : 0.34 + index * 0.14,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+              </h1>
+
+              <motion.p
+                className="intro-final__subtitle"
+                initial={reducedMotion ? false : { opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: reducedMotion ? 0.2 : 0.65,
+                  delay: reducedMotion ? 0 : 0.92,
+                }}
+              >
+                Building practical digital products with a commercial,
+                analytical, and mountain-shaped perspective.
+              </motion.p>
+            </div>
+          </div>
+        </motion.div>
 
         <motion.div
           className="intro-final__actions"
           initial={reducedMotion ? false : { opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: reducedMotion ? 0.2 : 0.65, delay: reducedMotion ? 0 : 1.02 }}
+          transition={{
+            duration: reducedMotion ? 0.2 : 0.65,
+            delay: reducedMotion ? 0 : 1.08,
+          }}
         >
           <button
             type="button"
             className="intro-final__button"
-            onClick={onEnter}
+            onClick={(event) => {
+              event.stopPropagation();
+              onEnter();
+            }}
           >
             Enter Portfolio
           </button>
