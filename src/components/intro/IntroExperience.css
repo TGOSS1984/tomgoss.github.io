@@ -902,6 +902,7 @@ body.intro-active {
     url("/assets/images/personal/final-intro-placeholder.jpg") center center / cover no-repeat;
   opacity: 0.18;
   filter: saturate(0.9) brightness(0.84);
+  will-change: transform;
 }
 
 .intro-final__image-overlay {
@@ -989,6 +990,133 @@ body.intro-active {
     drop-shadow(0 0 8px rgba(139, 92, 246, 0.72))
     drop-shadow(0 0 14px rgba(139, 92, 246, 0.3))
     drop-shadow(0 0 24px rgba(139, 92, 246, 0.12));
+}
+
+.intro-final__ring-highlight {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.intro-final__ring-highlight--outer {
+  background:
+    conic-gradient(
+      from 0deg,
+      transparent 0deg 24deg,
+      rgba(79, 209, 255, 0.92) 28deg 38deg,
+      transparent 42deg 126deg,
+      rgba(79, 209, 255, 0.65) 132deg 138deg,
+      transparent 144deg 232deg,
+      rgba(79, 209, 255, 0.86) 238deg 248deg,
+      transparent 254deg 360deg
+    );
+  mask:
+    radial-gradient(
+      farthest-side,
+      transparent calc(100% - 8px),
+      #000 calc(100% - 7px),
+      #000 calc(100% - 1px),
+      transparent 100%
+    );
+  filter:
+    blur(0.4px)
+    drop-shadow(0 0 8px rgba(79, 209, 255, 0.72))
+    drop-shadow(0 0 18px rgba(79, 209, 255, 0.24));
+}
+
+.intro-final__ring-highlight--inner {
+  inset: 3.6%;
+  background:
+    conic-gradient(
+      from 40deg,
+      transparent 0deg 62deg,
+      rgba(139, 92, 246, 0.8) 68deg 76deg,
+      transparent 82deg 186deg,
+      rgba(139, 92, 246, 0.64) 192deg 198deg,
+      transparent 204deg 306deg,
+      rgba(139, 92, 246, 0.82) 312deg 322deg,
+      transparent 328deg 360deg
+    );
+  mask:
+    radial-gradient(
+      farthest-side,
+      transparent calc(100% - 6px),
+      #000 calc(100% - 5px),
+      #000 calc(100% - 1px),
+      transparent 100%
+    );
+  filter:
+    blur(0.5px)
+    drop-shadow(0 0 8px rgba(139, 92, 246, 0.68))
+    drop-shadow(0 0 16px rgba(139, 92, 246, 0.2));
+}
+
+.intro-final__particles {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.intro-final__particles--outer {
+  inset: -2%;
+}
+
+.intro-final__particles--inner {
+  inset: 4%;
+}
+
+.intro-final__particle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+.intro-final__particle--p1 {
+  top: 5%;
+  left: 49%;
+  background: rgba(79, 209, 255, 0.95);
+  box-shadow: 0 0 10px rgba(79, 209, 255, 0.58);
+}
+
+.intro-final__particle--p2 {
+  top: 26%;
+  right: 7%;
+  width: 4px;
+  height: 4px;
+  background: rgba(79, 209, 255, 0.82);
+  box-shadow: 0 0 8px rgba(79, 209, 255, 0.46);
+}
+
+.intro-final__particle--p3 {
+  bottom: 12%;
+  left: 12%;
+  width: 4px;
+  height: 4px;
+  background: rgba(79, 209, 255, 0.7);
+  box-shadow: 0 0 7px rgba(79, 209, 255, 0.34);
+}
+
+.intro-final__particle--p4 {
+  top: 18%;
+  left: 19%;
+  width: 4px;
+  height: 4px;
+  background: rgba(139, 92, 246, 0.88);
+  box-shadow: 0 0 8px rgba(139, 92, 246, 0.5);
+}
+
+.intro-final__particle--p5 {
+  bottom: 20%;
+  right: 16%;
+  width: 3px;
+  height: 3px;
+  background: rgba(139, 92, 246, 0.78);
+  box-shadow: 0 0 7px rgba(139, 92, 246, 0.34);
 }
 
 .intro-final__pulse {

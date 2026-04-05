@@ -65,7 +65,28 @@ function IntroFinalScene({ onEnter, reducedMotion = false }) {
           }}
         >
           <div className="intro-final__circle">
-            <div className="intro-final__image-layer" aria-hidden="true" />
+            <motion.div
+              className="intro-final__image-layer"
+              aria-hidden="true"
+              animate={
+                reducedMotion
+                  ? undefined
+                  : {
+                      x: [0, 6, -4, 0],
+                      y: [0, -5, 3, 0],
+                      scale: [1, 1.015, 1.01, 1],
+                    }
+              }
+              transition={
+                reducedMotion
+                  ? undefined
+                  : {
+                      duration: 12,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }
+              }
+            />
             <div className="intro-final__image-overlay" aria-hidden="true" />
 
             <div className="intro-final__ring-system" aria-hidden="true">
@@ -169,6 +190,77 @@ function IntroFinalScene({ onEnter, reducedMotion = false }) {
                   />
                 </svg>
               </motion.div>
+
+              {!reducedMotion ? (
+                <>
+                  <motion.div
+                    className="intro-final__ring-highlight intro-final__ring-highlight--outer"
+                    animate={{
+                      rotate: 360,
+                      opacity: [0.45, 0.95, 0.45],
+                    }}
+                    transition={{
+                      rotate: {
+                        duration: 9.5,
+                        repeat: Infinity,
+                        ease: "linear",
+                      },
+                      opacity: {
+                        duration: 2.4,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      },
+                    }}
+                  />
+
+                  <motion.div
+                    className="intro-final__ring-highlight intro-final__ring-highlight--inner"
+                    animate={{
+                      rotate: -360,
+                      opacity: [0.3, 0.8, 0.3],
+                    }}
+                    transition={{
+                      rotate: {
+                        duration: 7.4,
+                        repeat: Infinity,
+                        ease: "linear",
+                      },
+                      opacity: {
+                        duration: 2.1,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      },
+                    }}
+                  />
+
+                  <motion.div
+                    className="intro-final__particles intro-final__particles--outer"
+                    animate={{ rotate: 360 }}
+                    transition={{
+                      duration: 22,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
+                  >
+                    <span className="intro-final__particle intro-final__particle--p1" />
+                    <span className="intro-final__particle intro-final__particle--p2" />
+                    <span className="intro-final__particle intro-final__particle--p3" />
+                  </motion.div>
+
+                  <motion.div
+                    className="intro-final__particles intro-final__particles--inner"
+                    animate={{ rotate: -360 }}
+                    transition={{
+                      duration: 15,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
+                  >
+                    <span className="intro-final__particle intro-final__particle--p4" />
+                    <span className="intro-final__particle intro-final__particle--p5" />
+                  </motion.div>
+                </>
+              ) : null}
             </div>
 
             {!reducedMotion ? (
