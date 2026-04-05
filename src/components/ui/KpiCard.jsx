@@ -7,10 +7,16 @@ function KpiCard({
   prefix = "",
   label,
   duration = 2000,
+  startAnimation = false,
 }) {
   const [displayValue, setDisplayValue] = useState(0);
 
   useEffect(() => {
+    if (!startAnimation) {
+      setDisplayValue(0);
+      return undefined;
+    }
+
     let animationFrameId;
     const startTime = performance.now();
 
@@ -29,7 +35,7 @@ function KpiCard({
     animationFrameId = requestAnimationFrame(updateNumber);
 
     return () => cancelAnimationFrame(animationFrameId);
-  }, [value, duration]);
+  }, [value, duration, startAnimation]);
 
   return (
     <Card hover>

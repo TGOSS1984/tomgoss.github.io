@@ -1,7 +1,7 @@
 export const introConfig = {
   enabled: true,
 
-  displayMode: "every-visit",
+  displayMode: "first-visit",
   // "every-visit" | "session" | "first-visit"
 
   storageKey: "portfolio_intro_seen",

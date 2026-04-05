@@ -1,3 +1,4 @@
+import { useCallback, useEffect, useRef, useState } from "react";
 import IntroExperience from "../components/intro/IntroExperience";
 import Hero from "../components/sections/Hero";
 import StatsStrip from "../components/sections/StatsStrip";
@@ -7,12 +8,40 @@ import PageSection from "../components/ui/PageSection";
 import Button from "../components/ui/Button";
 
 function Home() {
+  const [startStatsAnimation, setStartStatsAnimation] = useState(false);
+  const statsDelayRef = useRef(null);
+
+  const PAGE_TRANSITION_DELAY = 900;
+
+  const handleIntroReady = useCallback((introPlayed) => {
+    if (statsDelayRef.current) {
+      window.clearTimeout(statsDelayRef.current);
+    }
+
+    if (introPlayed) {
+      setStartStatsAnimation(true);
+      return;
+    }
+
+    statsDelayRef.current = window.setTimeout(() => {
+      setStartStatsAnimation(true);
+    }, PAGE_TRANSITION_DELAY);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (statsDelayRef.current) {
+        window.clearTimeout(statsDelayRef.current);
+      }
+    };
+  }, []);
+
   return (
     <>
-      <IntroExperience />
+      <IntroExperience onReady={handleIntroReady} />
 
       <Hero />
-      <StatsStrip />
+      <StatsStrip startAnimation={startStatsAnimation} />
       <FeaturedProjects />
 
       <PageSection

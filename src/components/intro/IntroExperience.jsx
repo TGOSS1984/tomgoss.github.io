@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { introConfig } from "../../config/introConfig";
 import IntroChartScene from "./IntroChartScene";
@@ -32,12 +32,13 @@ function markIntroSeen() {
   }
 }
 
-function IntroExperience() {
+function IntroExperience({ onReady }) {
   const prefersReducedMotion = useReducedMotion();
   const [isVisible, setIsVisible] = useState(false);
   const [isLeaving, setIsLeaving] = useState(false);
   const [activeScene, setActiveScene] = useState("loading");
   const [progress, setProgress] = useState(0);
+  const hasCalledReadyRef = useRef(false);
 
   const timings = useMemo(() => {
     if (prefersReducedMotion) {
@@ -53,9 +54,19 @@ function IntroExperience() {
   }, [prefersReducedMotion]);
 
   useEffect(() => {
-    if (!introConfig.enabled) return;
+    if (!introConfig.enabled) {
+      if (!hasCalledReadyRef.current) {
+        hasCalledReadyRef.current = true;
+        onReady?.(false);
+      }
+      return;
+    }
 
     if (introConfig.displayMode !== "every-visit" && hasSeenIntro()) {
+      if (!hasCalledReadyRef.current) {
+        hasCalledReadyRef.current = true;
+        onReady?.(false);
+      }
       return;
     }
 
@@ -65,7 +76,7 @@ function IntroExperience() {
     return () => {
       document.body.classList.remove("intro-active");
     };
-  }, []);
+  }, [onReady]);
 
   useEffect(() => {
     if (!isVisible) {
@@ -144,6 +155,11 @@ function IntroExperience() {
 
     window.setTimeout(() => {
       setIsVisible(false);
+
+      if (!hasCalledReadyRef.current) {
+        hasCalledReadyRef.current = true;
+        onReady?.(true);
+      }
     }, prefersReducedMotion ? 160 : 550);
   };
 
