@@ -1,18 +1,126 @@
 import { motion } from "framer-motion";
+import {
+  FaFileExcel,
+  FaFilePowerpoint,
+  FaFileWord,
+  FaHtml5,
+  FaCss3Alt,
+  FaReact,
+  FaPython,
+} from "react-icons/fa";
+import { SiDjango, SiFlask } from "react-icons/si";
+import { TbSql, TbChartBarPopular } from "react-icons/tb";
+import { IoLogoJavascript } from "react-icons/io5";
 
 const milestones = [
-  { id: "excel", label: "Excel", x: 86, y: 352, delay: 0.12, variant: "office" },
-  { id: "powerpoint", label: "PowerPoint", x: 154, y: 326, delay: 0.28, variant: "office" },
-  { id: "word", label: "Word", x: 228, y: 298, delay: 0.44, variant: "office" },
-  { id: "powerbi", label: "Power BI", x: 300, y: 266, delay: 0.62, variant: "data" },
-  { id: "sql", label: "SQL", x: 374, y: 232, delay: 0.82, variant: "data" },
-  { id: "python", label: "Python", x: 452, y: 196, delay: 1.02, variant: "dev" },
-  { id: "django", label: "Django", x: 532, y: 154, delay: 1.22, variant: "dev" },
-  { id: "flask", label: "Flask", x: 606, y: 118, delay: 1.42, variant: "dev" },
-  { id: "html", label: "HTML", x: 680, y: 96, delay: 1.6, variant: "frontend" },
-  { id: "css", label: "CSS", x: 748, y: 78, delay: 1.78, variant: "frontend" },
-  { id: "javascript", label: "JavaScript", x: 818, y: 64, delay: 1.98, variant: "frontend" },
-  { id: "react", label: "React", x: 892, y: 48, delay: 2.18, variant: "frontend" },
+  {
+    id: "excel",
+    label: "Excel",
+    x: 86,
+    y: 352,
+    delay: 0.12,
+    variant: "office",
+    Icon: FaFileExcel,
+  },
+  {
+    id: "powerpoint",
+    label: "PowerPoint",
+    x: 154,
+    y: 326,
+    delay: 0.28,
+    variant: "office",
+    Icon: FaFilePowerpoint,
+  },
+  {
+    id: "word",
+    label: "Word",
+    x: 228,
+    y: 298,
+    delay: 0.44,
+    variant: "office",
+    Icon: FaFileWord,
+  },
+  {
+    id: "powerbi",
+    label: "Power BI",
+    x: 300,
+    y: 266,
+    delay: 0.62,
+    variant: "data",
+    Icon: TbChartBarPopular,
+  },
+  {
+    id: "sql",
+    label: "SQL",
+    x: 374,
+    y: 232,
+    delay: 0.82,
+    variant: "data",
+    Icon: TbSql,
+  },
+  {
+    id: "python",
+    label: "Python",
+    x: 452,
+    y: 196,
+    delay: 1.02,
+    variant: "dev",
+    Icon: FaPython,
+  },
+  {
+    id: "django",
+    label: "Django",
+    x: 532,
+    y: 154,
+    delay: 1.22,
+    variant: "dev",
+    Icon: SiDjango,
+  },
+  {
+    id: "flask",
+    label: "Flask",
+    x: 606,
+    y: 118,
+    delay: 1.42,
+    variant: "dev",
+    Icon: SiFlask,
+  },
+  {
+    id: "html",
+    label: "HTML",
+    x: 680,
+    y: 96,
+    delay: 1.6,
+    variant: "frontend",
+    Icon: FaHtml5,
+  },
+  {
+    id: "css",
+    label: "CSS",
+    x: 748,
+    y: 78,
+    delay: 1.78,
+    variant: "frontend",
+    Icon: FaCss3Alt,
+  },
+  {
+    id: "javascript",
+    label: "JavaScript",
+    x: 818,
+    y: 64,
+    delay: 1.98,
+    variant: "frontend",
+    Icon: IoLogoJavascript,
+  },
+  {
+    id: "react",
+    label: "React",
+    x: 892,
+    y: 48,
+    delay: 2.18,
+    variant: "frontend",
+    Icon: FaReact,
+  },
 ];
 
 const routePath =
@@ -31,14 +139,17 @@ function getBadgeClass(variant) {
   }
 }
 
-function IntroJourneyScene() {
+function IntroJourneyScene({ reducedMotion = false }) {
   return (
     <motion.div
       className="intro-journey"
-      initial={{ opacity: 0, y: 20, scale: 0.992 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      exit={{ opacity: 0, y: -16, scale: 0.996 }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      initial={reducedMotion ? false : { opacity: 0, y: 20, scale: 0.992 }}
+      animate={reducedMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
+      exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: -16, scale: 0.996 }}
+      transition={{
+        duration: reducedMotion ? 0.25 : 0.7,
+        ease: [0.22, 1, 0.36, 1],
+      }}
     >
       <div className="intro-journey__header">
         <p className="intro-journey__eyebrow">Chapter 02</p>
@@ -52,8 +163,12 @@ function IntroJourneyScene() {
       </div>
 
       <div className="intro-journey__frame">
-        <div className="intro-journey__ambient intro-journey__ambient--one" />
-        <div className="intro-journey__ambient intro-journey__ambient--two" />
+        {!reducedMotion ? (
+          <>
+            <div className="intro-journey__ambient intro-journey__ambient--one" />
+            <div className="intro-journey__ambient intro-journey__ambient--two" />
+          </>
+        ) : null}
 
         <svg
           className="intro-journey__svg"
@@ -102,20 +217,20 @@ function IntroJourneyScene() {
             strokeWidth="5"
             strokeLinecap="round"
             strokeLinejoin="round"
-            filter="url(#journeyRouteGlow)"
-            initial={{ pathLength: 0, opacity: 0.55 }}
+            filter={reducedMotion ? undefined : "url(#journeyRouteGlow)"}
+            initial={reducedMotion ? false : { pathLength: 0, opacity: 0.55 }}
             animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 2.4, ease: "easeInOut" }}
+            transition={{ duration: reducedMotion ? 0.2 : 2.4, ease: "easeInOut" }}
           />
 
           {milestones.map((point) => (
             <motion.g
               key={point.id}
-              initial={{ opacity: 0, scale: 0.5 }}
+              initial={reducedMotion ? false : { opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{
-                duration: 0.34,
-                delay: point.delay,
+                duration: reducedMotion ? 0.2 : 0.34,
+                delay: reducedMotion ? 0 : point.delay,
                 ease: [0.22, 1, 0.36, 1],
               }}
             >
@@ -136,28 +251,38 @@ function IntroJourneyScene() {
         </svg>
 
         <div className="intro-journey__badges">
-          {milestones.map((item) => (
-            <motion.div
-              key={item.id}
-              className={getBadgeClass(item.variant)}
-              initial={{ opacity: 0, y: 16, scale: 0.96 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{
-                duration: 0.45,
-                delay: item.delay + 0.08,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-            >
-              {item.label}
-            </motion.div>
-          ))}
+          {milestones.map((item) => {
+            const Icon = item.Icon;
+
+            return (
+              <motion.div
+                key={item.id}
+                className={getBadgeClass(item.variant)}
+                initial={reducedMotion ? false : { opacity: 0, y: 16, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{
+                  duration: reducedMotion ? 0.2 : 0.45,
+                  delay: reducedMotion ? 0 : item.delay + 0.08,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+              >
+                <span className="intro-journey__badge-icon" aria-hidden="true">
+                  <Icon />
+                </span>
+                <span>{item.label}</span>
+              </motion.div>
+            );
+          })}
         </div>
 
         <motion.div
           className="intro-journey__summary"
-          initial={{ opacity: 0, y: 14 }}
+          initial={reducedMotion ? false : { opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 2.45 }}
+          transition={{
+            duration: reducedMotion ? 0.2 : 0.5,
+            delay: reducedMotion ? 0 : 2.45,
+          }}
         >
           <div className="intro-journey__summary-item">
             <span className="intro-journey__summary-label">Start</span>

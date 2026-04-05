@@ -1,25 +1,62 @@
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useMemo, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { introConfig } from "../../config/introConfig";
 import IntroChartScene from "./IntroChartScene";
 import IntroJourneyScene from "./IntroJourneyScene";
+import IntroFinalScene from "./IntroFinalScene";
 import "./IntroExperience.css";
 
+function hasSeenIntro() {
+  if (typeof window === "undefined") return false;
+
+  if (introConfig.displayMode === "session") {
+    return window.sessionStorage.getItem(introConfig.storageKey) === "true";
+  }
+
+  if (introConfig.displayMode === "first-visit") {
+    return window.localStorage.getItem(introConfig.storageKey) === "true";
+  }
+
+  return false;
+}
+
+function markIntroSeen() {
+  if (typeof window === "undefined") return;
+
+  if (introConfig.displayMode === "session") {
+    window.sessionStorage.setItem(introConfig.storageKey, "true");
+  }
+
+  if (introConfig.displayMode === "first-visit") {
+    window.localStorage.setItem(introConfig.storageKey, "true");
+  }
+}
+
 function IntroExperience() {
+  const prefersReducedMotion = useReducedMotion();
   const [isVisible, setIsVisible] = useState(false);
   const [isLeaving, setIsLeaving] = useState(false);
   const [activeScene, setActiveScene] = useState("loading");
   const [progress, setProgress] = useState(0);
 
+  const timings = useMemo(() => {
+    if (prefersReducedMotion) {
+      return {
+        loadingDuration: 220,
+        loadingExitDelay: 80,
+        chartDuration: 900,
+        journeyDuration: 1100,
+      };
+    }
+
+    return introConfig.timings;
+  }, [prefersReducedMotion]);
+
   useEffect(() => {
     if (!introConfig.enabled) return;
 
-    if (introConfig.showOncePerSession) {
-      const hasSeenIntro = window.sessionStorage.getItem(introConfig.storageKey);
-
-      if (hasSeenIntro) {
-        return;
-      }
+    if (introConfig.displayMode !== "every-visit" && hasSeenIntro()) {
+      return;
     }
 
     setIsVisible(true);
@@ -48,7 +85,7 @@ function IntroExperience() {
 
     let animationFrameId;
     let timeoutId;
-    const duration = 1800;
+    const duration = timings.loadingDuration;
     const startTime = performance.now();
 
     const animateProgress = (now) => {
@@ -62,7 +99,7 @@ function IntroExperience() {
       } else {
         timeoutId = window.setTimeout(() => {
           setActiveScene("chart");
-        }, 220);
+        }, timings.loadingExitDelay);
       }
     };
 
@@ -72,42 +109,46 @@ function IntroExperience() {
       window.cancelAnimationFrame(animationFrameId);
       window.clearTimeout(timeoutId);
     };
-  }, [isVisible, activeScene]);
+  }, [isVisible, activeScene, timings]);
 
   useEffect(() => {
     if (!isVisible || activeScene !== "chart") return;
 
     const timeoutId = window.setTimeout(() => {
       setActiveScene("journey");
-    }, 3600);
+    }, timings.chartDuration);
 
     return () => {
       window.clearTimeout(timeoutId);
     };
-  }, [isVisible, activeScene]);
+  }, [isVisible, activeScene, timings]);
 
   useEffect(() => {
     if (!isVisible || activeScene !== "journey") return;
 
     const timeoutId = window.setTimeout(() => {
-      setActiveScene("panel");
-    }, 5200);
+      setActiveScene("final");
+    }, timings.journeyDuration);
 
     return () => {
       window.clearTimeout(timeoutId);
     };
-  }, [isVisible, activeScene]);
+  }, [isVisible, activeScene, timings]);
 
   const handleEnter = () => {
-    if (introConfig.showOncePerSession) {
-      window.sessionStorage.setItem(introConfig.storageKey, "true");
+    if (introConfig.displayMode !== "every-visit") {
+      markIntroSeen();
     }
 
     setIsLeaving(true);
 
     window.setTimeout(() => {
       setIsVisible(false);
-    }, 550);
+    }, prefersReducedMotion ? 160 : 550);
+  };
+
+  const handleSkip = () => {
+    handleEnter();
   };
 
   if (!introConfig.enabled || !isVisible) {
@@ -122,41 +163,58 @@ function IntroExperience() {
           initial={{ opacity: 1 }}
           animate={{ opacity: isLeaving ? 0 : 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          transition={{
+            duration: prefersReducedMotion ? 0.2 : 0.55,
+            ease: [0.22, 1, 0.36, 1],
+          }}
           aria-label="Intro experience"
         >
           <div className="intro-experience__backdrop" />
 
           <motion.div
             className="intro-experience__grid"
-            initial={{ opacity: 0 }}
+            initial={prefersReducedMotion ? false : { opacity: 0 }}
             animate={{ opacity: isLeaving ? 0 : 1 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: prefersReducedMotion ? 0.2 : 0.8 }}
           />
 
-          <motion.div
-            className="intro-experience__glow intro-experience__glow--one"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: isLeaving ? 0 : 1, scale: 1 }}
-            transition={{ duration: 1 }}
-          />
+          {!prefersReducedMotion ? (
+            <>
+              <motion.div
+                className="intro-experience__glow intro-experience__glow--one"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: isLeaving ? 0 : 1, scale: 1 }}
+                transition={{ duration: 1 }}
+              />
 
-          <motion.div
-            className="intro-experience__glow intro-experience__glow--two"
-            initial={{ opacity: 0, scale: 0.92 }}
-            animate={{ opacity: isLeaving ? 0 : 1, scale: 1 }}
-            transition={{ duration: 1.2 }}
-          />
+              <motion.div
+                className="intro-experience__glow intro-experience__glow--two"
+                initial={{ opacity: 0, scale: 0.92 }}
+                animate={{ opacity: isLeaving ? 0 : 1, scale: 1 }}
+                transition={{ duration: 1.2 }}
+              />
+            </>
+          ) : null}
+
+          {introConfig.showSkipButton ? (
+            <button
+              type="button"
+              className="intro-experience__skip"
+              onClick={handleSkip}
+            >
+              Skip intro
+            </button>
+          ) : null}
 
           <AnimatePresence mode="wait">
             {activeScene === "loading" ? (
               <motion.div
                 key="loading"
                 className="intro-experience__loading"
-                initial={{ opacity: 0, y: 12 }}
+                initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: -10 }}
+                transition={{ duration: prefersReducedMotion ? 0.2 : 0.5, ease: [0.22, 1, 0.36, 1] }}
               >
                 <div className="intro-experience__loading-label-row">
                   <p className="intro-experience__loading-label">
@@ -180,51 +238,23 @@ function IntroExperience() {
               </motion.div>
             ) : null}
 
-            {activeScene === "chart" ? <IntroChartScene key="chart" /> : null}
-
-            {activeScene === "journey" ? (
-              <IntroJourneyScene key="journey" />
+            {activeScene === "chart" ? (
+              <IntroChartScene key="chart" />
             ) : null}
 
-            {activeScene === "panel" ? (
-              <motion.div
-                key="panel"
-                className="intro-experience__panel"
-                initial={{ opacity: 0, y: 24, scale: 0.985 }}
-                animate={{
-                  opacity: isLeaving ? 0 : 1,
-                  y: isLeaving ? 16 : 0,
-                  scale: isLeaving ? 0.99 : 1,
-                }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <p className="intro-experience__eyebrow">Portfolio introduction</p>
+            {activeScene === "journey" ? (
+              <IntroJourneyScene
+                key="journey"
+                reducedMotion={Boolean(prefersReducedMotion)}
+              />
+            ) : null}
 
-                <h1 className="intro-experience__title">
-                  The journey is now in motion.
-                </h1>
-
-                <p className="intro-experience__text">
-                  The intro now moves from analytics into a mountain-style
-                  technology ascent. Next we will replace this temporary panel
-                  with the final full-screen introduction and entry moment.
-                </p>
-
-                <div className="intro-experience__actions">
-                  <button
-                    type="button"
-                    className="intro-experience__button"
-                    onClick={handleEnter}
-                  >
-                    Enter Portfolio
-                  </button>
-
-                  <span className="intro-experience__hint">
-                    Commit 4 journey scene active
-                  </span>
-                </div>
-              </motion.div>
+            {activeScene === "final" ? (
+              <IntroFinalScene
+                key="final"
+                onEnter={handleEnter}
+                reducedMotion={Boolean(prefersReducedMotion)}
+              />
             ) : null}
           </AnimatePresence>
         </motion.div>

@@ -746,3 +746,325 @@ body.intro-active {
     padding: 0.9rem;
   }
 }
+
+/* Intro Final*/
+
+.intro-final {
+  position: relative;
+  width: min(94vw, 1120px);
+  min-height: min(72vh, 760px);
+  display: grid;
+  place-items: center;
+  padding: clamp(2rem, 4vw, 3rem);
+  border: 1px solid var(--border-strong);
+  border-radius: calc(var(--radius-lg) + 8px);
+  background:
+    radial-gradient(
+      circle at 50% 40%,
+      rgba(79, 209, 255, 0.08),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 52% 46%,
+      rgba(139, 92, 246, 0.08),
+      transparent 36%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(9, 16, 31, 0.76) 0%,
+      rgba(5, 8, 22, 0.92) 100%
+    );
+  box-shadow: var(--shadow-strong);
+  backdrop-filter: blur(20px);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.intro-final::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(79, 209, 255, 0.44),
+    rgba(139, 92, 246, 0.24),
+    rgba(79, 209, 255, 0.08)
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.intro-final__ambient {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(90px);
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.intro-final__ambient--one {
+  width: 24rem;
+  height: 24rem;
+  left: -6rem;
+  bottom: -7rem;
+  background: rgba(79, 209, 255, 0.09);
+}
+
+.intro-final__ambient--two {
+  width: 22rem;
+  height: 22rem;
+  right: -4rem;
+  top: -5rem;
+  background: rgba(139, 92, 246, 0.1);
+}
+
+.intro-final__ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.intro-final__ring--outer {
+  width: min(62vw, 42rem);
+  height: min(62vw, 42rem);
+  border: 1px solid rgba(79, 209, 255, 0.12);
+  box-shadow:
+    0 0 0 1px rgba(79, 209, 255, 0.02) inset,
+    0 0 80px rgba(79, 209, 255, 0.06);
+}
+
+.intro-final__ring--inner {
+  width: min(42vw, 28rem);
+  height: min(42vw, 28rem);
+  border: 1px solid rgba(139, 92, 246, 0.14);
+  box-shadow:
+    0 0 0 1px rgba(139, 92, 246, 0.02) inset,
+    0 0 70px rgba(139, 92, 246, 0.07);
+}
+
+.intro-final__content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+
+.intro-final__eyebrow {
+  margin: 0 0 1rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+.intro-final__title {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35ch;
+  margin: 0;
+  max-width: 12ch;
+  font-size: clamp(3rem, 8vw, 6.8rem);
+  line-height: 0.92;
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  color: var(--text);
+  perspective: 900px;
+}
+
+.intro-final__title-word {
+  display: inline-block;
+  transform-origin: 50% 100%;
+  text-shadow:
+    0 0 18px rgba(79, 209, 255, 0.05),
+    0 0 34px rgba(139, 92, 246, 0.04);
+}
+
+.intro-final__subtitle {
+  margin: 1.3rem 0 0;
+  max-width: 38rem;
+  font-size: clamp(1rem, 1.7vw, 1.14rem);
+  line-height: 1.7;
+  color: var(--text-soft);
+}
+
+.intro-final__actions {
+  display: grid;
+  justify-items: center;
+  gap: 0.9rem;
+  margin-top: 2rem;
+}
+
+.intro-final__button {
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 1rem 1.5rem;
+  min-width: 13rem;
+  font: inherit;
+  font-weight: 700;
+  color: #03111f;
+  background: linear-gradient(135deg, var(--accent), #7ddfff);
+  box-shadow:
+    0 12px 30px rgba(79, 209, 255, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    filter 180ms ease;
+}
+
+.intro-final__button:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 16px 36px rgba(79, 209, 255, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  filter: brightness(1.02);
+}
+
+.intro-final__button:active {
+  transform: translateY(0);
+}
+
+.intro-final__hint {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 640px) {
+  .intro-final {
+    min-height: min(72vh, 640px);
+    padding: 1.5rem;
+    border-radius: 24px;
+  }
+
+  .intro-final__title {
+    max-width: 8ch;
+    gap: 0.22ch;
+    font-size: clamp(2.6rem, 12vw, 4.6rem);
+  }
+
+  .intro-final__subtitle {
+    max-width: 22rem;
+  }
+
+  .intro-final__button {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .intro-final__ring--outer {
+    width: min(88vw, 28rem);
+    height: min(88vw, 28rem);
+  }
+
+  .intro-final__ring--inner {
+    width: min(62vw, 20rem);
+    height: min(62vw, 20rem);
+  }
+}
+
+/*Skip Intro*/
+
+.intro-experience__skip {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  z-index: 20;
+  appearance: none;
+  border: 1px solid rgba(79, 209, 255, 0.16);
+  border-radius: 999px;
+  padding: 0.72rem 1rem;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-soft);
+  background: rgba(9, 16, 31, 0.72);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition:
+    border-color 180ms ease,
+    color 180ms ease,
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.intro-experience__skip:hover {
+  color: var(--text);
+  border-color: rgba(79, 209, 255, 0.28);
+  background: rgba(13, 23, 42, 0.88);
+  transform: translateY(-1px);
+}
+
+.intro-experience__skip:active {
+  transform: translateY(0);
+}
+
+/* Badges*/
+
+.intro-journey__badge {
+  gap: 0.58rem;
+}
+
+.intro-journey__badge-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.intro-journey__badge--office .intro-journey__badge-icon {
+  color: var(--accent);
+}
+
+.intro-journey__badge--data .intro-journey__badge-icon {
+  color: var(--accent);
+}
+
+.intro-journey__badge--dev .intro-journey__badge-icon {
+  color: #c4b5fd;
+}
+
+.intro-journey__badge--frontend .intro-journey__badge-icon {
+  color: #b9ecff;
+}
+
+/* Final Pointer*/
+
+.intro-final {
+  cursor: default;
+}
+
+.intro-final:focus-visible {
+  outline: 2px solid rgba(79, 209, 255, 0.4);
+  outline-offset: 4px;
+}
+
+.intro-final__hint {
+  text-align: center;
+}
+
+/*Skip Mobile*/
+
+@media (max-width: 640px) {
+  .intro-experience__skip {
+    top: 0.9rem;
+    right: 0.9rem;
+    padding: 0.64rem 0.9rem;
+    font-size: 0.88rem;
+  }
+}
