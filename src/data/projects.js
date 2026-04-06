@@ -44,7 +44,7 @@ const projects = [
     githubUrl: "https://github.com/TGOSS1984/uk_winter_mountain_tours_v2",
     liveUrl: "https://uk-winter-mountain-tours-v2-c6f21d80d2c8.herokuapp.com/",
     imageLabel: "Booking Platform",
-    image: "/assets/images/projects/mountain-tours-booking.PNG",
+    image: `${import.meta.env.BASE_URL}assets/images/projects/mountain-tours-booking.PNG`,
   },
   {
     id: "winter-mountain-tours-demand-predictor",
@@ -64,7 +64,7 @@ const projects = [
     githubUrl: "https://github.com/TGOSS1984/winter-mountain-tours-demand-predictor",
     liveUrl: "https://winter-tour-predictor-ce48d589f61d.herokuapp.com/",
     imageLabel: "Forecasting App",
-    image: "/assets/images/projects/mountain-tours-predictor.PNG",
+    image: `${import.meta.env.BASE_URL}assets/images/projects/mountain-tours-predictor.PNG`,
   },
   {
     id: "power-bi-mountain-tours-analytics",
@@ -84,7 +84,7 @@ const projects = [
     githubUrl: "https://github.com/TGOSS1984/uk-mountain-tours-analytics",
     liveUrl: "",
     imageLabel: "BI Dashboard",
-    image: "/assets/images/projects/mountain-tours-powerbi.PNG",
+    image: `${import.meta.env.BASE_URL}assets/images/projects/mountain-tours-powerbi.PNG`,
   },
   {
     id: "ashen-emporium",
@@ -103,7 +103,7 @@ const projects = [
     githubUrl: "https://github.com/TGOSS1984/ashen-emporium",
     liveUrl: "https://ashen-emporium-ecommerce-533460192970.herokuapp.com/",
     imageLabel: "E-commerce Build",
-    image: "/assets/images/projects/ashen-emporium.PNG",
+    image: `${import.meta.env.BASE_URL}assets/images/projects/ashen-emporium.PNG`,
   },
   {
     id: "souls-text-adventure",
@@ -122,7 +122,7 @@ const projects = [
     githubUrl: "https://github.com/TGOSS1984/text_adventure_game",
     liveUrl: "https://elden-souls-text-adventure-app-6406dec306fc.herokuapp.com/",
     imageLabel: "Interactive Game",
-    image: "/assets/images/projects/souls-text-adventure.PNG",
+    image: `${import.meta.env.BASE_URL}assets/images/projects/souls-text-adventure.PNG`,
   },
   {
     id: "javascript-anagram-game",
@@ -140,7 +140,7 @@ const projects = [
     githubUrl: "https://github.com/TGOSS1984/anagram-game",
     liveUrl: "https://tgoss1984.github.io/anagram-game/",
     imageLabel: "Browser Game",
-    image: "/assets/images/projects/javascript-anagram-game.PNG",
+    image: `${import.meta.env.BASE_URL}assets/images/projects/javascript-anagram-game.PNG`,
   },
   {
     id: "retail-analytics-portfolio",
@@ -159,7 +159,7 @@ const projects = [
     githubUrl: "https://github.com/TGOSS1984/retail-analytics-portfolio",
     liveUrl: "",
     imageLabel: "Analytics Project",
-    image: "/assets/images/projects/retail-analytics.PNG",
+    image: `${import.meta.env.BASE_URL}assets/images/projects/retail-analytics.PNG`,
   },
   {
     id: "magic-eye-project",
@@ -177,7 +177,7 @@ const projects = [
     githubUrl: "https://github.com/TGOSS1984/magic-eye-project",
     liveUrl: "https://magic-eye-project.streamlit.app/",
     imageLabel: "Experimental Build",
-    image: "/assets/images/projects/magic-eye.PNG",
+    image: `${import.meta.env.BASE_URL}assets/images/projects/magic-eye.PNG`,
   },
   {
     id: "souls-dungeon-crawler-cli",
@@ -196,7 +196,7 @@ const projects = [
     githubUrl: "https://github.com/TGOSS1984/dungeon_crawler",
     liveUrl: "https://crypt-of-shadows-python-game-fccd0cae9fda.herokuapp.com/",
     imageLabel: "CLI Game",
-    image: "/assets/images/projects/cli-game.PNG",
+    image: `${import.meta.env.BASE_URL}assets/images/projects/cli-game.PNG`,
   },
 ];
 
