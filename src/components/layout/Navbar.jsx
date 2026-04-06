@@ -1,4 +1,5 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import ThemeToggle from "../ui/ThemeToggle";
 
 const navItems = [
   { label: "Home", path: "/" },
@@ -40,20 +41,24 @@ function Navbar({ onNavigateStart }) {
           <span className="brand-text">tomgoss.github.io / portfolio</span>
         </NavLink>
 
-        <nav className="nav">
-          {navItems.map((item) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              onClick={(event) => handleNavigate(event, item.path)}
-              className={({ isActive }) =>
-                isActive ? "nav-link nav-link-active" : "nav-link"
-              }
-            >
-              {item.label}
-            </NavLink>
-          ))}
-        </nav>
+        <div className="nav-actions">
+          <nav className="nav">
+            {navItems.map((item) => (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                onClick={(event) => handleNavigate(event, item.path)}
+                className={({ isActive }) =>
+                  isActive ? "nav-link nav-link-active" : "nav-link"
+                }
+              >
+                {item.label}
+              </NavLink>
+            ))}
+          </nav>
+
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );
