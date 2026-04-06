@@ -196,7 +196,7 @@ const projects = [
     githubUrl: "https://github.com/TGOSS1984/dungeon_crawler",
     liveUrl: "https://crypt-of-shadows-python-game-fccd0cae9fda.herokuapp.com/",
     imageLabel: "CLI Game",
-    image: `${import.meta.env.BASE_URL}assets/images/projects/cli-game.png
+    image: `${import.meta.env.BASE_URL}assets/images/projects/cli-game.png`,
   },
 ];
 
