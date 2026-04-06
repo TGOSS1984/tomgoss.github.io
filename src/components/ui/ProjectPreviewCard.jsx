@@ -18,12 +18,16 @@ function ProjectPreviewCard({ project }) {
               onError={() => setImageFailed(true)}
             />
             <div className="project-image-scrim" />
-            <p className="project-visual-label">{project.imageLabel || "Project"}</p>
+            <p className="project-visual-label">
+              {project.imageLabel || "Project"}
+            </p>
           </div>
         ) : (
           <div className="project-visual">
             <div className="project-visual-overlay" />
-            <p className="project-visual-label">{project.imageLabel || "Project"}</p>
+            <p className="project-visual-label">
+              {project.imageLabel || "Project"}
+            </p>
           </div>
         )}
 
@@ -35,6 +39,28 @@ function ProjectPreviewCard({ project }) {
         <h3 className="project-title">{project.title}</h3>
 
         <p className="project-summary">{project.summary}</p>
+
+        {project.badges?.length > 0 && (
+          <div className="project-badges">
+            {project.badges.map((badge) => {
+              const Icon = badge.Icon;
+
+              return (
+                <span
+                  key={badge.label}
+                  className="project-badge"
+                  aria-label={badge.label}
+                  title={badge.label}
+                >
+                  <span className="project-badge-icon" aria-hidden="true">
+                    <Icon />
+                  </span>
+                  <span className="project-badge-text">{badge.label}</span>
+                </span>
+              );
+            })}
+          </div>
+        )}
 
         <div className="project-stack">
           {project.stack.map((item) => (
