@@ -746,46 +746,91 @@ body.intro-active {
   fill: rgba(255, 255, 255, 0.96);
 }
 
-.intro-journey__caption,
-.intro-journey__summit-caption {
+.intro-journey__milestone-layer {
   position: absolute;
+  inset: 0;
   z-index: 2;
-  display: inline-flex;
+  pointer-events: none;
+}
+
+.intro-journey__milestone,
+.intro-journey__summit-card {
+  position: absolute;
+  display: flex;
   flex-direction: column;
-  gap: 0.3rem;
-  padding: 0.9rem 1rem;
+  gap: 0.4rem;
+  padding: 0.92rem 1rem;
   border-radius: 18px;
-  background: rgba(5, 8, 22, 0.5);
+  background: rgba(5, 8, 22, 0.52);
   border: 1px solid rgba(79, 209, 255, 0.12);
   backdrop-filter: blur(12px);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
-.intro-journey__caption {
-  max-width: 15rem;
+.intro-journey__milestone {
+  max-width: 16rem;
 }
 
-.intro-journey__caption--left {
-  left: 1.15rem;
-  bottom: 1.15rem;
+.intro-journey__milestone--left-base {
+  left: 1.1rem;
+  bottom: 1rem;
 }
 
-.intro-journey__caption--right {
-  right: 1.15rem;
-  bottom: 1.15rem;
+.intro-journey__milestone--left-mid {
+  left: 11.5rem;
+  bottom: 8.2rem;
+}
+
+.intro-journey__milestone--right-mid {
+  right: 11rem;
+  bottom: 9rem;
   text-align: right;
+  align-items: flex-end;
 }
 
-.intro-journey__summit-caption {
+.intro-journey__milestone--right-base {
+  right: 1.1rem;
+  bottom: 1rem;
+  text-align: right;
+  align-items: flex-end;
+}
+
+.intro-journey__summit-card {
   top: 1rem;
   left: 50%;
   transform: translateX(-50%);
   align-items: center;
   text-align: center;
-  min-width: 13rem;
+  min-width: 16rem;
+  max-width: 19rem;
 }
 
-.intro-journey__caption-label {
+.intro-journey__milestone-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.42rem;
+}
+
+.intro-journey__milestone--right-mid .intro-journey__milestone-icons,
+.intro-journey__milestone--right-base .intro-journey__milestone-icons {
+  justify-content: flex-end;
+}
+
+.intro-journey__milestone-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 999px;
+  background: rgba(79, 209, 255, 0.08);
+  border: 1px solid rgba(79, 209, 255, 0.16);
+  color: #c8efff;
+  font-size: 0.92rem;
+  line-height: 1;
+}
+
+.intro-journey__milestone-label {
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -793,11 +838,17 @@ body.intro-active {
   color: var(--text-muted);
 }
 
-.intro-journey__caption strong,
-.intro-journey__summit-caption strong {
+.intro-journey__milestone-title {
   font-size: 0.94rem;
   line-height: 1.35;
   color: var(--text);
+}
+
+.intro-journey__summit-text {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: var(--text-soft);
 }
 
 @keyframes introJourneyMistDriftBack {
@@ -829,7 +880,7 @@ body.intro-active {
 
 @media (max-width: 980px) {
   .intro-journey__frame {
-    height: 400px;
+    height: 420px;
   }
 
   .intro-journey__mountain-image {
@@ -854,14 +905,37 @@ body.intro-active {
     width: 44rem;
   }
 
-  .intro-journey__caption {
-    max-width: 13rem;
-    padding: 0.8rem 0.9rem;
+  .intro-journey__milestone,
+  .intro-journey__summit-card {
+    padding: 0.82rem 0.88rem;
+    border-radius: 16px;
   }
 
-  .intro-journey__caption strong,
-  .intro-journey__summit-caption strong {
-    font-size: 0.88rem;
+  .intro-journey__milestone {
+    max-width: 13rem;
+  }
+
+  .intro-journey__milestone--left-mid {
+    left: 8.6rem;
+    bottom: 7.5rem;
+  }
+
+  .intro-journey__milestone--right-mid {
+    right: 8.2rem;
+    bottom: 8rem;
+  }
+
+  .intro-journey__summit-card {
+    min-width: 13rem;
+    max-width: 16rem;
+  }
+
+  .intro-journey__milestone-title {
+    font-size: 0.86rem;
+  }
+
+  .intro-journey__summit-text {
+    font-size: 0.78rem;
   }
 }
 
@@ -876,7 +950,7 @@ body.intro-active {
   }
 
   .intro-journey__frame {
-    height: 320px;
+    height: 360px;
     border-radius: 18px;
   }
 
@@ -901,37 +975,8 @@ body.intro-active {
     height: 8rem;
   }
 
-  .intro-journey__caption {
-    max-width: 10rem;
-    padding: 0.68rem 0.76rem;
-    border-radius: 14px;
-  }
-
-  .intro-journey__caption--left {
-    left: 0.7rem;
-    bottom: 0.7rem;
-  }
-
-  .intro-journey__caption--right {
-    right: 0.7rem;
-    bottom: 0.7rem;
-  }
-
-  .intro-journey__summit-caption {
-    top: 0.7rem;
-    min-width: auto;
-    padding: 0.68rem 0.82rem;
-    border-radius: 14px;
-  }
-
-  .intro-journey__caption-label {
-    font-size: 0.6rem;
-    letter-spacing: 0.12em;
-  }
-
-  .intro-journey__caption strong,
-  .intro-journey__summit-caption strong {
-    font-size: 0.78rem;
+  .intro-journey__milestone-layer {
+    display: none;
   }
 }
 

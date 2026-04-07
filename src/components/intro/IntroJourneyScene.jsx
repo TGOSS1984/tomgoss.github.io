@@ -1,4 +1,21 @@
 import { motion } from "framer-motion";
+import {
+  FaFileExcel,
+  FaFilePowerpoint,
+  FaFileWord,
+  FaHtml5,
+  FaCss3Alt,
+  FaReact,
+  FaPython,
+} from "react-icons/fa";
+import {
+  SiDjango,
+  SiFlask,
+  SiStreamlit,
+  SiJupyter,
+} from "react-icons/si";
+import { TbSql, TbChartBarPopular } from "react-icons/tb";
+import { IoLogoJavascript } from "react-icons/io5";
 
 const leftRoutePath =
   "M 126 392 C 188 362, 242 334, 292 302 C 336 274, 380 242, 420 208 C 456 176, 486 142, 510 108 C 520 94, 528 82, 536 72";
@@ -19,6 +36,72 @@ const rightNodes = [
   { id: "right-3", x: 590, y: 196, delay: 1.5 },
   { id: "right-4", x: 542, y: 104, delay: 1.9 },
 ];
+
+const leftMilestones = [
+  {
+    id: "office",
+    label: "Microsoft 365",
+    sublabel: "Word, PowerPoint, Excel",
+    delay: 0.9,
+    className: "intro-journey__milestone intro-journey__milestone--left-base",
+    icons: [FaFileWord, FaFilePowerpoint, FaFileExcel],
+  },
+  {
+    id: "bi",
+    label: "Commercial & BI",
+    sublabel: "Reporting, dashboards, Power BI",
+    delay: 1.25,
+    className: "intro-journey__milestone intro-journey__milestone--left-mid",
+    icons: [TbChartBarPopular],
+  },
+];
+
+const rightMilestones = [
+  {
+    id: "backend",
+    label: "Python & Data",
+    sublabel: "Python, SQL, Jupyter, Streamlit",
+    delay: 1.1,
+    className:
+      "intro-journey__milestone intro-journey__milestone--right-mid",
+    icons: [FaPython, TbSql, SiJupyter, SiStreamlit],
+  },
+  {
+    id: "web",
+    label: "Web Development",
+    sublabel: "Flask, Django, HTML, CSS, JavaScript, React",
+    delay: 1.45,
+    className:
+      "intro-journey__milestone intro-journey__milestone--right-base",
+    icons: [SiFlask, SiDjango, FaHtml5, FaCss3Alt, IoLogoJavascript, FaReact],
+  },
+];
+
+function MilestoneCard({ item, reducedMotion = false }) {
+  return (
+    <motion.div
+      className={item.className}
+      initial={reducedMotion ? false : { opacity: 0, y: 14, scale: 0.96 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{
+        duration: reducedMotion ? 0.2 : 0.45,
+        delay: reducedMotion ? 0 : item.delay,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+    >
+      <div className="intro-journey__milestone-icons" aria-hidden="true">
+        {item.icons.map((Icon, index) => (
+          <span key={`${item.id}-${index}`} className="intro-journey__milestone-icon">
+            <Icon />
+          </span>
+        ))}
+      </div>
+
+      <span className="intro-journey__milestone-label">{item.label}</span>
+      <strong className="intro-journey__milestone-title">{item.sublabel}</strong>
+    </motion.div>
+  );
+}
 
 function IntroJourneyScene({ reducedMotion = false }) {
   return (
@@ -206,44 +289,43 @@ function IntroJourneyScene({ reducedMotion = false }) {
             </motion.g>
           </svg>
 
-          <motion.div
-            className="intro-journey__caption intro-journey__caption--left"
-            initial={reducedMotion ? false : { opacity: 0, x: -18 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{
-              duration: reducedMotion ? 0.2 : 0.45,
-              delay: reducedMotion ? 0 : 1.25,
-            }}
-          >
-            <span className="intro-journey__caption-label">Foundations</span>
-            <strong>Commercial tools, reporting, BI</strong>
-          </motion.div>
+          <div className="intro-journey__milestone-layer">
+            {leftMilestones.map((item) => (
+              <MilestoneCard
+                key={item.id}
+                item={item}
+                reducedMotion={reducedMotion}
+              />
+            ))}
 
-          <motion.div
-            className="intro-journey__caption intro-journey__caption--right"
-            initial={reducedMotion ? false : { opacity: 0, x: 18 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{
-              duration: reducedMotion ? 0.2 : 0.45,
-              delay: reducedMotion ? 0 : 1.45,
-            }}
-          >
-            <span className="intro-journey__caption-label">Transition</span>
-            <strong>Python, apps, web, front-end craft</strong>
-          </motion.div>
+            {rightMilestones.map((item) => (
+              <MilestoneCard
+                key={item.id}
+                item={item}
+                reducedMotion={reducedMotion}
+              />
+            ))}
 
-          <motion.div
-            className="intro-journey__summit-caption"
-            initial={reducedMotion ? false : { opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: reducedMotion ? 0.2 : 0.5,
-              delay: reducedMotion ? 0 : 2.25,
-            }}
-          >
-            <span className="intro-journey__caption-label">Summit</span>
-            <strong>Data-driven product building</strong>
-          </motion.div>
+            <motion.div
+              className="intro-journey__summit-card"
+              initial={reducedMotion ? false : { opacity: 0, y: -12, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{
+                duration: reducedMotion ? 0.2 : 0.5,
+                delay: reducedMotion ? 0 : 2.25,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+            >
+              <span className="intro-journey__milestone-label">Summit</span>
+              <strong className="intro-journey__milestone-title">
+                Data-driven product building
+              </strong>
+              <p className="intro-journey__summit-text">
+                Bringing commercial thinking, analytics, and modern development
+                together in one direction.
+              </p>
+            </motion.div>
+          </div>
         </div>
       </div>
     </motion.div>
