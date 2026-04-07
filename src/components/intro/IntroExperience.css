@@ -501,9 +501,9 @@ body.intro-active {
   padding: 1px;
   background: linear-gradient(
     135deg,
-    rgba(79, 209, 255, 0.24),
-    rgba(139, 92, 246, 0.14),
-    rgba(79, 209, 255, 0.05)
+    rgba(79, 209, 255, 0.22),
+    rgba(139, 92, 246, 0.12),
+    rgba(79, 209, 255, 0.04)
   );
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
@@ -574,9 +574,9 @@ body.intro-active {
   pointer-events: none;
   opacity: 0.92;
   filter:
-    brightness(0.64)
-    contrast(1.12)
-    saturate(0.92);
+    brightness(0.62)
+    contrast(1.1)
+    saturate(0.9);
 }
 
 .intro-journey__scene-shade {
@@ -586,15 +586,15 @@ body.intro-active {
   background:
     radial-gradient(
       circle at 50% 28%,
-      rgba(79, 209, 255, 0.06),
+      rgba(79, 209, 255, 0.05),
       transparent 34%
     ),
     linear-gradient(
       180deg,
-      rgba(2, 6, 23, 0.04) 0%,
-      rgba(2, 6, 23, 0.18) 34%,
-      rgba(2, 6, 23, 0.44) 68%,
-      rgba(2, 6, 23, 0.78) 100%
+      rgba(2, 6, 23, 0.05) 0%,
+      rgba(2, 6, 23, 0.2) 34%,
+      rgba(2, 6, 23, 0.48) 68%,
+      rgba(2, 6, 23, 0.82) 100%
     );
   pointer-events: none;
 }
@@ -612,15 +612,15 @@ body.intro-active {
   width: 34rem;
   height: 8rem;
   z-index: 3;
-  opacity: 0.14;
+  opacity: 0.12;
   transform: translateX(-50%);
   background:
     linear-gradient(
       90deg,
       transparent 0%,
-      rgba(148, 168, 198, 0.1) 24%,
-      rgba(148, 168, 198, 0.18) 50%,
-      rgba(148, 168, 198, 0.1) 76%,
+      rgba(148, 168, 198, 0.08) 24%,
+      rgba(148, 168, 198, 0.16) 50%,
+      rgba(148, 168, 198, 0.08) 76%,
       transparent 100%
     );
   animation: introJourneyMistDriftBack 22s ease-in-out infinite alternate;
@@ -631,15 +631,15 @@ body.intro-active {
   width: 48rem;
   height: 9rem;
   z-index: 8;
-  opacity: 0.12;
+  opacity: 0.1;
   transform: translateX(-51%);
   background:
     linear-gradient(
       90deg,
       transparent 0%,
-      rgba(148, 168, 198, 0.1) 22%,
-      rgba(148, 168, 198, 0.18) 50%,
-      rgba(148, 168, 198, 0.1) 78%,
+      rgba(148, 168, 198, 0.08) 22%,
+      rgba(148, 168, 198, 0.16) 50%,
+      rgba(148, 168, 198, 0.08) 78%,
       transparent 100%
     );
   animation: introJourneyMistDriftMid 18s ease-in-out infinite alternate;
@@ -650,15 +650,15 @@ body.intro-active {
   width: 60rem;
   height: 11rem;
   z-index: 9;
-  opacity: 0.12;
+  opacity: 0.1;
   transform: translateX(-49%);
   background:
     linear-gradient(
       90deg,
       transparent 0%,
-      rgba(148, 168, 198, 0.1) 18%,
-      rgba(148, 168, 198, 0.18) 50%,
-      rgba(148, 168, 198, 0.1) 82%,
+      rgba(148, 168, 198, 0.08) 18%,
+      rgba(148, 168, 198, 0.16) 50%,
+      rgba(148, 168, 198, 0.08) 82%,
       transparent 100%
     );
   animation: introJourneyMistDriftFront 16s ease-in-out infinite alternate;
@@ -666,22 +666,22 @@ body.intro-active {
 
 .intro-journey__summit-glow {
   position: absolute;
-  top: 24%;
+  top: 23%;
   left: 50%;
-  width: 14rem;
-  height: 14rem;
+  width: 13rem;
+  height: 13rem;
   transform: translate(-50%, -50%);
   z-index: 4;
   border-radius: 999px;
   background:
     radial-gradient(
       circle,
-      rgba(79, 209, 255, 0.18) 0%,
-      rgba(139, 92, 246, 0.14) 28%,
-      rgba(79, 209, 255, 0.04) 52%,
+      rgba(79, 209, 255, 0.16) 0%,
+      rgba(139, 92, 246, 0.12) 28%,
+      rgba(79, 209, 255, 0.03) 52%,
       transparent 72%
     );
-  filter: blur(24px);
+  filter: blur(22px);
   pointer-events: none;
   animation: introJourneySummitGlow 4.8s ease-in-out infinite;
 }
@@ -695,8 +695,8 @@ body.intro-active {
     radial-gradient(
       circle at 50% 42%,
       transparent 34%,
-      rgba(2, 6, 23, 0.18) 62%,
-      rgba(2, 6, 23, 0.46) 100%
+      rgba(2, 6, 23, 0.2) 62%,
+      rgba(2, 6, 23, 0.5) 100%
     );
 }
 
@@ -716,57 +716,57 @@ body.intro-active {
 }
 
 .intro-journey__route--base {
-  stroke: rgba(148, 168, 198, 0.14);
-  stroke-width: 2;
+  stroke: rgba(148, 168, 198, 0.11);
+  stroke-width: 1.8;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
 .intro-journey__route--left,
 .intro-journey__route--right {
-  filter: drop-shadow(0 0 10px rgba(79, 209, 255, 0.18));
+  filter: drop-shadow(0 0 7px rgba(79, 209, 255, 0.14));
 }
 
 .intro-journey__traveller--halo {
-  fill: rgba(79, 209, 255, 0.28);
+  fill: rgba(79, 209, 255, 0.22);
 }
 
 .intro-journey__traveller--halo-alt {
-  fill: rgba(139, 92, 246, 0.24);
+  fill: rgba(139, 92, 246, 0.18);
 }
 
 .intro-journey__traveller--core {
-  fill: rgba(170, 236, 255, 0.98);
+  fill: rgba(170, 236, 255, 0.96);
 }
 
 .intro-journey__traveller--core-alt {
-  fill: rgba(211, 191, 255, 0.98);
+  fill: rgba(211, 191, 255, 0.94);
 }
 
 .intro-journey__node--outer {
-  fill: rgba(2, 6, 23, 0.88);
-  stroke: rgba(79, 209, 255, 0.5);
-  stroke-width: 2;
+  fill: rgba(2, 6, 23, 0.84);
+  stroke: rgba(79, 209, 255, 0.4);
+  stroke-width: 1.8;
 }
 
 .intro-journey__node--inner {
-  fill: rgba(79, 209, 255, 0.98);
+  fill: rgba(79, 209, 255, 0.94);
 }
 
 .intro-journey__summit-node--outer {
-  fill: rgba(2, 6, 23, 0.88);
-  stroke: rgba(139, 92, 246, 0.9);
-  stroke-width: 2.4;
+  fill: rgba(2, 6, 23, 0.86);
+  stroke: rgba(139, 92, 246, 0.78);
+  stroke-width: 2;
 }
 
 .intro-journey__summit-node--inner {
-  fill: rgba(255, 255, 255, 0.96);
+  fill: rgba(255, 255, 255, 0.94);
 }
 
 .intro-journey__summit-pulse {
   fill: none;
-  stroke: rgba(79, 209, 255, 0.34);
-  stroke-width: 1.2;
+  stroke: rgba(79, 209, 255, 0.26);
+  stroke-width: 1;
   opacity: 0;
   transform-origin: center;
 }
@@ -791,59 +791,59 @@ body.intro-active {
   position: absolute;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
-  padding: 0.92rem 1rem;
-  border-radius: 18px;
-  background: rgba(5, 8, 22, 0.52);
-  border: 1px solid rgba(79, 209, 255, 0.12);
+  gap: 0.34rem;
+  padding: 0.8rem 0.9rem;
+  border-radius: 16px;
+  background: rgba(5, 8, 22, 0.42);
+  border: 1px solid rgba(79, 209, 255, 0.1);
   backdrop-filter: blur(12px);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.03),
-    0 16px 36px rgba(2, 6, 23, 0.18);
+    inset 0 1px 0 rgba(255, 255, 255, 0.025),
+    0 14px 28px rgba(2, 6, 23, 0.16);
 }
 
 .intro-journey__milestone {
-  max-width: 16rem;
+  max-width: 14rem;
 }
 
 .intro-journey__milestone--left-base {
-  left: 1.1rem;
-  bottom: 1rem;
+  left: 0.95rem;
+  bottom: 0.95rem;
 }
 
 .intro-journey__milestone--left-mid {
-  left: 11.5rem;
-  bottom: 8.2rem;
+  left: 9.8rem;
+  bottom: 8.6rem;
 }
 
 .intro-journey__milestone--right-mid {
-  right: 11rem;
-  bottom: 9rem;
+  right: 9.4rem;
+  bottom: 9.1rem;
   text-align: right;
   align-items: flex-end;
 }
 
 .intro-journey__milestone--right-base {
-  right: 1.1rem;
-  bottom: 1rem;
+  right: 0.95rem;
+  bottom: 0.95rem;
   text-align: right;
   align-items: flex-end;
 }
 
 .intro-journey__summit-card {
-  top: 1rem;
+  top: 0.8rem;
   left: 50%;
   transform: translateX(-50%);
   align-items: center;
   text-align: center;
-  min-width: 16rem;
-  max-width: 19rem;
+  min-width: 14.5rem;
+  max-width: 16.8rem;
 }
 
 .intro-journey__milestone-icons {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.42rem;
+  gap: 0.34rem;
 }
 
 .intro-journey__milestone--right-mid .intro-journey__milestone-icons,
@@ -855,18 +855,18 @@ body.intro-active {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.9rem;
-  height: 1.9rem;
+  width: 1.7rem;
+  height: 1.7rem;
   border-radius: 999px;
-  background: rgba(79, 209, 255, 0.08);
-  border: 1px solid rgba(79, 209, 255, 0.16);
+  background: rgba(79, 209, 255, 0.07);
+  border: 1px solid rgba(79, 209, 255, 0.12);
   color: #c8efff;
-  font-size: 0.92rem;
+  font-size: 0.82rem;
   line-height: 1;
 }
 
 .intro-journey__milestone-label {
-  font-size: 0.68rem;
+  font-size: 0.64rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -874,15 +874,15 @@ body.intro-active {
 }
 
 .intro-journey__milestone-title {
-  font-size: 0.94rem;
-  line-height: 1.35;
+  font-size: 0.9rem;
+  line-height: 1.34;
   color: var(--text);
 }
 
 .intro-journey__summit-text {
   margin: 0;
-  font-size: 0.84rem;
-  line-height: 1.5;
+  font-size: 0.78rem;
+  line-height: 1.48;
   color: var(--text-soft);
 }
 
@@ -916,26 +916,26 @@ body.intro-active {
 @keyframes introJourneySummitGlow {
   0%,
   100% {
-    opacity: 0.82;
+    opacity: 0.78;
     transform: translate(-50%, -50%) scale(1);
   }
   50% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.06);
+    opacity: 0.96;
+    transform: translate(-50%, -50%) scale(1.05);
   }
 }
 
 @keyframes introJourneySummitPulse {
   0% {
     opacity: 0;
-    r: 14;
+    r: 12;
   }
   18% {
-    opacity: 0.48;
+    opacity: 0.4;
   }
   100% {
     opacity: 0;
-    r: 42;
+    r: 36;
   }
 }
 
@@ -949,9 +949,9 @@ body.intro-active {
   }
 
   .intro-journey__summit-glow {
-    top: 25%;
-    width: 12rem;
-    height: 12rem;
+    top: 24%;
+    width: 11rem;
+    height: 11rem;
   }
 
   .intro-journey__mist--back {
@@ -968,35 +968,35 @@ body.intro-active {
 
   .intro-journey__milestone,
   .intro-journey__summit-card {
-    padding: 0.82rem 0.88rem;
-    border-radius: 16px;
+    padding: 0.74rem 0.8rem;
+    border-radius: 15px;
   }
 
   .intro-journey__milestone {
-    max-width: 13rem;
+    max-width: 12rem;
   }
 
   .intro-journey__milestone--left-mid {
-    left: 8.6rem;
-    bottom: 7.5rem;
+    left: 7.8rem;
+    bottom: 7.8rem;
   }
 
   .intro-journey__milestone--right-mid {
-    right: 8.2rem;
-    bottom: 8rem;
+    right: 7.4rem;
+    bottom: 8.2rem;
   }
 
   .intro-journey__summit-card {
-    min-width: 13rem;
-    max-width: 16rem;
+    min-width: 12.5rem;
+    max-width: 14.5rem;
   }
 
   .intro-journey__milestone-title {
-    font-size: 0.86rem;
+    font-size: 0.82rem;
   }
 
   .intro-journey__summit-text {
-    font-size: 0.78rem;
+    font-size: 0.74rem;
   }
 }
 
@@ -1020,9 +1020,9 @@ body.intro-active {
   }
 
   .intro-journey__summit-glow {
-    top: 26%;
-    width: 8.5rem;
-    height: 8.5rem;
+    top: 25%;
+    width: 8rem;
+    height: 8rem;
     filter: blur(18px);
   }
 

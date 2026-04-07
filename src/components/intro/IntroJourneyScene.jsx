@@ -81,10 +81,10 @@ function MilestoneCard({ item, reducedMotion = false }) {
   return (
     <motion.div
       className={item.className}
-      initial={reducedMotion ? false : { opacity: 0, y: 14, scale: 0.96 }}
+      initial={reducedMotion ? false : { opacity: 0, y: 14, scale: 0.965 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{
-        duration: reducedMotion ? 0.2 : 0.45,
+        duration: reducedMotion ? 0.2 : 0.42,
         delay: reducedMotion ? 0 : item.delay,
         ease: [0.22, 1, 0.36, 1],
       }}
@@ -169,9 +169,9 @@ function IntroJourneyScene({ reducedMotion = false }) {
                 x2="100%"
                 y2="0%"
               >
-                <stop offset="0%" stopColor="rgba(79, 209, 255, 0.22)" />
-                <stop offset="58%" stopColor="rgba(79, 209, 255, 0.96)" />
-                <stop offset="100%" stopColor="rgba(139, 92, 246, 0.92)" />
+                <stop offset="0%" stopColor="rgba(79, 209, 255, 0.18)" />
+                <stop offset="58%" stopColor="rgba(79, 209, 255, 0.82)" />
+                <stop offset="100%" stopColor="rgba(139, 92, 246, 0.8)" />
               </linearGradient>
 
               <linearGradient
@@ -181,13 +181,13 @@ function IntroJourneyScene({ reducedMotion = false }) {
                 x2="0%"
                 y2="0%"
               >
-                <stop offset="0%" stopColor="rgba(139, 92, 246, 0.24)" />
-                <stop offset="48%" stopColor="rgba(79, 209, 255, 0.9)" />
-                <stop offset="100%" stopColor="rgba(79, 209, 255, 0.82)" />
+                <stop offset="0%" stopColor="rgba(139, 92, 246, 0.18)" />
+                <stop offset="48%" stopColor="rgba(79, 209, 255, 0.78)" />
+                <stop offset="100%" stopColor="rgba(79, 209, 255, 0.72)" />
               </linearGradient>
 
               <filter id="introJourneyRouteGlow">
-                <feGaussianBlur stdDeviation="4.5" result="blur" />
+                <feGaussianBlur stdDeviation="3.2" result="blur" />
                 <feMerge>
                   <feMergeNode in="blur" />
                   <feMergeNode in="SourceGraphic" />
@@ -195,7 +195,7 @@ function IntroJourneyScene({ reducedMotion = false }) {
               </filter>
 
               <filter id="introJourneyPulseGlow">
-                <feGaussianBlur stdDeviation="6" result="pulseBlur" />
+                <feGaussianBlur stdDeviation="5" result="pulseBlur" />
                 <feMerge>
                   <feMergeNode in="pulseBlur" />
                   <feMergeNode in="SourceGraphic" />
@@ -219,12 +219,12 @@ function IntroJourneyScene({ reducedMotion = false }) {
               className="intro-journey__route intro-journey__route--left"
               fill="none"
               stroke="url(#introJourneyRouteGradientLeft)"
-              strokeWidth="4.5"
+              strokeWidth="4"
               strokeLinecap="round"
               strokeLinejoin="round"
               filter={reducedMotion ? undefined : "url(#introJourneyRouteGlow)"}
-              initial={reducedMotion ? false : { pathLength: 0, opacity: 0.45 }}
-              animate={{ pathLength: 1, opacity: 1 }}
+              initial={reducedMotion ? false : { pathLength: 0, opacity: 0.42 }}
+              animate={{ pathLength: 1, opacity: 0.92 }}
               transition={{
                 duration: reducedMotion ? 0.2 : 2.1,
                 ease: [0.22, 1, 0.36, 1],
@@ -237,12 +237,12 @@ function IntroJourneyScene({ reducedMotion = false }) {
               className="intro-journey__route intro-journey__route--right"
               fill="none"
               stroke="url(#introJourneyRouteGradientRight)"
-              strokeWidth="4.5"
+              strokeWidth="4"
               strokeLinecap="round"
               strokeLinejoin="round"
               filter={reducedMotion ? undefined : "url(#introJourneyRouteGlow)"}
-              initial={reducedMotion ? false : { pathLength: 0, opacity: 0.45 }}
-              animate={{ pathLength: 1, opacity: 1 }}
+              initial={reducedMotion ? false : { pathLength: 0, opacity: 0.42 }}
+              animate={{ pathLength: 1, opacity: 0.92 }}
               transition={{
                 duration: reducedMotion ? 0.2 : 2.1,
                 ease: [0.22, 1, 0.36, 1],
@@ -254,7 +254,7 @@ function IntroJourneyScene({ reducedMotion = false }) {
               <>
                 <g className="intro-journey__traveller-group">
                   <circle
-                    r="10"
+                    r="9"
                     className="intro-journey__traveller intro-journey__traveller--halo"
                     filter="url(#introJourneyPulseGlow)"
                   >
@@ -267,7 +267,7 @@ function IntroJourneyScene({ reducedMotion = false }) {
                     />
                   </circle>
                   <circle
-                    r="4.2"
+                    r="3.8"
                     className="intro-journey__traveller intro-journey__traveller--core"
                   >
                     <animateMotion
@@ -282,7 +282,7 @@ function IntroJourneyScene({ reducedMotion = false }) {
 
                 <g className="intro-journey__traveller-group">
                   <circle
-                    r="10"
+                    r="9"
                     className="intro-journey__traveller intro-journey__traveller--halo intro-journey__traveller--halo-alt"
                     filter="url(#introJourneyPulseGlow)"
                   >
@@ -295,7 +295,7 @@ function IntroJourneyScene({ reducedMotion = false }) {
                     />
                   </circle>
                   <circle
-                    r="4.2"
+                    r="3.8"
                     className="intro-journey__traveller intro-journey__traveller--core intro-journey__traveller--core-alt"
                   >
                     <animateMotion
@@ -324,13 +324,13 @@ function IntroJourneyScene({ reducedMotion = false }) {
                 <circle
                   cx={node.x}
                   cy={node.y}
-                  r="8"
+                  r="7"
                   className="intro-journey__node intro-journey__node--outer"
                 />
                 <circle
                   cx={node.x}
                   cy={node.y}
-                  r="3.8"
+                  r="3.2"
                   className="intro-journey__node intro-journey__node--inner"
                 />
               </motion.g>
@@ -348,13 +348,13 @@ function IntroJourneyScene({ reducedMotion = false }) {
               <circle
                 cx="536"
                 cy="72"
-                r="12"
+                r="11"
                 className="intro-journey__summit-node intro-journey__summit-node--outer"
               />
               <circle
                 cx="536"
                 cy="72"
-                r="5"
+                r="4.6"
                 className="intro-journey__summit-node intro-journey__summit-node--inner"
               />
             </motion.g>
@@ -364,13 +364,13 @@ function IntroJourneyScene({ reducedMotion = false }) {
                 <circle
                   cx="536"
                   cy="72"
-                  r="20"
+                  r="18"
                   className="intro-journey__summit-pulse intro-journey__summit-pulse--one"
                 />
                 <circle
                   cx="536"
                   cy="72"
-                  r="20"
+                  r="18"
                   className="intro-journey__summit-pulse intro-journey__summit-pulse--two"
                 />
               </>
@@ -396,10 +396,10 @@ function IntroJourneyScene({ reducedMotion = false }) {
 
             <motion.div
               className="intro-journey__summit-card"
-              initial={reducedMotion ? false : { opacity: 0, y: -12, scale: 0.96 }}
+              initial={reducedMotion ? false : { opacity: 0, y: -12, scale: 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{
-                duration: reducedMotion ? 0.2 : 0.5,
+                duration: reducedMotion ? 0.2 : 0.46,
                 delay: reducedMotion ? 0 : 2.25,
                 ease: [0.22, 1, 0.36, 1],
               }}
