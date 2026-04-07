@@ -91,7 +91,10 @@ function MilestoneCard({ item, reducedMotion = false }) {
     >
       <div className="intro-journey__milestone-icons" aria-hidden="true">
         {item.icons.map((Icon, index) => (
-          <span key={`${item.id}-${index}`} className="intro-journey__milestone-icon">
+          <span
+            key={`${item.id}-${index}`}
+            className="intro-journey__milestone-icon"
+          >
             <Icon />
           </span>
         ))}
@@ -190,6 +193,14 @@ function IntroJourneyScene({ reducedMotion = false }) {
                   <feMergeNode in="SourceGraphic" />
                 </feMerge>
               </filter>
+
+              <filter id="introJourneyPulseGlow">
+                <feGaussianBlur stdDeviation="6" result="pulseBlur" />
+                <feMerge>
+                  <feMergeNode in="pulseBlur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
             </defs>
 
             <path
@@ -239,6 +250,66 @@ function IntroJourneyScene({ reducedMotion = false }) {
               }}
             />
 
+            {!reducedMotion ? (
+              <>
+                <g className="intro-journey__traveller-group">
+                  <circle
+                    r="10"
+                    className="intro-journey__traveller intro-journey__traveller--halo"
+                    filter="url(#introJourneyPulseGlow)"
+                  >
+                    <animateMotion
+                      dur="6.5s"
+                      begin="2.2s"
+                      repeatCount="indefinite"
+                      rotate="auto"
+                      path={leftRoutePath}
+                    />
+                  </circle>
+                  <circle
+                    r="4.2"
+                    className="intro-journey__traveller intro-journey__traveller--core"
+                  >
+                    <animateMotion
+                      dur="6.5s"
+                      begin="2.2s"
+                      repeatCount="indefinite"
+                      rotate="auto"
+                      path={leftRoutePath}
+                    />
+                  </circle>
+                </g>
+
+                <g className="intro-journey__traveller-group">
+                  <circle
+                    r="10"
+                    className="intro-journey__traveller intro-journey__traveller--halo intro-journey__traveller--halo-alt"
+                    filter="url(#introJourneyPulseGlow)"
+                  >
+                    <animateMotion
+                      dur="6.8s"
+                      begin="2.55s"
+                      repeatCount="indefinite"
+                      rotate="auto"
+                      path={rightRoutePath}
+                    />
+                  </circle>
+                  <circle
+                    r="4.2"
+                    className="intro-journey__traveller intro-journey__traveller--core intro-journey__traveller--core-alt"
+                  >
+                    <animateMotion
+                      dur="6.8s"
+                      begin="2.55s"
+                      repeatCount="indefinite"
+                      rotate="auto"
+                      path={rightRoutePath}
+                    />
+                  </circle>
+                </g>
+              </>
+            ) : null}
+
             {[...leftNodes, ...rightNodes].map((node) => (
               <motion.g
                 key={node.id}
@@ -287,6 +358,23 @@ function IntroJourneyScene({ reducedMotion = false }) {
                 className="intro-journey__summit-node intro-journey__summit-node--inner"
               />
             </motion.g>
+
+            {!reducedMotion ? (
+              <>
+                <circle
+                  cx="536"
+                  cy="72"
+                  r="20"
+                  className="intro-journey__summit-pulse intro-journey__summit-pulse--one"
+                />
+                <circle
+                  cx="536"
+                  cy="72"
+                  r="20"
+                  className="intro-journey__summit-pulse intro-journey__summit-pulse--two"
+                />
+              </>
+            ) : null}
           </svg>
 
           <div className="intro-journey__milestone-layer">
