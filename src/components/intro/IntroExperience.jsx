@@ -46,7 +46,7 @@ function IntroExperience({ onReady }) {
         loadingDuration: 220,
         loadingExitDelay: 80,
         chartDuration: 900,
-        journeyDuration: 1100,
+        journeyDuration: 2400,
       };
     }
 

@@ -11,7 +11,7 @@ export const introConfig = {
   timings: {
     loadingDuration: 1600,
     loadingExitDelay: 180,
-    chartDuration: 3200,
-    journeyDuration: 4600,
+    chartDuration: 4500,
+    journeyDuration: 7000,
   },
 };

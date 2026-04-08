@@ -786,6 +786,10 @@ body.intro-active {
   pointer-events: none;
 }
 
+.intro-journey__mobile-layer {
+  display: none;
+}
+
 .intro-journey__milestone,
 .intro-journey__summit-card {
   position: absolute;
@@ -840,7 +844,8 @@ body.intro-active {
   max-width: 16.8rem;
 }
 
-.intro-journey__milestone-icons {
+.intro-journey__milestone-icons,
+.intro-journey__mobile-icons {
   display: flex;
   flex-wrap: wrap;
   gap: 0.34rem;
@@ -865,7 +870,8 @@ body.intro-active {
   line-height: 1;
 }
 
-.intro-journey__milestone-label {
+.intro-journey__milestone-label,
+.intro-journey__mobile-kicker {
   font-size: 0.64rem;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -873,7 +879,8 @@ body.intro-active {
   color: var(--text-muted);
 }
 
-.intro-journey__milestone-title {
+.intro-journey__milestone-title,
+.intro-journey__mobile-title {
   font-size: 0.9rem;
   line-height: 1.34;
   color: var(--text);
@@ -1010,6 +1017,12 @@ body.intro-active {
     max-width: 10.5ch;
   }
 
+  .intro-journey__text {
+    max-width: 30ch;
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
   .intro-journey__frame {
     height: 360px;
     border-radius: 18px;
@@ -1038,6 +1051,72 @@ body.intro-active {
 
   .intro-journey__milestone-layer {
     display: none;
+  }
+
+  .intro-journey__mobile-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: block;
+    pointer-events: none;
+  }
+
+  .intro-journey__mobile-card {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 0.22rem;
+    padding: 0.52rem 0.58rem;
+    border-radius: 13px;
+    background: rgba(5, 8, 22, 0.42);
+    border: 1px solid rgba(79, 209, 255, 0.1);
+    backdrop-filter: blur(12px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.02),
+      0 10px 18px rgba(2, 6, 23, 0.14);
+  }
+
+  .intro-journey__mobile-card--left {
+    left: 0.55rem;
+    bottom: 0.55rem;
+    max-width: 7.4rem;
+  }
+
+  .intro-journey__mobile-card--right {
+    right: 0.55rem;
+    bottom: 0.55rem;
+    max-width: 8rem;
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .intro-journey__mobile-card--summit {
+    top: 0.55rem;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 8.4rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  .intro-journey__mobile-icons {
+    gap: 0.28rem;
+  }
+
+  .intro-journey__mobile-card .intro-journey__milestone-icon {
+    width: 1.35rem;
+    height: 1.35rem;
+    font-size: 0.66rem;
+  }
+
+  .intro-journey__mobile-kicker {
+    font-size: 0.52rem;
+    letter-spacing: 0.12em;
+  }
+
+  .intro-journey__mobile-title {
+    font-size: 0.74rem;
+    line-height: 1.22;
   }
 }
 

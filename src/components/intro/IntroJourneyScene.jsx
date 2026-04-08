@@ -17,6 +17,8 @@ import {
 import { TbSql, TbChartBarPopular } from "react-icons/tb";
 import { IoLogoJavascript } from "react-icons/io5";
 
+const introSpeed = 1;
+
 const leftRoutePath =
   "M 126 392 C 188 362, 242 334, 292 302 C 336 274, 380 242, 420 208 C 456 176, 486 142, 510 108 C 520 94, 528 82, 536 72";
 
@@ -84,8 +86,8 @@ function MilestoneCard({ item, reducedMotion = false }) {
       initial={reducedMotion ? false : { opacity: 0, y: 14, scale: 0.965 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{
-        duration: reducedMotion ? 0.2 : 0.42,
-        delay: reducedMotion ? 0 : item.delay,
+        duration: reducedMotion ? 0.2 : 0.42 * introSpeed,
+        delay: reducedMotion ? 0 : item.delay * introSpeed,
         ease: [0.22, 1, 0.36, 1],
       }}
     >
@@ -116,7 +118,7 @@ function IntroJourneyScene({ reducedMotion = false }) {
         reducedMotion ? { opacity: 0 } : { opacity: 0, y: -16, scale: 0.996 }
       }
       transition={{
-        duration: reducedMotion ? 0.25 : 0.7,
+        duration: reducedMotion ? 0.25 : 0.7 * introSpeed,
         ease: [0.22, 1, 0.36, 1],
       }}
     >
@@ -226,9 +228,9 @@ function IntroJourneyScene({ reducedMotion = false }) {
               initial={reducedMotion ? false : { pathLength: 0, opacity: 0.42 }}
               animate={{ pathLength: 1, opacity: 0.92 }}
               transition={{
-                duration: reducedMotion ? 0.2 : 2.1,
+                duration: reducedMotion ? 0.2 : 2.1 * introSpeed,
                 ease: [0.22, 1, 0.36, 1],
-                delay: 0.15,
+                delay: 0.15 * introSpeed,
               }}
             />
 
@@ -244,9 +246,9 @@ function IntroJourneyScene({ reducedMotion = false }) {
               initial={reducedMotion ? false : { pathLength: 0, opacity: 0.42 }}
               animate={{ pathLength: 1, opacity: 0.92 }}
               transition={{
-                duration: reducedMotion ? 0.2 : 2.1,
+                duration: reducedMotion ? 0.2 : 2.1 * introSpeed,
                 ease: [0.22, 1, 0.36, 1],
-                delay: 0.35,
+                delay: 0.35 * introSpeed,
               }}
             />
 
@@ -259,8 +261,8 @@ function IntroJourneyScene({ reducedMotion = false }) {
                     filter="url(#introJourneyPulseGlow)"
                   >
                     <animateMotion
-                      dur="6.5s"
-                      begin="2.2s"
+                      dur={`${6.5 * introSpeed}s`}
+                      begin={`${2.2 * introSpeed}s`}
                       repeatCount="indefinite"
                       rotate="auto"
                       path={leftRoutePath}
@@ -271,8 +273,8 @@ function IntroJourneyScene({ reducedMotion = false }) {
                     className="intro-journey__traveller intro-journey__traveller--core"
                   >
                     <animateMotion
-                      dur="6.5s"
-                      begin="2.2s"
+                      dur={`${6.5 * introSpeed}s`}
+                      begin={`${2.2 * introSpeed}s`}
                       repeatCount="indefinite"
                       rotate="auto"
                       path={leftRoutePath}
@@ -287,8 +289,8 @@ function IntroJourneyScene({ reducedMotion = false }) {
                     filter="url(#introJourneyPulseGlow)"
                   >
                     <animateMotion
-                      dur="6.8s"
-                      begin="2.55s"
+                      dur={`${6.8 * introSpeed}s`}
+                      begin={`${2.55 * introSpeed}s`}
                       repeatCount="indefinite"
                       rotate="auto"
                       path={rightRoutePath}
@@ -299,8 +301,8 @@ function IntroJourneyScene({ reducedMotion = false }) {
                     className="intro-journey__traveller intro-journey__traveller--core intro-journey__traveller--core-alt"
                   >
                     <animateMotion
-                      dur="6.8s"
-                      begin="2.55s"
+                      dur={`${6.8 * introSpeed}s`}
+                      begin={`${2.55 * introSpeed}s`}
                       repeatCount="indefinite"
                       rotate="auto"
                       path={rightRoutePath}
@@ -316,8 +318,8 @@ function IntroJourneyScene({ reducedMotion = false }) {
                 initial={reducedMotion ? false : { opacity: 0, scale: 0.4 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{
-                  duration: reducedMotion ? 0.2 : 0.4,
-                  delay: reducedMotion ? 0 : node.delay,
+                  duration: reducedMotion ? 0.2 : 0.4 * introSpeed,
+                  delay: reducedMotion ? 0 : node.delay * introSpeed,
                   ease: [0.22, 1, 0.36, 1],
                 }}
               >
@@ -340,8 +342,8 @@ function IntroJourneyScene({ reducedMotion = false }) {
               initial={reducedMotion ? false : { opacity: 0, scale: 0.65 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{
-                duration: reducedMotion ? 0.2 : 0.55,
-                delay: reducedMotion ? 0 : 2.1,
+                duration: reducedMotion ? 0.2 : 0.55 * introSpeed,
+                delay: reducedMotion ? 0 : 2.1 * introSpeed,
                 ease: [0.22, 1, 0.36, 1],
               }}
             >
@@ -396,11 +398,13 @@ function IntroJourneyScene({ reducedMotion = false }) {
 
             <motion.div
               className="intro-journey__summit-card"
-              initial={reducedMotion ? false : { opacity: 0, y: -12, scale: 0.97 }}
+              initial={
+                reducedMotion ? false : { opacity: 0, y: -12, scale: 0.97 }
+              }
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{
-                duration: reducedMotion ? 0.2 : 0.46,
-                delay: reducedMotion ? 0 : 2.25,
+                duration: reducedMotion ? 0.2 : 0.46 * introSpeed,
+                delay: reducedMotion ? 0 : 2.25 * introSpeed,
                 ease: [0.22, 1, 0.36, 1],
               }}
             >
@@ -412,6 +416,76 @@ function IntroJourneyScene({ reducedMotion = false }) {
                 Bringing commercial thinking, analytics, and modern development
                 together in one direction.
               </p>
+            </motion.div>
+          </div>
+
+          <div className="intro-journey__mobile-layer">
+            <motion.div
+              className="intro-journey__mobile-card intro-journey__mobile-card--left"
+              initial={
+                reducedMotion ? false : { opacity: 0, y: 10, scale: 0.96 }
+              }
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{
+                duration: reducedMotion ? 0.2 : 0.36 * introSpeed,
+                delay: reducedMotion ? 0 : 1.05 * introSpeed,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+            >
+              <div className="intro-journey__mobile-icons" aria-hidden="true">
+                <span className="intro-journey__milestone-icon">
+                  <FaFileExcel />
+                </span>
+                <span className="intro-journey__milestone-icon">
+                  <TbChartBarPopular />
+                </span>
+              </div>
+              <span className="intro-journey__mobile-kicker">Foundations</span>
+              <strong className="intro-journey__mobile-title">Excel + BI</strong>
+            </motion.div>
+
+            <motion.div
+              className="intro-journey__mobile-card intro-journey__mobile-card--summit"
+              initial={
+                reducedMotion ? false : { opacity: 0, y: -8, scale: 0.97 }
+              }
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{
+                duration: reducedMotion ? 0.2 : 0.36 * introSpeed,
+                delay: reducedMotion ? 0 : 2.2 * introSpeed,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+            >
+              <span className="intro-journey__mobile-kicker">Summit</span>
+              <strong className="intro-journey__mobile-title">
+                Build products
+              </strong>
+            </motion.div>
+
+            <motion.div
+              className="intro-journey__mobile-card intro-journey__mobile-card--right"
+              initial={
+                reducedMotion ? false : { opacity: 0, y: 10, scale: 0.96 }
+              }
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{
+                duration: reducedMotion ? 0.2 : 0.36 * introSpeed,
+                delay: reducedMotion ? 0 : 1.35 * introSpeed,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+            >
+              <div className="intro-journey__mobile-icons" aria-hidden="true">
+                <span className="intro-journey__milestone-icon">
+                  <FaPython />
+                </span>
+                <span className="intro-journey__milestone-icon">
+                  <FaReact />
+                </span>
+              </div>
+              <span className="intro-journey__mobile-kicker">Transition</span>
+              <strong className="intro-journey__mobile-title">
+                Python + React
+              </strong>
             </motion.div>
           </div>
         </div>
