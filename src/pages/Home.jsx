@@ -6,8 +6,11 @@ import FeaturedProjects from "../components/sections/FeaturedProjects";
 import Card from "../components/ui/Card";
 import PageSection from "../components/ui/PageSection";
 import Button from "../components/ui/Button";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const navigate = useNavigate();
+
   const [startStatsAnimation, setStartStatsAnimation] = useState(false);
   const statsDelayRef = useRef(null);
 
@@ -78,7 +81,7 @@ function Home() {
         </div>
 
         <div className="button-row" style={{ marginTop: "1.5rem" }}>
-          <Button href="/journey" variant="secondary">
+          <Button onClick={() => navigate("/journey")} variant="secondary">
             View Journey
           </Button>
         </div>

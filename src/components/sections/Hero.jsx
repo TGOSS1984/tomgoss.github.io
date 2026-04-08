@@ -1,8 +1,11 @@
 import { ArrowRight, BarChart3, BriefcaseBusiness, Code2 } from "lucide-react";
 import { motion } from "framer-motion";
 import Button from "../ui/Button";
+import { useNavigate } from "react-router-dom";
 
 function Hero() {
+  const navigate = useNavigate();
+
   return (
     <section className="hero-section">
       <div className="shell hero-grid">
@@ -26,12 +29,12 @@ function Hero() {
           </p>
 
           <div className="button-row hero-actions">
-            <Button href="/projects">
+            <Button onClick={() => navigate("/projects")}>
               View Projects
               <ArrowRight size={18} />
             </Button>
 
-            <Button href="/about" variant="secondary">
+            <Button onClick={() => navigate("/about")} variant="secondary">
               About Me
             </Button>
           </div>
