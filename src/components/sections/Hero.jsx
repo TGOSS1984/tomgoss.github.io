@@ -1,10 +1,54 @@
-import { ArrowRight, BarChart3, BriefcaseBusiness, Code2 } from "lucide-react";
+import {
+  ArrowRight,
+  BarChart3,
+  BriefcaseBusiness,
+  CalendarDays,
+  Code2,
+} from "lucide-react";
 import { motion } from "framer-motion";
 import Button from "../ui/Button";
 import { useNavigate } from "react-router-dom";
 
+function getDevelopingDuration(startYear = 2025, startMonth = 0, startDay = 1) {
+  const startDate = new Date(startYear, startMonth, startDay);
+  const now = new Date();
+
+  let years = now.getFullYear() - startDate.getFullYear();
+  let months = now.getMonth() - startDate.getMonth();
+  const days = now.getDate() - startDate.getDate();
+
+  if (days < 0) {
+    months -= 1;
+  }
+
+  if (months < 0) {
+    years -= 1;
+    months += 12;
+  }
+
+  const yearLabel =
+    years === 1 ? `${years} year` : years > 1 ? `${years} years` : "";
+  const monthLabel =
+    months === 1 ? `${months} month` : months > 1 ? `${months} months` : "";
+
+  if (yearLabel && monthLabel) {
+    return `${yearLabel} ${monthLabel}`;
+  }
+
+  if (yearLabel) {
+    return yearLabel;
+  }
+
+  if (monthLabel) {
+    return monthLabel;
+  }
+
+  return "Less than 1 month";
+}
+
 function Hero() {
   const navigate = useNavigate();
+  const developingDuration = getDevelopingDuration(2025, 0, 1);
 
   return (
     <section className="hero-section">
@@ -114,6 +158,19 @@ function Hero() {
               <div className="hero-mini-card">
                 <p className="hero-mini-label">Status</p>
                 <p className="hero-mini-value">In Progress</p>
+              </div>
+            </div>
+
+            <div className="hero-development-strip">
+              <div className="hero-development-icon">
+                <CalendarDays size={16} />
+              </div>
+
+              <div className="hero-development-copy">
+                <p className="hero-development-label">
+                  Years developing • Jan 2025 - Present
+                </p>
+                <p className="hero-development-value">{developingDuration}</p>
               </div>
             </div>
           </div>

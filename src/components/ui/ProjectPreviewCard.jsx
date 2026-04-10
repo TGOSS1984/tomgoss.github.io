@@ -62,14 +62,6 @@ function ProjectPreviewCard({ project }) {
           </div>
         )}
 
-        <div className="project-stack">
-          {project.stack.map((item) => (
-            <span key={item} className="stack-pill">
-              {item}
-            </span>
-          ))}
-        </div>
-
         <div className="project-card-footer">
           <div className="project-links">
             {project.githubUrl && (

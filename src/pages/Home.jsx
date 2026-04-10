@@ -3,6 +3,7 @@ import IntroExperience from "../components/intro/IntroExperience";
 import Hero from "../components/sections/Hero";
 import StatsStrip from "../components/sections/StatsStrip";
 import FeaturedProjects from "../components/sections/FeaturedProjects";
+import DeliveryCollaboration from "../components/sections/DeliveryCollaboration";
 import Card from "../components/ui/Card";
 import PageSection from "../components/ui/PageSection";
 import Button from "../components/ui/Button";
@@ -46,6 +47,7 @@ function Home() {
       <Hero />
       <StatsStrip startAnimation={startStatsAnimation} />
       <FeaturedProjects />
+      <DeliveryCollaboration />
 
       <PageSection
         eyebrow="Featured Direction"

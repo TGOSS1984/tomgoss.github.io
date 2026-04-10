@@ -66,20 +66,6 @@ function ContactPanel() {
           </div>
         </Card>
 
-        <Card>
-          <p className="kicker">Resources</p>
-          <div className="contact-resources">
-            {contact.resources.map((item) => (
-              <div key={item.title} className="contact-resource">
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-                <a href={item.href} className="resource-link">
-                  {item.cta}
-                </a>
-              </div>
-            ))}
-          </div>
-        </Card>
       </aside>
     </div>
   );
