@@ -8,8 +8,7 @@ function About() {
       eyebrow={profile.intro.eyebrow}
       title={profile.intro.title}
     >
-      <p>{profile.intro.summary}</p>
-      <AboutProfile />
+      <AboutProfile introSummary={profile.intro.summary} />
     </PageSection>
   );
 }
