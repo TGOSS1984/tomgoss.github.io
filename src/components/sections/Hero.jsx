@@ -56,7 +56,7 @@ function Hero({ startStatsAnimation = false }) {
       return undefined;
     }
 
-    const animationDuration = 1400;
+    const animationDuration = 2600;
     const startTime = performance.now();
     let animationFrameId;
 
