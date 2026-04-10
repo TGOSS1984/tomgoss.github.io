@@ -44,7 +44,7 @@ function Home() {
     <>
       <IntroExperience onReady={handleIntroReady} />
 
-      <Hero />
+      <Hero startStatsAnimation={startStatsAnimation} />
       <StatsStrip startAnimation={startStatsAnimation} />
       <FeaturedProjects />
       <DeliveryCollaboration />

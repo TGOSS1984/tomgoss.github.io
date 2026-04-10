@@ -6,49 +6,83 @@ import {
   Code2,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import { useEffect, useMemo, useState } from "react";
 import Button from "../ui/Button";
 import { useNavigate } from "react-router-dom";
 
-function getDevelopingDuration(startYear = 2025, startMonth = 0, startDay = 1) {
+function getTotalMonthsSince(startYear = 2025, startMonth = 0, startDay = 1) {
   const startDate = new Date(startYear, startMonth, startDay);
   const now = new Date();
 
-  let years = now.getFullYear() - startDate.getFullYear();
-  let months = now.getMonth() - startDate.getMonth();
-  const days = now.getDate() - startDate.getDate();
+  let totalMonths =
+    (now.getFullYear() - startDate.getFullYear()) * 12 +
+    (now.getMonth() - startDate.getMonth());
 
-  if (days < 0) {
-    months -= 1;
+  if (now.getDate() < startDay) {
+    totalMonths -= 1;
   }
 
-  if (months < 0) {
-    years -= 1;
-    months += 12;
-  }
-
-  const yearLabel =
-    years === 1 ? `${years} year` : years > 1 ? `${years} years` : "";
-  const monthLabel =
-    months === 1 ? `${months} month` : months > 1 ? `${months} months` : "";
-
-  if (yearLabel && monthLabel) {
-    return `${yearLabel} ${monthLabel}`;
-  }
-
-  if (yearLabel) {
-    return yearLabel;
-  }
-
-  if (monthLabel) {
-    return monthLabel;
-  }
-
-  return "Less than 1 month";
+  return Math.max(0, totalMonths);
 }
 
-function Hero() {
+function formatDurationFromMonths(totalMonths) {
+  const years = Math.floor(totalMonths / 12);
+  const months = totalMonths % 12;
+
+  const parts = [];
+
+  if (years > 0) {
+    parts.push(years === 1 ? "1 year" : `${years} years`);
+  }
+
+  if (months > 0) {
+    parts.push(months === 1 ? "1 month" : `${months} months`);
+  }
+
+  if (parts.length === 0) {
+    return "Less than 1 month";
+  }
+
+  return parts.join(" ");
+}
+
+function Hero({ startStatsAnimation = false }) {
   const navigate = useNavigate();
-  const developingDuration = getDevelopingDuration(2025, 0, 1);
+  const targetMonths = useMemo(() => getTotalMonthsSince(2025, 0, 1), []);
+  const [animatedMonths, setAnimatedMonths] = useState(0);
+
+  useEffect(() => {
+    if (!startStatsAnimation) {
+      return undefined;
+    }
+
+    const animationDuration = 1400;
+    const startTime = performance.now();
+    let animationFrameId;
+
+    const animate = (currentTime) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / animationDuration, 1);
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+      const nextValue = Math.round(targetMonths * easedProgress);
+
+      setAnimatedMonths(nextValue);
+
+      if (progress < 1) {
+        animationFrameId = window.requestAnimationFrame(animate);
+      }
+    };
+
+    animationFrameId = window.requestAnimationFrame(animate);
+
+    return () => {
+      if (animationFrameId) {
+        window.cancelAnimationFrame(animationFrameId);
+      }
+    };
+  }, [startStatsAnimation, targetMonths]);
+
+  const developingDuration = formatDurationFromMonths(animatedMonths);
 
   return (
     <section className="hero-section">
@@ -63,7 +97,10 @@ function Hero() {
 
           <h1 className="hero-title">
             Building practical digital products with a
-            <span className="hero-title-accent"> commercial and analytical edge.</span>
+            <span className="hero-title-accent">
+              {" "}
+              commercial and analytical edge.
+            </span>
           </h1>
 
           <p className="hero-text">
