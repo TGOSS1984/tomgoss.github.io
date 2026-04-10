@@ -1,5 +1,6 @@
 import profile from "../../data/profile";
 import Card from "../ui/Card";
+import LocationGlobe from "../ui/LocationGlobe";
 
 function AboutProfile() {
   return (
@@ -10,6 +11,14 @@ function AboutProfile() {
             <p key={paragraph}>{paragraph}</p>
           ))}
         </div>
+
+        <LocationGlobe
+          city="Manchester"
+          country="United Kingdom"
+          lat={53.4808}
+          lng={-2.2426}
+          timeZone="Europe/London"
+        />
 
         <div className="about-strengths">
           {profile.strengths.map((strength) => (
