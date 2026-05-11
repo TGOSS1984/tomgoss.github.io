@@ -34,8 +34,8 @@ const contact = {
       title: "Curriculum Vitae",
       status: "Available",
       text: "A current CV covering commercial experience, portfolio work, and transition into development and analytics.",
-      viewHref: "/assets/documents/Tom_Goss_CV.pdf",
-      downloadHref: "/assets/documents/Tom_Goss_CV.pdf",
+      viewHref: `${import.meta.env.BASE_URL}assets/documents/Tom_Goss_CV.pdf`,
+      downloadHref: `${import.meta.env.BASE_URL}assets/documents/Tom_Goss_CV.pdf`,
       downloadName: "Tom_Goss_CV.pdf",
     },
     {
@@ -43,8 +43,8 @@ const contact = {
       title: "Code Institute Full Stack Diploma",
       status: "Completed",
       text: "Formal full stack software development qualification demonstrating structured training and portfolio-based technical work.",
-      viewHref: "/assets/documents/Code_Institute_Full_Stack_Diploma.pdf",
-      downloadHref: "/assets/documents/Code_Institute_Full_Stack_Diploma.pdf",
+      viewHref: `${import.meta.env.BASE_URL}assets/documents/Code_Institute_Full_Stack_Diploma.pdf`,
+      downloadHref: `${import.meta.env.BASE_URL}assets/documents/Code_Institute_Full_Stack_Diploma.pdf`,
       downloadName: "Code_Institute_Full_Stack_Diploma.pdf",
     },
     {
