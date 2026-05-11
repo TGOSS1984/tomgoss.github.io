@@ -3,7 +3,7 @@ import contact from "../../data/contact";
 import Card from "../ui/Card";
 import Button from "../ui/Button";
 
-const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+const WEB3FORMS_ACCESS_KEY = "66aa0cfc-bfbb-47a8-aed7-77f233d4fad3";
 
 const initialFormData = {
   name: "",
