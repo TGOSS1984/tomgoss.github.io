@@ -5,12 +5,17 @@ import {
   FaHtml5,
   FaJs,
   FaPython,
+  FaReact,
+  FaStripe,
 } from "react-icons/fa";
+
 import {
   SiDjango,
   SiFlask,
+  SiLeaflet,
   SiNumpy,
   SiPandas,
+  SiPostgresql,
   SiScikitlearn,
   SiSqlite,
   SiStreamlit,
