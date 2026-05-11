@@ -27,6 +27,36 @@ import { MdOutlineAutoAwesome } from "react-icons/md";
 
 const projects = [
   {
+    id: "uk-summit-guides",
+    title: "UK Summit Guides",
+    category: "Full Stack",
+    suite: "Adventure & Booking Platform",
+    summary:
+      "A full stack React and Django mountain guiding platform featuring route exploration, GPX mapping, weather integration, authentication, Stripe payments, booking management, and a responsive editorial-style frontend experience.",
+    stack: [
+      "React",
+      "Vite",
+      "Django",
+      "Django REST Framework",
+      "PostgreSQL",
+      "Stripe",
+      "Leaflet",
+    ],
+    badges: [
+      { label: "React", Icon: FaReact },
+      { label: "Django", Icon: SiDjango },
+      { label: "Python", Icon: FaPython },
+      { label: "PostgreSQL", Icon: SiPostgresql },
+      { label: "Stripe", Icon: FaStripe },
+      { label: "Leaflet", Icon: SiLeaflet },
+    ],
+    featured: true,
+    githubUrl: "https://github.com/TGOSS1984/uk-summit-guides",
+    liveUrl: "https://uk-summit-guides.vercel.app/",
+    imageLabel: "UK Summit Guides",
+    image: `${import.meta.env.BASE_URL}assets/images/projects/uk-summit-guides.PNG`,
+  },
+  {
     id: "uk-mountain-tours-booking",
     title: "UK Mountain Tours Booking Website",
     category: "Full Stack",

@@ -14,7 +14,7 @@ const contact = {
     },
     {
       label: "LinkedIn",
-      value: "linkedin.com/in/your-linkedin",
+      value: "linkedin.com/in/tom-goss",
       href: "https://www.linkedin.com/in/tom-goss-449677b0/",
     },
     {
