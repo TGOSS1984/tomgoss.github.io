@@ -1,13 +1,15 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import mediaShowcase from "../../data/mediaShowcase";
 
-const tabs = ["games", "films", "books"];
+const AUTO_SCROLL_DELAY = 4500;
 
 function MediaShowcase() {
-  const [activeTab, setActiveTab] = useState("games");
+  const tabs = useMemo(() => Object.keys(mediaShowcase), []);
+  const [activeTab, setActiveTab] = useState(tabs[0] || "games");
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   const items = useMemo(() => mediaShowcase[activeTab] || [], [activeTab]);
 
@@ -24,6 +26,18 @@ function MediaShowcase() {
     setActiveIndex((prev) => (prev === items.length - 1 ? 0 : prev + 1));
   };
 
+  useEffect(() => {
+    if (isPaused || items.length <= 1) return undefined;
+
+    const interval = window.setInterval(() => {
+      setActiveIndex((prev) => (prev === items.length - 1 ? 0 : prev + 1));
+    }, AUTO_SCROLL_DELAY);
+
+    return () => window.clearInterval(interval);
+  }, [items.length, isPaused]);
+
+  if (!items.length) return null;
+
   const currentItem = items[activeIndex];
   const prevItem = items[(activeIndex - 1 + items.length) % items.length];
   const nextItem = items[(activeIndex + 1) % items.length];
@@ -34,7 +48,9 @@ function MediaShowcase() {
         <div className="media-showcase-header">
           <div>
             <p className="section-eyebrow">Curated favourites</p>
-            <h2 className="section-title">Games, films, and books that inspire me</h2>
+            <h2 className="section-title">
+              Media, interests, and influences beyond the code
+            </h2>
           </div>
 
           <div className="media-tabs">
@@ -53,7 +69,13 @@ function MediaShowcase() {
           </div>
         </div>
 
-        <div className="media-carousel-shell">
+        <div
+          className="media-carousel-shell"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onFocus={() => setIsPaused(true)}
+          onBlur={() => setIsPaused(false)}
+        >
           <button type="button" className="media-nav media-nav-left" onClick={goPrev}>
             <ChevronLeft size={22} />
           </button>
@@ -75,10 +97,15 @@ function MediaShowcase() {
                 <div className="media-feature-card">
                   <img src={currentItem.image} alt={currentItem.title} />
                   <div className="media-feature-scrim" />
+
                   <div className="media-feature-copy">
                     <p className="media-feature-kicker">{activeTab}</p>
                     <h3>{currentItem.title}</h3>
                     <p>{currentItem.subtitle}</p>
+                  </div>
+
+                  <div className="media-feature-count">
+                    {activeIndex + 1} / {items.length}
                   </div>
                 </div>
 
@@ -95,7 +122,7 @@ function MediaShowcase() {
         </div>
 
         <div className="media-dots">
-          {items.map((item, index) => (
+          {items.slice(0, 8).map((item, index) => (
             <button
               key={item.id}
               type="button"
@@ -104,6 +131,8 @@ function MediaShowcase() {
               aria-label={`Show ${item.title}`}
             />
           ))}
+
+          {items.length > 8 && <span className="media-dot-more">+{items.length - 8}</span>}
         </div>
       </div>
     </section>
