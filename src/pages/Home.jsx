@@ -22,14 +22,13 @@ function Home() {
       window.clearTimeout(statsDelayRef.current);
     }
 
-    if (introPlayed) {
-      setStartStatsAnimation(true);
-      return;
-    }
+    setStartStatsAnimation(false);
+
+    const delay = introPlayed ? 50 : 250;
 
     statsDelayRef.current = window.setTimeout(() => {
       setStartStatsAnimation(true);
-    }, PAGE_TRANSITION_DELAY);
+    }, delay);
   }, []);
 
   useEffect(() => {

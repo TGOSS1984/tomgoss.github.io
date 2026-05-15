@@ -114,7 +114,6 @@ const mediaShowcase = {
     ["climbing", "Climbing", "Focus, challenge, and problem-solving"],
     ["warhammer-40k", "Warhammer 40K", "Building, painting, collecting, and lore"],
     ["3d-printing", "3D Printing", "Making, experimenting, and practical creativity"],
-    ["music", "Music", "Soundtracks, albums, and creative atmosphere"],
   ],
 };
 

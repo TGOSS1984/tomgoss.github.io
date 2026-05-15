@@ -324,8 +324,8 @@ function IntroFinalScene({ onEnter, reducedMotion = false }) {
                   delay: reducedMotion ? 0 : 0.92,
                 }}
               >
-                Building practical digital products with a commercial,
-                analytical, and mountain-shaped perspective.
+                Building practical digital products with a commercial &
+                analytical mindset.
               </motion.p>
             </div>
           </div>

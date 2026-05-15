@@ -85,10 +85,10 @@ function MediaShowcase() {
               <motion.div
                 key={`${activeTab}-${currentItem.id}`}
                 className="media-carousel-track"
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -14 }}
-                transition={{ duration: 0.38, ease: "easeOut" }}
+                initial={{ x: 24 }}
+                animate={{ x: 0 }}
+                exit={{ x: -24 }}
+                transition={{ duration: 0.28, ease: "easeOut" }}
               >
                 <div className="media-side-card media-side-card-left">
                   <img src={prevItem.image} alt={prevItem.title} />
