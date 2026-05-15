@@ -63,10 +63,13 @@ function IntroExperience({ onReady }) {
     }
 
     if (introConfig.displayMode !== "every-visit" && hasSeenIntro()) {
-      if (!hasCalledReadyRef.current) {
-        hasCalledReadyRef.current = true;
-        onReady?.(false);
-      }
+      window.requestAnimationFrame(() => {
+        if (!hasCalledReadyRef.current) {
+          hasCalledReadyRef.current = true;
+          onReady?.(false);
+        }
+      });
+
       return;
     }
 
