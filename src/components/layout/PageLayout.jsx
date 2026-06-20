@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import RouteLoader from "./RouteLoader";
+import GridAmbience from "./GridAmbience";
 import { RouteLoadingProvider } from "../../context/RouteLoadingContext";
 import { introConfig } from "../../config/introConfig";
 
@@ -73,6 +74,7 @@ function PageLayout({ children }) {
 
   return (
     <RouteLoadingProvider value={{ isLoading }}>
+      <GridAmbience />
       <div className="site-frame">
         <Navbar onNavigateStart={handleNavigateStart} />
         <RouteLoader isLoading={isLoading} />
