@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import projects from "../../data/projects";
 import ProjectPreviewCard from "../ui/ProjectPreviewCard";
+import ProjectLightbox from "../ui/ProjectLightbox";
+import useProjectLightbox from "../../hooks/useProjectLightbox";
 
 const filterOptions = [
   "All",
@@ -16,6 +18,7 @@ const filterOptions = [
 
 function ProjectsExplorer() {
   const [activeFilter, setActiveFilter] = useState("All");
+  const { activeProject, openProject, closeProject } = useProjectLightbox();
 
   const filteredProjects = useMemo(() => {
     if (activeFilter === "All") {
@@ -46,9 +49,15 @@ function ProjectsExplorer() {
 
       <div className="featured-projects-grid">
         {filteredProjects.map((project) => (
-          <ProjectPreviewCard key={project.id} project={project} />
+          <ProjectPreviewCard
+            key={project.id}
+            project={project}
+            onOpenDetails={openProject}
+          />
         ))}
       </div>
+
+      <ProjectLightbox project={activeProject} onClose={closeProject} />
     </div>
   );
 }

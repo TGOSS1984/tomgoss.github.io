@@ -1,14 +1,32 @@
 import { useState } from "react";
-import { ExternalLink, Code2 } from "lucide-react";
+import { ExternalLink, Code2, Maximize2, PauseCircle } from "lucide-react";
 import Reveal from "./Reveal";
+import { getProjectStatus } from "../../utils/projectStatus";
 
-function ProjectPreviewCard({ project }) {
+function ProjectPreviewCard({ project, onOpenDetails }) {
   const [imageFailed, setImageFailed] = useState(false);
   const showImage = project.image && !imageFailed;
+  const status = getProjectStatus(project);
+
+  const openDetails = () => onOpenDetails?.(project);
+
+  const handleCardKeyDown = (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openDetails();
+    }
+  };
 
   return (
     <Reveal>
-      <article className="project-preview-card card card-hover">
+      <article
+        className="project-preview-card card card-hover"
+        onClick={openDetails}
+        onKeyDown={handleCardKeyDown}
+        role="button"
+        tabIndex={0}
+        aria-label={`View details for ${project.title}`}
+      >
         {showImage ? (
           <div className="project-visual project-visual-image">
             <img
@@ -18,6 +36,10 @@ function ProjectPreviewCard({ project }) {
               onError={() => setImageFailed(true)}
             />
             <div className="project-image-scrim" />
+            <div className="project-visual-hint">
+              <Maximize2 size={15} />
+              View details
+            </div>
             <p className="project-visual-label">
               {project.imageLabel || "Project"}
             </p>
@@ -25,6 +47,10 @@ function ProjectPreviewCard({ project }) {
         ) : (
           <div className="project-visual">
             <div className="project-visual-overlay" />
+            <div className="project-visual-hint">
+              <Maximize2 size={15} />
+              View details
+            </div>
             <p className="project-visual-label">
               {project.imageLabel || "Project"}
             </p>
@@ -70,24 +96,33 @@ function ProjectPreviewCard({ project }) {
                 href={project.githubUrl}
                 target="_blank"
                 rel="noreferrer"
+                onClick={(event) => event.stopPropagation()}
               >
                 <Code2 size={16} />
                 Code
               </a>
             )}
 
-            {project.liveUrl ? (
+            {status === "offline" ? (
+              <span className="project-link project-link-disabled">
+                <PauseCircle size={16} />
+                Currently offline
+              </span>
+            ) : project.liveUrl ? (
               <a
                 className="project-link project-link-primary"
                 href={project.liveUrl}
                 target="_blank"
                 rel="noreferrer"
+                onClick={(event) => event.stopPropagation()}
               >
                 <ExternalLink size={16} />
                 Live Demo
               </a>
             ) : (
-              <span className="project-link">Private / local only</span>
+              <span className="project-link project-link-disabled">
+                Code only
+              </span>
             )}
           </div>
         </div>

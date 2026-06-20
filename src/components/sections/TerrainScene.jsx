@@ -1,11 +1,41 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
-import { useEffect, useMemo, useRef } from "react";
+import { useLayoutEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
+import { useTheme } from "../../context/ThemeContext";
 
 const MODEL_PATH = `${import.meta.env.BASE_URL}assets/models/mountain.glb`;
 
-function SnowParticles({ enabled, count = 500 }) {
+// The canvas paints its own opaque background every frame, so it can't pick
+// up theme colours from CSS — it needs its own palette that mirrors the
+// surrounding .topo-panel in each theme, and a wireframe colour with enough
+// contrast for the text overlaid on top of it to stay legible.
+const TERRAIN_PALETTES = {
+  dark: {
+    background: "#050816",
+    fogColor: "#050816",
+    baseColor: "#4fd1ff",
+    baseOpacityCenter: 0.88,
+    baseOpacityAmplitude: 0.05,
+    glowColor: "#a5f3fc",
+    glowOpacityCenter: 0.26,
+    glowOpacityAmplitude: 0.04,
+    snowColor: "#ffffff",
+  },
+  light: {
+    background: "#eef4fb",
+    fogColor: "#eef4fb",
+    baseColor: "#0c4a6e",
+    baseOpacityCenter: 0.94,
+    baseOpacityAmplitude: 0.03,
+    glowColor: "#0ea5e9",
+    glowOpacityCenter: 0.22,
+    glowOpacityAmplitude: 0.03,
+    snowColor: "#0ea5e9",
+  },
+};
+
+function SnowParticles({ enabled, color, count = 500 }) {
   const pointsRef = useRef();
 
   const positions = useMemo(() => {
@@ -50,7 +80,7 @@ function SnowParticles({ enabled, count = 500 }) {
         />
       </bufferGeometry>
       <pointsMaterial
-        color="#ffffff"
+        color={color}
         size={0.09}
         transparent
         opacity={0.9}
@@ -60,10 +90,10 @@ function SnowParticles({ enabled, count = 500 }) {
   );
 }
 
-function MountainModel({ snow = false }) {
+function MountainModel({ snow = false, palette }) {
   const groupRef = useRef();
-  const materialRef = useRef();
-  const glowMaterialRef = useRef();
+  const baseMaterialsRef = useRef([]);
+  const glowMaterialsRef = useRef([]);
   const { scene } = useGLTF(MODEL_PATH);
 
   const { baseModel, glowModel, autoScale } = useMemo(() => {
@@ -85,11 +115,15 @@ function MountainModel({ snow = false }) {
     baseClone.traverse((child) => {
       if (child.isMesh) {
         child.material = new THREE.MeshBasicMaterial({
-          color: "#4fd1ff",
           wireframe: false,
           transparent: true,
-          opacity: 0.96,
+          opacity: 0.72,
           side: THREE.DoubleSide,
+          // Scene fog tints geometry toward the fog colour based on camera
+          // distance. Since fog colour matches the background here, that
+          // washed out a large portion of the mountain in both themes —
+          // disabling it keeps the colour consistent across the mesh.
+          fog: false,
         });
       }
     });
@@ -97,11 +131,11 @@ function MountainModel({ snow = false }) {
     glowClone.traverse((child) => {
       if (child.isMesh) {
         child.material = new THREE.MeshBasicMaterial({
-          color: "#67e8f9",
           wireframe: false,
           transparent: true,
-          opacity: .5,
+          opacity: 0.14,
           side: THREE.DoubleSide,
+          fog: false,
         });
       }
     });
@@ -117,52 +151,51 @@ function MountainModel({ snow = false }) {
     };
   }, [scene]);
 
-  useEffect(() => {
-    let firstBaseMaterial = null;
-    let firstGlowMaterial = null;
-
+  // Collect the cloned meshes' materials and recolour them for the active
+  // theme. Runs in a layout effect (before paint) so switching themes never
+  // shows a flash of the previous palette's colour.
+  useLayoutEffect(() => {
+    const baseMaterials = [];
     baseModel.traverse((child) => {
-      if (child.isMesh && !firstBaseMaterial) {
-        firstBaseMaterial = child.material;
-      }
+      if (child.isMesh) baseMaterials.push(child.material);
     });
+    baseMaterialsRef.current = baseMaterials;
 
+    const glowMaterials = [];
     glowModel.traverse((child) => {
-      if (child.isMesh && !firstGlowMaterial) {
-        firstGlowMaterial = child.material;
-      }
+      if (child.isMesh) glowMaterials.push(child.material);
     });
+    glowMaterialsRef.current = glowMaterials;
 
-    materialRef.current = firstBaseMaterial;
-    glowMaterialRef.current = firstGlowMaterial;
-  }, [baseModel, glowModel]);
+    baseMaterials.forEach((material) => material.color.set(palette.baseColor));
+    glowMaterials.forEach((material) => material.color.set(palette.glowColor));
+  }, [baseModel, glowModel, palette]);
 
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
 
     if (groupRef.current) {
-        groupRef.current.rotation.x = 1.3; // viewing tilt
-        groupRef.current.rotation.y = t * 0.35; // horizontal turntable rotation
-        groupRef.current.rotation.z = 0; // no vertical spin
+      groupRef.current.rotation.x = 1.3; // viewing tilt
+      groupRef.current.rotation.y = t * 0.35; // horizontal turntable rotation
+      groupRef.current.rotation.z = 0; // no vertical spin
     }
 
-    if (materialRef.current) {
-      materialRef.current.opacity = 0.72 + Math.sin(t * 1.8) * 0.04;
+    const baseMaterial = baseMaterialsRef.current[0];
+    if (baseMaterial) {
+      baseMaterial.opacity =
+        palette.baseOpacityCenter + Math.sin(t * 1.8) * palette.baseOpacityAmplitude;
     }
 
-    if (glowMaterialRef.current) {
-      glowMaterialRef.current.opacity = 0.14 + Math.sin(t * 1.5) * 0.025;
+    const glowMaterial = glowMaterialsRef.current[0];
+    if (glowMaterial) {
+      glowMaterial.opacity =
+        palette.glowOpacityCenter + Math.sin(t * 1.5) * palette.glowOpacityAmplitude;
     }
   });
 
   return (
     <group ref={groupRef} position={[0, 1.5, 0]}>
-
-      <primitive
-        object={baseModel}
-        scale={autoScale}
-        rotation={[0, 0, 0]}
-      />
+      <primitive object={baseModel} scale={autoScale} rotation={[0, 0, 0]} />
 
       <primitive
         object={glowModel}
@@ -171,18 +204,21 @@ function MountainModel({ snow = false }) {
         position={[0, 0, -0.03]}
       />
 
-      <SnowParticles enabled={snow} />
+      <SnowParticles enabled={snow} color={palette.snowColor} />
     </group>
   );
 }
 
 function TerrainScene({ snow = false }) {
+  const { isLight } = useTheme();
+  const palette = isLight ? TERRAIN_PALETTES.light : TERRAIN_PALETTES.dark;
+
   return (
     <Canvas camera={{ position: [0, -7.2, 5.0], fov: 42 }} dpr={[1, 1.8]}>
-      <color attach="background" args={["#050816"]} />
-      <fog attach="fog" args={["#050816", 6, 16]} />
+      <color attach="background" args={[palette.background]} />
+      <fog attach="fog" args={[palette.fogColor, 6, 16]} />
       <ambientLight intensity={1} />
-      <MountainModel snow={snow} />
+      <MountainModel snow={snow} palette={palette} />
     </Canvas>
   );
 }
