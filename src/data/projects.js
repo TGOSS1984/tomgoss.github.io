@@ -77,7 +77,11 @@ const rawProjects = [
     liveUrl: "https://uk-summit-guides.vercel.app/",
     imageLabel: "UK Summit Guides",
     image: `${import.meta.env.BASE_URL}assets/images/projects/uk-summit-guides.PNG`,
-    galleryExtra: ["Route explorer & GPX map view", "Booking & payment flow"],
+    galleryExtra: [
+      "Route explorer & GPX map view",
+      "Booking & payment flow",
+      "Weather & trip planning view",
+    ],
   },
   {
     id: "uk-mountain-tours-booking",
@@ -107,7 +111,11 @@ const rawProjects = [
     liveUrl: "https://uk-winter-mountain-tours-v2-c6f21d80d2c8.herokuapp.com/",
     imageLabel: "Booking Platform",
     image: `${import.meta.env.BASE_URL}assets/images/projects/mountain-tours-booking.png`,
-    galleryExtra: ["Tour booking flow", "Route & itinerary content"],
+    galleryExtra: [
+      "Tour booking flow",
+      "Route & itinerary content",
+      "Account & authentication screen",
+    ],
   },
   {
     id: "winter-mountain-tours-demand-predictor",
@@ -137,7 +145,11 @@ const rawProjects = [
     liveUrl: "https://winter-tour-predictor-ce48d589f61d.herokuapp.com/",
     imageLabel: "Forecasting App",
     image: `${import.meta.env.BASE_URL}assets/images/projects/mountain-tours-predictor.png`,
-    galleryExtra: ["Forecast dashboard", "Model input & feature view"],
+    galleryExtra: [
+      "Forecast dashboard",
+      "Model input & feature view",
+      "Seasonal trend breakdown",
+    ],
   },
   {
     id: "power-bi-mountain-tours-analytics",
@@ -166,7 +178,11 @@ const rawProjects = [
     liveUrl: "",
     imageLabel: "BI Dashboard",
     image: `${import.meta.env.BASE_URL}assets/images/projects/mountain-tours-powerbi.png`,
-    galleryExtra: ["Operations overview dashboard", "Performance & KPI breakdown"],
+    galleryExtra: [
+      "Operations overview dashboard",
+      "Performance & KPI breakdown",
+      "Booking & route insights view",
+    ],
   },
   {
     id: "ashen-emporium",
@@ -194,7 +210,11 @@ const rawProjects = [
     liveUrl: "https://ashen-emporium-ecommerce-533460192970.herokuapp.com/",
     imageLabel: "E-commerce Build",
     image: `${import.meta.env.BASE_URL}assets/images/projects/ashen-emporium.png`,
-    galleryExtra: ["Storefront & product browsing", "Cart & checkout flow"],
+    galleryExtra: [
+      "Storefront & product browsing",
+      "Cart & checkout flow",
+      "Order & catalogue management",
+    ],
   },
   {
     id: "souls-text-adventure",
@@ -222,7 +242,11 @@ const rawProjects = [
     liveUrl: "https://elden-souls-text-adventure-app-6406dec306fc.herokuapp.com/",
     imageLabel: "Interactive Game",
     image: `${import.meta.env.BASE_URL}assets/images/projects/souls-text-adventure.png`,
-    galleryExtra: ["Class selection screen", "Combat encounter view"],
+    galleryExtra: [
+      "Class selection screen",
+      "Combat encounter view",
+      "Story branching path",
+    ],
   },
   {
     id: "javascript-anagram-game",
@@ -249,7 +273,11 @@ const rawProjects = [
     liveUrl: "https://tgoss1984.github.io/anagram-game/",
     imageLabel: "Browser Game",
     image: `${import.meta.env.BASE_URL}assets/images/projects/javascript-anagram-game.png`,
-    galleryExtra: ["Gameplay screen", "Scoring & round summary"],
+    galleryExtra: [
+      "Gameplay screen",
+      "Scoring & round summary",
+      "Word puzzle mechanics view",
+    ],
   },
   {
     id: "retail-analytics-portfolio",
@@ -277,7 +305,11 @@ const rawProjects = [
     liveUrl: "",
     imageLabel: "Analytics Project",
     image: `${import.meta.env.BASE_URL}assets/images/projects/retail-analytics.png`,
-    galleryExtra: ["KPI overview dashboard", "Trend & performance breakdown"],
+    galleryExtra: [
+      "KPI overview dashboard",
+      "Trend & performance breakdown",
+      "SQL query & data pipeline view",
+    ],
   },
   {
     id: "magic-eye-project",
@@ -304,7 +336,11 @@ const rawProjects = [
     liveUrl: "https://magic-eye-project.streamlit.app/",
     imageLabel: "Experimental Build",
     image: `${import.meta.env.BASE_URL}assets/images/projects/magic-eye.png`,
-    galleryExtra: ["Generated illusion output", "Interactive controls"],
+    galleryExtra: [
+      "Generated illusion output",
+      "Interactive controls",
+      "Streamlit app interface",
+    ],
   },
   {
     id: "souls-dungeon-crawler-cli",
@@ -332,7 +368,11 @@ const rawProjects = [
     liveUrl: "https://crypt-of-shadows-python-game-fccd0cae9fda.herokuapp.com/",
     imageLabel: "CLI Game",
     image: `${import.meta.env.BASE_URL}assets/images/projects/cli-game.png`,
-    galleryExtra: ["Combat encounter log", "Character & class screen"],
+    galleryExtra: [
+      "Combat encounter log",
+      "Character & class screen",
+      "Object-oriented game state log",
+    ],
   },
   {
     id: "summitloguk",
@@ -377,6 +417,7 @@ const rawProjects = [
       "Animated SVG mountain card design",
       "Interactive Leaflet summit map",
       "Achievement & completion tracking",
+      "Personal best & stats tracking",
     ],
   },
 ];

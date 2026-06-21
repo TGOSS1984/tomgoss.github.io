@@ -9,7 +9,8 @@ import useProjectLightbox from "../../hooks/useProjectLightbox";
 function FeaturedProjects() {
   const navigate = useNavigate();
   const featuredProjects = projects.filter((project) => project.featured);
-  const { activeProject, openProject, closeProject } = useProjectLightbox();
+  const { activeProject, openProject, closeProject, goToNext, goToPrev, canNavigate } =
+    useProjectLightbox(featuredProjects);
 
   return (
     <PageSection
@@ -30,7 +31,13 @@ function FeaturedProjects() {
         <Button onClick={() => navigate("/projects")}>View All Projects</Button>
       </div>
 
-      <ProjectLightbox project={activeProject} onClose={closeProject} />
+      <ProjectLightbox
+        project={activeProject}
+        onClose={closeProject}
+        onNext={goToNext}
+        onPrev={goToPrev}
+        canNavigate={canNavigate}
+      />
     </PageSection>
   );
 }

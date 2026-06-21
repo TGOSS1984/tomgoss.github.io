@@ -18,7 +18,6 @@ const filterOptions = [
 
 function ProjectsExplorer() {
   const [activeFilter, setActiveFilter] = useState("All");
-  const { activeProject, openProject, closeProject } = useProjectLightbox();
 
   const filteredProjects = useMemo(() => {
     if (activeFilter === "All") {
@@ -27,6 +26,9 @@ function ProjectsExplorer() {
 
     return projects.filter((project) => project.category === activeFilter);
   }, [activeFilter]);
+
+  const { activeProject, openProject, closeProject, goToNext, goToPrev, canNavigate } =
+    useProjectLightbox(filteredProjects);
 
   return (
     <div className="projects-explorer">
@@ -57,7 +59,13 @@ function ProjectsExplorer() {
         ))}
       </div>
 
-      <ProjectLightbox project={activeProject} onClose={closeProject} />
+      <ProjectLightbox
+        project={activeProject}
+        onClose={closeProject}
+        onNext={goToNext}
+        onPrev={goToPrev}
+        canNavigate={canNavigate}
+      />
     </div>
   );
 }
