@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ExternalLink, Code2, Maximize2, PauseCircle } from "lucide-react";
 import Reveal from "./Reveal";
 import { getProjectStatus } from "../../utils/projectStatus";
+import CardBorderTrace from "./CardBorderTrace";
 
 function ProjectPreviewCard({ project, onOpenDetails }) {
   const [imageFailed, setImageFailed] = useState(false);
@@ -27,6 +28,7 @@ function ProjectPreviewCard({ project, onOpenDetails }) {
         tabIndex={0}
         aria-label={`View details for ${project.title}`}
       >
+        <CardBorderTrace />
         {showImage ? (
           <div className="project-visual project-visual-image">
             <img

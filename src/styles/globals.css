@@ -1240,11 +1240,71 @@ textarea {
 }
 
 .project-preview-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   padding: 1.5rem;
   min-height: 100%;
+}
+
+/* Traveling border trace — a short bright dash (~12% of the card's width)
+   that travels around the literal rectangle outline while hovered, on top
+   of the existing lift/shadow hover treatment. Rendered via CardBorderTrace
+   as an SVG <rect> with stroke-dasharray/stroke-dashoffset: unlike a rotated
+   conic-gradient (angle-based, distorts into a wedge on non-square boxes),
+   an SVG path is parameterized by actual distance, so the dash keeps a
+   constant length and speed all the way around, corners included. */
+.card-trace-svg {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.card-trace-rect {
+  fill: none;
+  stroke: var(--accent-glow-line);
+  stroke-linecap: round;
+  opacity: 0;
+  transition: opacity var(--transition);
+  animation: card-trace-dash 3.5s linear infinite;
+  animation-play-state: paused;
+}
+
+.card-trace-rect-core {
+  stroke-width: 1.5;
+  filter:
+    drop-shadow(0 0 3px var(--accent-glow-strong))
+    drop-shadow(0 0 7px var(--accent-glow-mid));
+}
+
+.card-trace-rect-glow {
+  stroke-width: 7;
+  filter: blur(5px);
+}
+
+.project-preview-card:hover .card-trace-rect,
+.project-preview-card:focus-visible .card-trace-rect {
+  opacity: 1;
+  animation-play-state: running;
+}
+
+.project-preview-card:hover .card-trace-rect-glow,
+.project-preview-card:focus-visible .card-trace-rect-glow {
+  opacity: 0.65;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-trace-rect {
+    animation: none;
+  }
+}
+
+@keyframes card-trace-dash {
+  to {
+    stroke-dashoffset: var(--trace-perimeter, 0);
+  }
 }
 
 .project-preview-top {
