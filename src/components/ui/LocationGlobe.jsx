@@ -38,12 +38,55 @@ function createLandTexture() {
 
   const projection = geoEquirectangular().fitSize([width, height], landFeature);
 
-  const path = geoPath(projection, ctx);
+  // Render the landmass silhouette to an offscreen mask first, purely to
+  // test "is this point on land" when scattering dots below. The visible
+  // texture itself is never solid-filled — only individual dots are drawn —
+  // so continent shapes stay exactly accurate while reading as a field of
+  // tiny lit points rather than a flat painted shape.
+  const maskCanvas = document.createElement("canvas");
+  maskCanvas.width = width;
+  maskCanvas.height = height;
+  const maskCtx = maskCanvas.getContext("2d");
 
-  ctx.fillStyle = "#e8efff";
-  ctx.beginPath();
-  path(landFeature);
-  ctx.fill();
+  if (maskCtx) {
+    const maskPath = geoPath(projection, maskCtx);
+    maskCtx.fillStyle = "#fff";
+    maskCtx.beginPath();
+    maskPath(landFeature);
+    maskCtx.fill();
+  }
+
+  const maskData = maskCtx?.getImageData(0, 0, width, height).data;
+
+  const isLand = (x, y) => {
+    if (!maskData) return false;
+    const px = Math.floor(x);
+    const py = Math.floor(y);
+    if (px < 0 || px >= width || py < 0 || py >= height) return false;
+    return maskData[(py * width + px) * 4 + 3] > 80;
+  };
+
+  // Spacing/radius of the stipple grid, in texture pixels. Alternate rows
+  // are offset by half a step for a more organic, less grid-like scatter.
+  const DOT_SPACING = 9;
+  const DOT_RADIUS = 2.1;
+
+  ctx.fillStyle = "#eef6ff";
+
+  let row = 0;
+  for (let y = DOT_SPACING / 2; y < height; y += DOT_SPACING) {
+    const rowOffset = row % 2 === 0 ? 0 : DOT_SPACING / 2;
+
+    for (let x = DOT_SPACING / 2 + rowOffset; x < width; x += DOT_SPACING) {
+      if (isLand(x, y)) {
+        ctx.beginPath();
+        ctx.arc(x, y, DOT_RADIUS, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    row += 1;
+  }
 
   const texture = new THREE.CanvasTexture(canvas);
   texture.colorSpace = THREE.SRGBColorSpace;
@@ -61,7 +104,7 @@ function Atmosphere() {
   });
 
   return (
-    <mesh scale={1.13}>
+    <mesh scale={1.17}>
       <sphereGeometry args={[GLOBE_RADIUS, 72, 72]} />
       <shaderMaterial
         ref={materialRef}
@@ -70,7 +113,7 @@ function Atmosphere() {
         side={THREE.BackSide}
         uniforms={{
           c: { value: 0.72 },
-          p: { value: 4.6 },
+          p: { value: 4.2 },
           glowColor: { value: new THREE.Color("#ffffff") },
           viewVector: { value: new THREE.Vector3(0, 0, 1) },
         }}
@@ -94,7 +137,7 @@ function Atmosphere() {
 
           void main() {
             float intensity = pow(c - dot(vNormal, vPositionNormal), p);
-            gl_FragColor = vec4(glowColor, intensity * 0.7);
+            gl_FragColor = vec4(glowColor, intensity * 2.6);
           }
         `}
       />
@@ -118,7 +161,7 @@ function GlobeShell() {
           map={landTexture || null}
           emissiveMap={landTexture || null}
           emissive="#eef3ff"
-          emissiveIntensity={0.34}
+          emissiveIntensity={0.55}
           color="#93a3bf"
           transparent
           opacity={0.99}
@@ -133,7 +176,7 @@ function GlobeShell() {
         <meshBasicMaterial
           color="#4fd1ff"
           transparent
-          opacity={0.085}
+          opacity={0.04}
           side={THREE.BackSide}
         />
       </mesh>
@@ -143,7 +186,7 @@ function GlobeShell() {
         <meshBasicMaterial
           color="#8b5cf6"
           transparent
-          opacity={0.065}
+          opacity={0.03}
           side={THREE.BackSide}
         />
       </mesh>
@@ -153,7 +196,17 @@ function GlobeShell() {
         <meshBasicMaterial
           color="#ffffff"
           transparent
-          opacity={0.08}
+          opacity={0.34}
+          side={THREE.BackSide}
+        />
+      </mesh>
+
+      <mesh scale={1.2}>
+        <sphereGeometry args={[GLOBE_RADIUS, 72, 72]} />
+        <meshBasicMaterial
+          color="#ffffff"
+          transparent
+          opacity={0.14}
           side={THREE.BackSide}
         />
       </mesh>
@@ -309,6 +362,7 @@ function LocationGlobe({
         <div className="location-globe__glow location-globe__glow--cyan" />
         <div className="location-globe__glow location-globe__glow--purple" />
         <div className="location-globe__glow location-globe__glow--white" />
+        <div className="location-globe__glow location-globe__glow--core" />
 
         <div className="location-globe__canvas-shell">
           <Canvas dpr={[1, 1.8]} camera={{ position: [0, 0, 7], fov: 30 }}>

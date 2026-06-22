@@ -3662,9 +3662,10 @@ textarea {
 }
 
 .location-globe__glow--white {
+  filter: blur(64px);
   background: radial-gradient(
     circle at center,
-    rgba(255, 255, 255, 0.24),
+    rgba(255, 255, 255, 0.4),
     transparent 65%
   );
   z-index: 1;
@@ -3673,7 +3674,7 @@ textarea {
 .location-globe__glow--cyan {
   background: radial-gradient(
     circle at center,
-    rgba(79, 209, 255, 0.34),
+    rgba(79, 209, 255, 0.3),
     transparent 70%
   );
   z-index: 0;
@@ -3682,17 +3683,73 @@ textarea {
 .location-globe__glow--purple {
   background: radial-gradient(
     circle at center,
-    rgba(139, 92, 246, 0.28),
+    rgba(139, 92, 246, 0.24),
     transparent 75%
   );
   z-index: 0;
 }
 
+/* Tighter, brighter glow sitting closer to the sphere itself, layered on
+   top of the three broad soft halos above for a richer, more premium edge
+   light rather than just one diffuse blur. */
+.location-globe__glow--core {
+  filter: blur(40px);
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.32),
+    transparent 60%
+  );
+  z-index: 1;
+}
+
 [data-theme="light"] .location-globe-card {
+  border-color: rgba(14, 165, 233, 0.18);
   background:
     radial-gradient(circle at top left, rgba(14, 165, 233, 0.08), transparent 24%),
     radial-gradient(circle at top right, rgba(124, 58, 237, 0.08), transparent 24%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(241, 246, 252, 0.98));
+  box-shadow:
+    0 22px 60px rgba(15, 23, 42, 0.12),
+    0 0 36px rgba(14, 165, 233, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+/* The globe itself stays a dark, space-like sphere in both themes — that's
+   intentional and matches the reference look. Only the surrounding halo
+   needs to change for light mode: a plain white glow would be invisible
+   against an already-light card, so it's repurposed as a soft dark vignette
+   that helps the dark sphere sit naturally in the card rather than reading
+   as a stray white smudge or a harsh cutout. */
+[data-theme="light"] .location-globe__glow--white {
+  background: radial-gradient(
+    circle at center,
+    rgba(15, 23, 42, 0.14),
+    transparent 65%
+  );
+}
+
+[data-theme="light"] .location-globe__glow--cyan {
+  background: radial-gradient(
+    circle at center,
+    rgba(14, 165, 233, 0.3),
+    transparent 70%
+  );
+}
+
+[data-theme="light"] .location-globe__glow--purple {
+  background: radial-gradient(
+    circle at center,
+    rgba(124, 58, 237, 0.22),
+    transparent 75%
+  );
+}
+
+[data-theme="light"] .location-globe__glow--core {
+  background: radial-gradient(
+    circle at center,
+    rgba(14, 165, 233, 0.22),
+    transparent 60%
+  );
 }
 
 [data-theme="light"] .location-globe__location {
