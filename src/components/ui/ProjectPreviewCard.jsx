@@ -3,11 +3,13 @@ import { ExternalLink, Code2, Maximize2, PauseCircle } from "lucide-react";
 import Reveal from "./Reveal";
 import { getProjectStatus } from "../../utils/projectStatus";
 import CardBorderTrace from "./CardBorderTrace";
+import useIsMobile from "../../hooks/useIsMobile";
 
 function ProjectPreviewCard({ project, onOpenDetails }) {
   const [imageFailed, setImageFailed] = useState(false);
   const showImage = project.image && !imageFailed;
   const status = getProjectStatus(project);
+  const isMobile = useIsMobile();
 
   const openDetails = () => onOpenDetails?.(project);
 
@@ -18,15 +20,27 @@ function ProjectPreviewCard({ project, onOpenDetails }) {
     }
   };
 
+  // On desktop, the whole card is a click target — hovering already hints
+  // it's interactive before you commit to a click. On mobile there's no
+  // hover state, so tapping anywhere and unexpectedly landing in a
+  // full-screen lightbox can feel jarring. Below the nav's mobile
+  // breakpoint, the card body itself isn't a click target at all; only the
+  // explicit "View details" button (rendered further down) is.
+  const cardInteractionProps = isMobile
+    ? {}
+    : {
+        onClick: openDetails,
+        onKeyDown: handleCardKeyDown,
+        role: "button",
+        tabIndex: 0,
+        "aria-label": `View details for ${project.title}`,
+      };
+
   return (
     <Reveal>
       <article
         className="project-preview-card card card-hover"
-        onClick={openDetails}
-        onKeyDown={handleCardKeyDown}
-        role="button"
-        tabIndex={0}
-        aria-label={`View details for ${project.title}`}
+        {...cardInteractionProps}
       >
         <CardBorderTrace />
         {showImage ? (
@@ -38,10 +52,12 @@ function ProjectPreviewCard({ project, onOpenDetails }) {
               onError={() => setImageFailed(true)}
             />
             <div className="project-image-scrim" />
-            <div className="project-visual-hint">
-              <Maximize2 size={15} />
-              View details
-            </div>
+            {!isMobile && (
+              <div className="project-visual-hint">
+                <Maximize2 size={15} />
+                View details
+              </div>
+            )}
             <p className="project-visual-label">
               {project.imageLabel || "Project"}
             </p>
@@ -49,10 +65,12 @@ function ProjectPreviewCard({ project, onOpenDetails }) {
         ) : (
           <div className="project-visual">
             <div className="project-visual-overlay" />
-            <div className="project-visual-hint">
-              <Maximize2 size={15} />
-              View details
-            </div>
+            {!isMobile && (
+              <div className="project-visual-hint">
+                <Maximize2 size={15} />
+                View details
+              </div>
+            )}
             <p className="project-visual-label">
               {project.imageLabel || "Project"}
             </p>
@@ -88,6 +106,17 @@ function ProjectPreviewCard({ project, onOpenDetails }) {
               );
             })}
           </div>
+        )}
+
+        {isMobile && (
+          <button
+            type="button"
+            className="project-mobile-details-btn"
+            onClick={openDetails}
+          >
+            <Maximize2 size={15} />
+            View details
+          </button>
         )}
 
         <div className="project-card-footer">
