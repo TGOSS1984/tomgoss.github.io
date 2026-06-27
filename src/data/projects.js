@@ -84,6 +84,52 @@ const rawProjects = [
     ],
   },
   {
+    id: "summitloguk",
+    title: "SummitLog UK",
+    category: "Full Stack",
+    suite: "Mountain Tracking Platform",
+    summary:
+      "A personal mountain tracking application for UK hillwalkers to log, visualise, and reflect on time spent in the mountains — covering Wainwrights, Munros, and Nuttalls with over 800 summits sourced from the DOBIH dataset.",
+    longDescription:
+      "SummitLog UK is a personal mountain tracking application built for UK hillwalkers who want to log, visualise and reflect on their time in the mountains. It grew from a simple idea to track Wainwright completions into a comprehensive platform covering multiple UK mountain collections — Wainwrights, Munros and Nuttalls — with over 800 summits sourced from the DOBIH (Database of British and Irish Hills) dataset. Built as a full-stack portfolio application, the focus throughout was production-quality design, real-world data and genuinely useful functionality, with a custom design system that aims for something that feels like a premium, polished product rather than a generic CRUD app.",
+    highlights: [
+      "Over 800 UK summits across Wainwrights, Munros and Nuttalls, sourced from the DOBIH dataset",
+      "Decoupled architecture: React + Vite frontend consuming a Django REST Framework API",
+      "Custom design system with animated SVG mountain cards",
+      "Personal best tracking, collection completion percentages and an achievement system",
+      "Interactive summit mapping powered by Leaflet",
+      "Session-based authentication with CSRF protection; images stored on Cloudflare R2",
+    ],
+    stack: [
+      "React",
+      "Vite",
+      "Django",
+      "Django REST Framework",
+      "Leaflet",
+      "Cloudflare R2",
+    ],
+    badges: [
+      { label: "React", Icon: FaReact },
+      { label: "Vite", Icon: SiVite },
+      { label: "Django", Icon: SiDjango },
+      { label: "Python", Icon: FaPython },
+      { label: "Leaflet", Icon: SiLeaflet },
+      { label: "Cloudflare R2", Icon: SiCloudflare },
+    ],
+    featured: true,
+    deploymentStatus: "private",
+    githubUrl: "https://github.com/TGOSS1984/summitlog-uk",
+    liveUrl: "",
+    imageLabel: "SummitLog UK",
+    image: `${import.meta.env.BASE_URL}assets/images/projects/summit-log-uk.PNG`,
+    galleryExtra: [
+      "Animated SVG mountain card design",
+      "Interactive Leaflet summit map",
+      "Achievement & completion tracking",
+      "Personal best & stats tracking",
+    ],
+  },
+  {
     id: "uk-mountain-tours-booking",
     title: "UK Mountain Tours Booking Website",
     category: "Full Stack",
@@ -374,52 +420,7 @@ const rawProjects = [
       "Object-oriented game state log",
     ],
   },
-  {
-    id: "summitloguk",
-    title: "SummitLog UK",
-    category: "Full Stack",
-    suite: "Mountain Tracking Platform",
-    summary:
-      "A personal mountain tracking application for UK hillwalkers to log, visualise, and reflect on time spent in the mountains — covering Wainwrights, Munros, and Nuttalls with over 800 summits sourced from the DOBIH dataset.",
-    longDescription:
-      "SummitLog UK is a personal mountain tracking application built for UK hillwalkers who want to log, visualise and reflect on their time in the mountains. It grew from a simple idea to track Wainwright completions into a comprehensive platform covering multiple UK mountain collections — Wainwrights, Munros and Nuttalls — with over 800 summits sourced from the DOBIH (Database of British and Irish Hills) dataset. Built as a full-stack portfolio application, the focus throughout was production-quality design, real-world data and genuinely useful functionality, with a custom design system that aims for something that feels like a premium, polished product rather than a generic CRUD app.",
-    highlights: [
-      "Over 800 UK summits across Wainwrights, Munros and Nuttalls, sourced from the DOBIH dataset",
-      "Decoupled architecture: React + Vite frontend consuming a Django REST Framework API",
-      "Custom design system with animated SVG mountain cards",
-      "Personal best tracking, collection completion percentages and an achievement system",
-      "Interactive summit mapping powered by Leaflet",
-      "Session-based authentication with CSRF protection; images stored on Cloudflare R2",
-    ],
-    stack: [
-      "React",
-      "Vite",
-      "Django",
-      "Django REST Framework",
-      "Leaflet",
-      "Cloudflare R2",
-    ],
-    badges: [
-      { label: "React", Icon: FaReact },
-      { label: "Vite", Icon: SiVite },
-      { label: "Django", Icon: SiDjango },
-      { label: "Python", Icon: FaPython },
-      { label: "Leaflet", Icon: SiLeaflet },
-      { label: "Cloudflare R2", Icon: SiCloudflare },
-    ],
-    featured: true,
-    deploymentStatus: "private",
-    githubUrl: "",
-    liveUrl: "",
-    imageLabel: "SummitLog UK",
-    image: "",
-    galleryExtra: [
-      "Animated SVG mountain card design",
-      "Interactive Leaflet summit map",
-      "Achievement & completion tracking",
-      "Personal best & stats tracking",
-    ],
-  },
+  
 ];
 
 const projects = rawProjects.map(({ galleryExtra, ...project }) => ({
