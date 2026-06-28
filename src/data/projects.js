@@ -119,7 +119,7 @@ const rawProjects = [
     featured: true,
     deploymentStatus: "private",
     githubUrl: "https://github.com/TGOSS1984/summitlog-uk",
-    liveUrl: "",
+    liveUrl: "https://summitlog-uk.vercel.app/",
     imageLabel: "SummitLog UK",
     image: `${import.meta.env.BASE_URL}assets/images/projects/summit-log-uk.PNG`,
     galleryExtra: [
