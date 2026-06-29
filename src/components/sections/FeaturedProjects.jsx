@@ -8,7 +8,9 @@ import useProjectLightbox from "../../hooks/useProjectLightbox";
 
 function FeaturedProjects() {
   const navigate = useNavigate();
-  const featuredProjects = projects.filter((project) => project.featured);
+  const featuredProjects = projects
+    .filter((project) => project.featured)
+    .sort((a, b) => a.rank - b.rank);
   const { activeProject, openProject, closeProject, goToNext, goToPrev, canNavigate } =
     useProjectLightbox(featuredProjects);
 

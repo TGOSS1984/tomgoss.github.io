@@ -21,10 +21,12 @@ function ProjectsExplorer() {
 
   const filteredProjects = useMemo(() => {
     if (activeFilter === "All") {
-      return projects;
+      return [...projects].sort((a, b) => a.rank - b.rank);
     }
 
-    return projects.filter((project) => project.category === activeFilter);
+    return projects
+      .filter((project) => project.category === activeFilter)
+      .sort((a, b) => a.rank - b.rank);
   }, [activeFilter]);
 
   const { activeProject, openProject, closeProject, goToNext, goToPrev, canNavigate } =

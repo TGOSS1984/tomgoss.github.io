@@ -38,9 +38,15 @@ import { MdOutlineAutoAwesome } from "react-icons/md";
 //              manage hosting costs) — flip this per project as you take
 //              builds up/down and the lightbox will show the right messaging
 // "private" -> no public deployment exists; code/local only
+//
+// rank: lower numbers show first wherever projects are listed (Featured and
+// the full Projects page both sort by this). Currently numbered to match
+// this array's order exactly — edit a project's rank to reorder it without
+// needing to move it in the array.
 const rawProjects = [
   {
     id: "uk-summit-guides",
+    rank: 1,
     title: "UK Summit Guides",
     category: "Full Stack",
     suite: "Adventure & Booking Platform",
@@ -85,6 +91,7 @@ const rawProjects = [
   },
   {
     id: "summitloguk",
+    rank: 2,
     title: "SummitLog UK",
     category: "Full Stack",
     suite: "Mountain Tracking Platform",
@@ -131,6 +138,7 @@ const rawProjects = [
   },
   {
     id: "uk-mountain-tours-booking",
+    rank: 6,
     title: "UK Mountain Tours Booking Website",
     category: "Full Stack",
     suite: "Mountain Tours Suite",
@@ -151,7 +159,7 @@ const rawProjects = [
       { label: "Bootstrap", Icon: FaBootstrap },
       { label: "SQLite", Icon: SiSqlite },
     ],
-    featured: true,
+    featured: false,
     deploymentStatus: "live",
     githubUrl: "https://github.com/TGOSS1984/uk_winter_mountain_tours_v2",
     liveUrl: "https://uk-winter-mountain-tours-v2-c6f21d80d2c8.herokuapp.com/",
@@ -165,6 +173,7 @@ const rawProjects = [
   },
   {
     id: "winter-mountain-tours-demand-predictor",
+    rank: 3,
     title: "Winter Mountain Tours Demand Predictor",
     category: "Machine Learning",
     suite: "Mountain Tours Suite",
@@ -199,6 +208,7 @@ const rawProjects = [
   },
   {
     id: "power-bi-mountain-tours-analytics",
+    rank: 11,
     title: "Power BI Winter Mountain Tours Analytics",
     category: "BI / Dashboarding",
     suite: "Mountain Tours Suite",
@@ -218,7 +228,7 @@ const rawProjects = [
       { label: "Power Query", Icon: TbBrandPowershell },
       { label: "Excel", Icon: FaFileExcel },
     ],
-    featured: true,
+    featured: false,
     deploymentStatus: "private",
     githubUrl: "https://github.com/TGOSS1984/uk-mountain-tours-analytics",
     liveUrl: "",
@@ -232,6 +242,7 @@ const rawProjects = [
   },
   {
     id: "ashen-emporium",
+    rank: 4,
     title: "Ashen Emporium",
     category: "Full Stack",
     summary:
@@ -264,6 +275,7 @@ const rawProjects = [
   },
   {
     id: "souls-text-adventure",
+    rank: 5,
     title: "Souls-Inspired Text Adventure",
     category: "Interactive",
     summary:
@@ -296,6 +308,7 @@ const rawProjects = [
   },
   {
     id: "javascript-anagram-game",
+    rank: 8,
     title: "JavaScript Anagram Game",
     category: "JavaScript",
     summary:
@@ -327,6 +340,7 @@ const rawProjects = [
   },
   {
     id: "retail-analytics-portfolio",
+    rank: 9,
     title: "Retail Analytics Portfolio",
     category: "Analytics",
     summary:
@@ -359,6 +373,7 @@ const rawProjects = [
   },
   {
     id: "magic-eye-project",
+    rank: 10,
     title: "Magic Eye Project",
     category: "Experimental",
     summary:
@@ -390,6 +405,7 @@ const rawProjects = [
   },
   {
     id: "souls-dungeon-crawler-cli",
+    rank: 7,
     title: "Souls-Inspired Dungeon Crawler (CLI)",
     category: "Python / CLI",
     summary:
@@ -408,7 +424,7 @@ const rawProjects = [
       { label: "Game Logic", Icon: MdOutlineAutoAwesome },
       { label: "CLI", Icon: TbTerminal2 },
     ],
-    featured: true,
+    featured: false,
     deploymentStatus: "live",
     githubUrl: "https://github.com/TGOSS1984/dungeon_crawler",
     liveUrl: "https://crypt-of-shadows-python-game-fccd0cae9fda.herokuapp.com/",
@@ -420,7 +436,6 @@ const rawProjects = [
       "Object-oriented game state log",
     ],
   },
-  
 ];
 
 const projects = rawProjects.map(({ galleryExtra, ...project }) => ({
