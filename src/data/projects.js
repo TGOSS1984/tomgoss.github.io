@@ -90,8 +90,50 @@ const rawProjects = [
     ],
   },
   {
-    id: "summitloguk",
+    id: "ascent-analytics",
     rank: 2,
+    title: "Ascent Analytics",
+    category: "BI / Dashboarding",
+    suite: "Adventure & Booking Platform",
+    summary:
+      "A Power BI business intelligence platform built as a companion to UK Summit Guides — a full synthetic-data pipeline (Python, pandas, Faker, pandera) feeding a SQLite warehouse and 10 fully-built Power BI dashboards, with DAX-driven KPIs, YoY comparatives, and a written insight report.",
+    longDescription:
+      "Ascent Analytics is a full business intelligence build companion to UK Summit Guides, taking a synthetic booking dataset from raw generation through to a polished, decision-ready Power BI reporting suite. A Python pipeline (pandas, Faker, pandera) generates and validates realistic multi-year trading data — routes, guides, bookings, payments, marketing, weather, and equipment hire — into a SQLite star-schema warehouse, which then powers 10 interconnected dashboards covering Executive, Sales, Customer, Guide, Route, Marketing, Operations, Finance, Website Analytics, and Data Quality. The project leans into DAX depth (YoY variance measures, cumulative/Pareto analysis, AI visuals) and treats documentation as a first-class deliverable, including an honest write-up of real modelling trade-offs and lessons learned along the way.",
+    highlights: [
+      "8-step, one-command pipeline (generation \u2192 cleaning \u2192 warehouse \u2192 export), validated end-to-end with 79 passing pytest tests and pandera schema checks",
+      "53 routes and 22 guides, with 27 real routes merged in from UK Summit Guides' own fixture data",
+      "10 fully-built Power BI dashboards with a custom theme, DAX-driven KPIs, YoY comparatives, combo charts, and a Finance waterfall",
+      "Full documentation pass \u2014 architecture, data dictionary, KPI catalogue, and an honest lessons-learned writeup on version-controlling a Power BI semantic model with PBIP/TMDL",
+    ],
+    stack: [
+      "Python",
+      "Pandas",
+      "SQLite",
+      "Power BI",
+      "DAX",
+    ],
+    badges: [
+      { label: "Python", Icon: FaPython },
+      { label: "Pandas", Icon: SiPandas },
+      { label: "SQLite", Icon: SiSqlite },
+      { label: "Power BI", Icon: TbChartBarPopular },
+      { label: "DAX", Icon: PiBracketsCurlyBold },
+    ],
+    featured: true,
+    deploymentStatus: "private",
+    githubUrl: "https://github.com/TGOSS1984/ascent-analytics",
+    liveUrl: "",
+    imageLabel: "Ascent Analytics",
+    image: `${import.meta.env.BASE_URL}assets/images/projects/ascent-analytics.png`,
+    galleryExtra: [
+      "Executive dashboard overview",
+      "Route & Guide performance views",
+      "Data pipeline & quality dashboard",
+    ],
+  },
+  {
+    id: "summitloguk",
+    rank: 3,
     title: "SummitLog UK",
     category: "Full Stack",
     suite: "Mountain Tracking Platform",
@@ -138,7 +180,7 @@ const rawProjects = [
   },
   {
     id: "uk-mountain-tours-booking",
-    rank: 6,
+    rank: 7,
     title: "UK Mountain Tours Booking Website",
     category: "Full Stack",
     suite: "Mountain Tours Suite",
@@ -173,7 +215,7 @@ const rawProjects = [
   },
   {
     id: "winter-mountain-tours-demand-predictor",
-    rank: 3,
+    rank: 4,
     title: "Winter Mountain Tours Demand Predictor",
     category: "Machine Learning",
     suite: "Mountain Tours Suite",
@@ -208,7 +250,7 @@ const rawProjects = [
   },
   {
     id: "power-bi-mountain-tours-analytics",
-    rank: 11,
+    rank: 12,
     title: "Power BI Winter Mountain Tours Analytics",
     category: "BI / Dashboarding",
     suite: "Mountain Tours Suite",
@@ -242,7 +284,7 @@ const rawProjects = [
   },
   {
     id: "ashen-emporium",
-    rank: 4,
+    rank: 5,
     title: "Ashen Emporium",
     category: "Full Stack",
     summary:
@@ -275,7 +317,7 @@ const rawProjects = [
   },
   {
     id: "souls-text-adventure",
-    rank: 5,
+    rank: 6,
     title: "Souls-Inspired Text Adventure",
     category: "Interactive",
     summary:
@@ -308,7 +350,7 @@ const rawProjects = [
   },
   {
     id: "javascript-anagram-game",
-    rank: 8,
+    rank: 9,
     title: "JavaScript Anagram Game",
     category: "JavaScript",
     summary:
@@ -340,7 +382,7 @@ const rawProjects = [
   },
   {
     id: "retail-analytics-portfolio",
-    rank: 9,
+    rank: 10,
     title: "Retail Analytics Portfolio",
     category: "Analytics",
     summary:
@@ -373,7 +415,7 @@ const rawProjects = [
   },
   {
     id: "magic-eye-project",
-    rank: 10,
+    rank: 11,
     title: "Magic Eye Project",
     category: "Experimental",
     summary:
@@ -405,7 +447,7 @@ const rawProjects = [
   },
   {
     id: "souls-dungeon-crawler-cli",
-    rank: 7,
+    rank: 8,
     title: "Souls-Inspired Dungeon Crawler (CLI)",
     category: "Python / CLI",
     summary:
