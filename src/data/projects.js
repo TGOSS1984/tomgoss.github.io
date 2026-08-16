@@ -63,9 +63,10 @@ const rawProjects = [
     imageLabel: "UK Summit Guides",
     image: `${import.meta.env.BASE_URL}assets/images/projects/uk_summit_guides/uk-summit-guides.png`,
     galleryExtra: [
-      "Route explorer & GPX map view",
-      "Booking & payment flow",
-      "Weather & trip planning view",
+      { src: `${import.meta.env.BASE_URL}assets/images/projects/uk_summit_guides/gallery.png`, caption: "Route explorer & GPX map view" },
+      { src: `${import.meta.env.BASE_URL}assets/images/projects/uk_summit_guides/booking.png`, caption: "Booking & payment flow" },
+      { src: `${import.meta.env.BASE_URL}assets/images/projects/uk_summit_guides/route_weather.png`, caption: "Weather & trip planning view" },
+      { src: `${import.meta.env.BASE_URL}assets/images/projects/uk_summit_guides/services.png`, caption: "Services overview" },
     ],
   },
   {
@@ -201,9 +202,9 @@ const rawProjects = [
     imageLabel: "Forecasting App",
     image: `${import.meta.env.BASE_URL}assets/images/projects/winter_mountain_tours_demand_predictor/mountain-tours-predictor.png`,
     galleryExtra: [
-      "Forecast dashboard",
-      "Model input & feature view",
-      "Seasonal trend breakdown",
+      { src: `${import.meta.env.BASE_URL}assets/images/projects/winter_mountain_tours_demand_predictor/map_view.png`, caption: "Forecast dashboard" },
+      { src: `${import.meta.env.BASE_URL}assets/images/projects/winter_mountain_tours_demand_predictor/input_view.png`, caption: "Model input & feature view" },
+      { src: `${import.meta.env.BASE_URL}assets/images/projects/winter_mountain_tours_demand_predictor/seasonal_trend.png`, caption: "Seasonal trend breakdown" },
     ],
   },
   {
@@ -264,9 +265,9 @@ const rawProjects = [
     imageLabel: "E-commerce Build",
     image: `${import.meta.env.BASE_URL}assets/images/projects/ashen_emporium/ashen-emporium.png`,
     galleryExtra: [
-      "Storefront & product browsing",
-      "Cart & checkout flow",
-      "Order & catalogue management",
+      { src: `${import.meta.env.BASE_URL}assets/images/projects/ashen_emporium/store_front.png`, caption: "Storefront & product browsing" },
+      { src: `${import.meta.env.BASE_URL}assets/images/projects/ashen_emporium/cart.png`, caption: "Cart & checkout flow" },
+      { src: `${import.meta.env.BASE_URL}assets/images/projects/ashen_emporium/item_detail.png`, caption: "Order & catalogue management" },
     ],
   },
   {
@@ -295,9 +296,9 @@ const rawProjects = [
     imageLabel: "Interactive Game",
     image: `${import.meta.env.BASE_URL}assets/images/projects/souls_text_adventure/souls-text-adventure.png`,
     galleryExtra: [
-      "Class selection screen",
-      "Combat encounter view",
-      "Story branching path",
+      { src: `${import.meta.env.BASE_URL}assets/images/projects/souls_text_adventure/class_select.png`, caption: "Class selection screen" },
+      { src: `${import.meta.env.BASE_URL}assets/images/projects/souls_text_adventure/battle_screen.png`, caption: "Combat encounter view" },
+      { src: `${import.meta.env.BASE_URL}assets/images/projects/souls_text_adventure/story_screen.png`, caption: "Story branching path" },
     ],
   },
   {
