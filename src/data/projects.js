@@ -21,8 +21,10 @@ import {
   SiSqlite,
   SiStreamlit,
   SiStripe,
+  SiTypescript,
   SiVite,
 } from "react-icons/si";
+
 import {
   TbSql,
   TbBrandPowershell,
@@ -390,6 +392,39 @@ const rawProjects = [
       "Generated illusion output",
       "Interactive controls",
       "Streamlit app interface",
+    ],
+  },
+  {
+    id: "grim-triad",
+    rank: 13,
+    title: "Grim Triad",
+    category: "Interactive",
+    summary: "A Warhammer 40,000-themed card battler in React and TypeScript — draft a points-capped army from real 40k faction data, then battle for board control on a 3×3 grid with 12 optional modifier rules, a full campaign mode, and a cross-mode card unlock and achievement system.",
+    longDescription: "Grim Triad takes the core loop of Triple Triad and rebuilds it around Warhammer 40,000. Every one of the 1,075 units in the catalogue is sourced from the real 10th Edition Munitorum Field Manual and run through a custom stat-generation pipeline that converts points cost into four directional card values. The game features 12 optional modifier rules, 4 Trade Rules, a campaign mode with a persistent evolving collection and an AI rival with its own depletable card pool, and a cross-mode unlock system that gates the rarest units behind genuine play milestones. Fully static, zero-backend — all progress lives in localStorage, deployed via GitHub Pages.",
+    highlights: [
+      "1,075 units sourced from the real Warhammer 40k 10th Edition Munitorum Field Manual, with stats procedurally derived from points cost via a custom data pipeline",
+      "12 optional modifier rules (Same, Plus, Elemental, Chain, Sudden Death, and more) plus 4 Trade Rules for deep gameplay variation",
+      "Campaign mode with a persistent, evolving card collection and an AI rival with its own depletable card pool",
+      "Cross-mode card unlock system gating the game's rarest units behind genuine play milestones, with live per-card progress tracking",
+      "900+ passing tests across 67 test files covering the engine, Zustand stores, components, screens, and full end-to-end integration",
+      "Fully static, zero-backend deployment via GitHub Pages — no accounts, no server, all progress in localStorage",
+    ],
+    stack: ["React", "TypeScript", "Vite", "Zustand", "Framer Motion", "Vitest"],
+    badges: [
+      { label: "React", Icon: FaReact },
+      { label: "TypeScript", Icon: SiTypescript },
+      { label: "Vite", Icon: SiVite },
+    ],
+    featured: false,
+    deploymentStatus: "live",
+    githubUrl: "https://github.com/TGOSS1984/grim-triad",
+    liveUrl: "https://TGOSS1984.github.io/grim-triad/",
+    imageLabel: "Grim Triad",
+    image: `${import.meta.env.BASE_URL}assets/images/projects/grim_triad/device-mockup.png`,
+    galleryExtra: [
+      { src: `${import.meta.env.BASE_URL}assets/images/projects/grim_triad/battle.png`, caption: "Battle screen — 3×3 grid gameplay" },
+      { src: `${import.meta.env.BASE_URL}assets/images/projects/grim_triad/progress-acheivements.png`, caption: "Progress & achievements" },
+      { src: `${import.meta.env.BASE_URL}assets/images/projects/grim_triad/faction-army-builder.png`, caption: "Faction select & army builder" },
     ],
   },
   {
