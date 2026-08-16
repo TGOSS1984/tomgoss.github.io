@@ -61,7 +61,7 @@ const rawProjects = [
     githubUrl: "https://github.com/TGOSS1984/uk-summit-guides",
     liveUrl: "https://uk-summit-guides.vercel.app/",
     imageLabel: "UK Summit Guides",
-    image: `${import.meta.env.BASE_URL}assets/images/projects/uk_summit_guides/uk-summit-guides.PNG`,
+    image: `${import.meta.env.BASE_URL}assets/images/projects/uk_summit_guides/uk-summit-guides.png`,
     galleryExtra: [
       "Route explorer & GPX map view",
       "Booking & payment flow",
