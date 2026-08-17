@@ -34,10 +34,13 @@ import {
 import { PiBracketsCurlyBold } from "react-icons/pi";
 import { MdOutlineAutoAwesome } from "react-icons/md";
 
+// visible: true  → shown on the site
+// visible: false → hidden everywhere (home + projects page) without deleting the entry
 const rawProjects = [
   {
     id: "uk-summit-guides",
     rank: 1,
+    visible: true,
     title: "UK Summit Guides",
     category: "Full Stack",
     suite: "Adventure & Booking Platform",
@@ -74,6 +77,7 @@ const rawProjects = [
   {
     id: "ascent-analytics",
     rank: 2,
+    visible: true,
     title: "Ascent Analytics",
     category: "BI / Dashboarding",
     suite: "Adventure & Booking Platform",
@@ -108,6 +112,7 @@ const rawProjects = [
   {
     id: "summitloguk",
     rank: 3,
+    visible: true,
     title: "SummitLog UK",
     category: "Full Stack",
     suite: "Mountain Tracking Platform",
@@ -146,6 +151,7 @@ const rawProjects = [
   {
     id: "uk-mountain-tours-booking",
     rank: 7,
+    visible: true,
     title: "UK Mountain Tours Booking Website",
     category: "Full Stack",
     suite: "Mountain Tours Suite",
@@ -179,6 +185,7 @@ const rawProjects = [
   {
     id: "winter-mountain-tours-demand-predictor",
     rank: 4,
+    visible: true,
     title: "Winter Mountain Tours Demand Predictor",
     category: "Machine Learning",
     suite: "Mountain Tours Suite",
@@ -212,6 +219,7 @@ const rawProjects = [
   {
     id: "power-bi-mountain-tours-analytics",
     rank: 12,
+    visible: true,
     title: "Power BI Winter Mountain Tours Analytics",
     category: "BI / Dashboarding",
     suite: "Mountain Tours Suite",
@@ -244,6 +252,7 @@ const rawProjects = [
   {
     id: "ashen-emporium",
     rank: 5,
+    visible: true,
     title: "Ashen Emporium",
     category: "Full Stack",
     summary: "A dark fantasy-inspired e-commerce build with product browsing, cart flows, checkout integration, and an image-led storefront experience.",
@@ -275,6 +284,7 @@ const rawProjects = [
   {
     id: "souls-text-adventure",
     rank: 6,
+    visible: true,
     title: "Souls-Inspired Text Adventure",
     category: "Interactive",
     summary: "A branching text adventure game inspired by Soulslike design, featuring class selection, combat systems, story paths, and atmospheric UI.",
@@ -306,6 +316,7 @@ const rawProjects = [
   {
     id: "javascript-anagram-game",
     rank: 9,
+    visible: true,
     title: "JavaScript Anagram Game",
     category: "JavaScript",
     summary: "A browser-based word game built in JavaScript, designed to strengthen front-end logic, interactivity, and gameplay state handling.",
@@ -336,8 +347,9 @@ const rawProjects = [
   {
     id: "retail-analytics-portfolio",
     rank: 10,
+    visible: true,
     title: "Retail Analytics Portfolio",
-    category: "Analytics",
+    category: "BI / Dashboarding",
     summary: "A retail analytics project using synthetic data, SQL, Python, and Power BI to explore KPIs, trends, and commercial performance.",
     longDescription: "A retail analytics project built around synthetic sales data, combining SQL and Python (Pandas/NumPy) processing with Power BI reporting to explore KPIs, trends, and commercial performance.",
     highlights: [
@@ -367,6 +379,7 @@ const rawProjects = [
   {
     id: "magic-eye-project",
     rank: 11,
+    visible: true,
     title: "Magic Eye Project",
     category: "Experimental",
     summary: "An experimental visual project exploring illusion, image generation, or interactive creativity as part of broader technical exploration.",
@@ -397,9 +410,10 @@ const rawProjects = [
   {
     id: "grim-triad",
     rank: 13,
+    visible: true,
     title: "Grim Triad",
     category: "Interactive",
-    summary: "A Warhammer 40,000-themed card battler in React and TypeScript — draft a points-capped army from real 40k faction data, then battle for board control on a 3×3 grid with 12 optional modifier rules, a full campaign mode, and a cross-mode card unlock and achievement system.",
+    summary: "A Warhammer 40,000-themed card battler in React and TypeScript — draft a points-capped army from real 40k faction data, then battle for board control on a 3x3 grid with 12 optional modifier rules, a full campaign mode, and a cross-mode card unlock and achievement system.",
     longDescription: "Grim Triad takes the core loop of Triple Triad and rebuilds it around Warhammer 40,000. Every one of the 1,075 units in the catalogue is sourced from the real 10th Edition Munitorum Field Manual and run through a custom stat-generation pipeline that converts points cost into four directional card values. The game features 12 optional modifier rules, 4 Trade Rules, a campaign mode with a persistent evolving collection and an AI rival with its own depletable card pool, and a cross-mode unlock system that gates the rarest units behind genuine play milestones. Fully static, zero-backend — all progress lives in localStorage, deployed via GitHub Pages.",
     highlights: [
       "1,075 units sourced from the real Warhammer 40k 10th Edition Munitorum Field Manual, with stats procedurally derived from points cost via a custom data pipeline",
@@ -409,7 +423,7 @@ const rawProjects = [
       "900+ passing tests across 67 test files covering the engine, Zustand stores, components, screens, and full end-to-end integration",
       "Fully static, zero-backend deployment via GitHub Pages — no accounts, no server, all progress in localStorage",
     ],
-    stack: ["React", "TypeScript", "Vite", "Zustand", "Framer Motion", "Vitest"],
+    stack: ["React","TypeScript","Vite","Zustand","Framer Motion","Vitest"],
     badges: [
       { label: "React", Icon: FaReact },
       { label: "TypeScript", Icon: SiTypescript },
@@ -422,7 +436,7 @@ const rawProjects = [
     imageLabel: "Grim Triad",
     image: `${import.meta.env.BASE_URL}assets/images/projects/grim_triad/device-mockup.png`,
     galleryExtra: [
-      { src: `${import.meta.env.BASE_URL}assets/images/projects/grim_triad/battle.png`, caption: "Battle screen — 3×3 grid gameplay" },
+      { src: `${import.meta.env.BASE_URL}assets/images/projects/grim_triad/battle.png`, caption: "Battle screen — 3x3 grid gameplay" },
       { src: `${import.meta.env.BASE_URL}assets/images/projects/grim_triad/progress-acheivements.png`, caption: "Progress & achievements" },
       { src: `${import.meta.env.BASE_URL}assets/images/projects/grim_triad/faction-army-builder.png`, caption: "Faction select & army builder" },
     ],
@@ -430,6 +444,7 @@ const rawProjects = [
   {
     id: "souls-dungeon-crawler-cli",
     rank: 8,
+    visible: true,
     title: "Souls-Inspired Dungeon Crawler (CLI)",
     category: "Python / CLI",
     summary: "A command-line dungeon crawler inspired by Soulslike mechanics, featuring class-based combat, branching encounters, and structured game logic built using object-oriented programming.",
