@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ExternalLink, Code2, Maximize2, PauseCircle } from "lucide-react";
+import { ExternalLink, Code2, Maximize2, PauseCircle, FileText, Download } from "lucide-react";
 import Reveal from "./Reveal";
 import { getProjectStatus } from "../../utils/projectStatus";
 import CardBorderTrace from "./CardBorderTrace";
@@ -154,6 +154,30 @@ function ProjectPreviewCard({ project, onOpenDetails }) {
               <span className="project-link project-link-disabled">
                 Code only
               </span>
+            )}
+
+            {project.pdfUrl && (
+              <>
+                <a
+                  className="project-link"
+                  href={project.pdfUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={(event) => event.stopPropagation()}
+                >
+                  <FileText size={16} />
+                  View PDF
+                </a>
+                <a
+                  className="project-link"
+                  href={project.pdfUrl}
+                  download={project.pdfDownloadName || true}
+                  onClick={(event) => event.stopPropagation()}
+                >
+                  <Download size={16} />
+                  Download PDF
+                </a>
+              </>
             )}
           </div>
         </div>

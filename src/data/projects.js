@@ -143,6 +143,8 @@ const rawProjects = [
     deploymentStatus: "private",
     githubUrl: "https://github.com/TGOSS1984/ascent-analytics",
     liveUrl: "",
+    pdfUrl: `${import.meta.env.BASE_URL}assets/documents/Ascent_Analytics_Power_BI.pdf`,
+    pdfDownloadName: "Ascent_Analytics_Power_BI.pdf",
     imageLabel: "Ascent Analytics",
     image: `${import.meta.env.BASE_URL}assets/images/projects/ascent_analytics/ascent-analytics.png`,
     galleryExtra: [
@@ -181,13 +183,15 @@ const rawProjects = [
     deploymentStatus: "live",
     githubUrl: "https://github.com/TGOSS1984/areta-retail-analytics",
     liveUrl: "https://areta-retail-analytics.vercel.app/",
+    pdfUrl: `${import.meta.env.BASE_URL}assets/documents/Areta_Retail_Analytics_Power_BI.pdf`,
+    pdfDownloadName: "Areta_Retail_Analytics_Power_BI.pdf",
     imageLabel: "Areta Retail Analytics",
     image: `${import.meta.env.BASE_URL}assets/images/projects/areta_retail_analytics/areta-retail-analytics.png`,
     galleryExtra: [
-      "Web app overview dashboard",
-      "Power BI P&L waterfall bridge",
-      "Store performance & space productivity",
-      "Data quality checks page",
+      { src: `${import.meta.env.BASE_URL}assets/images/projects/areta_retail_analytics/web_app_overview.png`, caption: "Web app overview dashboard" },
+      { src: `${import.meta.env.BASE_URL}assets/images/projects/areta_retail_analytics/pbi_overview.png`, caption: "Power BI Overview Page" },
+      { src: `${import.meta.env.BASE_URL}assets/images/projects/areta_retail_analytics/pbi_retail.png`, caption: "Store performance & space productivity" },
+      { src: `${import.meta.env.BASE_URL}assets/images/projects/areta_retail_analytics/pbi_data_quality.png`, caption: "Data quality checks page" },
     ],
   },
   {

@@ -5,7 +5,9 @@ import {
   ChevronLeft,
   ChevronRight,
   Code2,
+  Download,
   ExternalLink,
+  FileText,
   ImageOff,
   Maximize2,
   PauseCircle,
@@ -343,6 +345,28 @@ function ProjectLightbox({ project, onClose, onNext, onPrev, canNavigate = false
                     <span className="project-link project-link-primary project-link-disabled">
                       Not deployed live
                     </span>
+                  )}
+
+                  {project.pdfUrl && (
+                    <>
+                      <a
+                        className="project-link"
+                        href={project.pdfUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <FileText size={16} />
+                        View PDF
+                      </a>
+                      <a
+                        className="project-link"
+                        href={project.pdfUrl}
+                        download={project.pdfDownloadName || true}
+                      >
+                        <Download size={16} />
+                        Download PDF
+                      </a>
+                    </>
                   )}
                 </div>
               </footer>
