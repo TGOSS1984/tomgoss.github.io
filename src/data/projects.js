@@ -40,6 +40,8 @@ import { MdOutlineAutoAwesome } from "react-icons/md";
 
 // visible: true  → shown on the site
 // visible: false → hidden everywhere (home + projects page) without deleting the entry
+// category: a single string ("Full Stack") or an array (["Full Stack", "Analytics"])
+//           — a project appears under every filter it's tagged with
 const rawProjects = [
   {
     id: "uk-summit-guides",
@@ -83,7 +85,7 @@ const rawProjects = [
     rank: 3,
     visible: true,
     title: "UK Mountain Rescue Analytics",
-    category: "Full Stack",
+    category: ["Full Stack", "Analytics"],
     suite: "Mountain Tracking Platform",
     summary: "A full stack analytics dashboard built on real UK mountain rescue callout data — a Python pipeline scrapes four rescue teams' incident logs, geocodes and enriches them with weather, daylight and bank holiday data, and serves it through a FastAPI service to a React front end with an interactive map and a dozen-plus charts.",
     longDescription: "UK Mountain Rescue Analytics is the analytics companion to UK Summit Guides and SummitLog UK — where those two are about planning and logging a trip, this one is about what happens when a trip goes wrong, at a national scale. Unlike my synthetic-data BI projects, it deliberately works with real, public, messy data: four mountain rescue teams (Edale, Wasdale, Ogwen Valley and Upper Wharfedale) each publish their callouts in a completely different shape, with inconsistent dates, free-text locations and drifting categories. An 8-step Python pipeline scrapes, cleans and pandera-validates them into one schema, geocodes locations via Nominatim, adds terrain elevation, historical weather, sunrise/sunset and bank holiday flags, then builds a SQLite warehouse. A FastAPI service serves the data to a React + Vite front end with filters, a Leaflet map with a marker/heatmap toggle, and Recharts visuals that test real hypotheses — weather, darkness, bank holidays and day of week against callout volumes. A scheduled GitHub Actions workflow re-scrapes the live sites monthly and auto-deploys the refreshed data, and every judgement call on cleaning is documented in a data dictionary.",
@@ -122,7 +124,7 @@ const rawProjects = [
     rank: 7,
     visible: true,
     title: "Summit Atlas",
-    category: "Full Stack",
+    category: ["Full Stack", "Analytics"],
     suite: "Mountain Tracking Platform",
     summary: "A global mountain climbing tracker in React and TypeScript — the international follow-up to SummitLog UK — with a worldwide peak dataset, 26 curated collections, interactive mapping, procedurally generated mountain art, and a Recharts-powered personal dashboard.",
     longDescription: "Summit Atlas takes the idea behind SummitLog UK global. It's a climbing tracker built in React 18, TypeScript and Vite, backed by a worldwide mountain dataset gap-filled continent by continent, from the Seven Summits and Andes to the Colorado 14ers and the UK & Ireland high points. Peaks are grouped into 26 collections, each with its own parametrised icon (peak shape, accent glyph and colour) that carries through to progress bars and ring charts. The Explore page renders procedurally generated SVG mountain art from 30 archetypes, the map can be filtered by collection, continent and country, and the dashboard turns a climbing history into continent breakdowns, cumulative elevation, an activity heatmap, an elevation histogram and a per-year timeline. Styling is CSS Modules on a custom-property token system, with no Tailwind.",
@@ -239,7 +241,7 @@ const rawProjects = [
     rank: 4,
     visible: true,
     title: "SummitLog UK",
-    category: "Full Stack",
+    category: ["Full Stack", "Analytics"],
     suite: "Mountain Tracking Platform",
     summary: "A personal mountain tracking application for UK hillwalkers to log, visualise, and reflect on time spent in the mountains — covering Wainwrights, Munros, and Nuttalls with over 800 summits sourced from the DOBIH dataset.",
     longDescription: "SummitLog UK is a personal mountain tracking application built for UK hillwalkers who want to log, visualise and reflect on their time in the mountains. It grew from a simple idea to track Wainwright completions into a comprehensive platform covering multiple UK mountain collections — Wainwrights, Munros and Nuttalls — with over 800 summits sourced from the DOBIH (Database of British and Irish Hills) dataset. Built as a full-stack portfolio application, the focus throughout was production-quality design, real-world data and genuinely useful functionality, with a custom design system that aims for something that feels like a premium, polished product rather than a generic CRUD app.",
@@ -603,8 +605,10 @@ const rawProjects = [
 // Each galleryExtra entry can be either:
 //   - a plain string        → rendered as a placeholder tile with that caption
 //   - { src, caption }      → rendered as a real image tile
-const projects = rawProjects.map(({ galleryExtra, ...project }) => ({
+const projects = rawProjects.map(({ galleryExtra, category, ...project }) => ({
   ...project,
+  categories: Array.isArray(category) ? category : [category],
+  category: Array.isArray(category) ? category.join(" · ") : category,
   gallery: [
     ...(project.image
       ? [

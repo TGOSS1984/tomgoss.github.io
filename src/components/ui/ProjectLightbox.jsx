@@ -244,7 +244,9 @@ function ProjectLightbox({ project, onClose, onNext, onPrev, canNavigate = false
                           {project.suite && (
                             <span className="lightbox-meta-pill">{project.suite}</span>
                           )}
-                          <span className="lightbox-meta-pill">{project.category}</span>
+                          {project.categories.map((cat) => (
+                            <span key={cat} className="lightbox-meta-pill">{cat}</span>
+                          ))}
                           <StatusPill project={project} />
                         </div>
                       </div>

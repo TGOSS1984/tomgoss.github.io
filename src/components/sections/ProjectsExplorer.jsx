@@ -31,7 +31,7 @@ function ProjectsExplorer() {
     }
 
     return projects
-      .filter((project) => project.visible !== false && project.category === activeFilter)
+      .filter((project) => project.visible !== false && project.categories.includes(activeFilter))
       .sort((a, b) => a.rank - b.rank);
   }, [activeFilter]);
 
